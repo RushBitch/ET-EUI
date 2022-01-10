@@ -6,9 +6,7 @@ namespace ET
         {
             Scene zoneScene = args.ZoneScene;
             zoneScene.AddComponent<UIComponent>();
-            zoneScene.AddComponent<RedDotComponent>();
-            zoneScene.AddComponent<ResourcesLoaderComponent>();
-            UIComponent.Instance.ShowWindow(WindowID.WindowID_RedDot);
+            TowerDefenceFactory.CreateSolo(zoneScene);
             await ETTask.CompletedTask;
         }
     }

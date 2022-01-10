@@ -4,15 +4,15 @@ using UnityEngine.Networking;
 namespace ET
 {
 	
-	public class UnityWebRequestUpdateSystem : UpdateSystem<UnityWebRequestAsync>
+	public class UnityWebRequestUpdateSystem : UpdateSystem<UnityWebRequestWithAsync>
 	{
-		public override void Update(UnityWebRequestAsync self)
+		public override void Update(UnityWebRequestWithAsync self)
 		{
 			self.Update();
 		}
 	}
 	
-	public class UnityWebRequestAsync : Entity, IUpdate
+	public class UnityWebRequestWithAsync : Entity, IUpdate
 	{
 		public static AcceptAllCertificate certificateHandler = new AcceptAllCertificate();
 		

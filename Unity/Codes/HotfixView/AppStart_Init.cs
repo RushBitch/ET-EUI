@@ -24,8 +24,7 @@ namespace ET
             Game.Scene.AddComponent<GlobalComponent>();
 
             Game.Scene.AddComponent<AIDispatcherComponent>();
-            await ResourcesComponent.Instance.LoadBundleAsync("unit.unity3d");
-            
+            Game.Scene.AddComponent<PolymorohicEventComponent>();
             Scene zoneScene = SceneFactory.CreateZoneScene(1, "Game", Game.Scene);
             
             await Game.EventSystem.PublishAsync(new EventType.AppStartInitFinish() { ZoneScene = zoneScene });

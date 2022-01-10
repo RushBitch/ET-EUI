@@ -48,6 +48,7 @@ namespace ET
 
             UnityEngine.Debug.Log("开始资源打包");
             BuildPipeline.BuildAssetBundles(fold, buildAssetBundleOptions, buildTarget);
+            GenerateVersionInfo(fold);
 
             UnityEngine.Debug.Log("完成资源打包");
 
@@ -76,6 +77,38 @@ namespace ET
                     Debug.Log($"src dir: {fold}    target: {targetPath}");
                     FileHelper.CopyDirectory(fold, targetPath);
                 }
+            }
+        }
+        
+        private static void GenerateVersionInfo(string dir)
+        {
+            VersionConfig versionProto = new VersionConfig();
+            GenerateVersionProto(dir, versionProto, "");
+
+            using (FileStream fileStream = new FileStream($"{dir}/Version.txt", FileMode.Create))
+            {
+                byte[] bytes = JsonHelper.ToJson(versionProto).ToByteArray();
+                fileStream.Write(bytes, 0, bytes.Length);
+            }
+        }
+
+        private static void GenerateVersionProto(string dir, VersionConfig versionProto, string relativePath)
+        {
+            foreach (string file in Directory.GetFiles(dir))
+            {
+                string md5 = MD5Helper.FileMD5(file);
+                FileInfo fi = new FileInfo(file);
+                long size = fi.Length;
+                string filePath = relativePath == ""? fi.Name : $"{relativePath}/{fi.Name}";
+
+                versionProto.FileInfoDict.Add(filePath, new FileVersionInfo { File = filePath, MD5 = md5, Size = size, });
+            }
+
+            foreach (string directory in Directory.GetDirectories(dir))
+            {
+                DirectoryInfo dinfo = new DirectoryInfo(directory);
+                string rel = relativePath == ""? dinfo.Name : $"{relativePath}/{dinfo.Name}";
+                GenerateVersionProto($"{dir}/{dinfo.Name}", versionProto, rel);
             }
         }
     }
