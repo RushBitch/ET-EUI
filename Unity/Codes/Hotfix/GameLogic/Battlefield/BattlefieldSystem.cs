@@ -8,6 +8,15 @@
             self.BattlefieldPlayers.Clear();
         }
     }
+    
+    [ObjectSystem]
+    public class BattlefieldDestroySystem: DestroySystem<Battlefield>
+    {
+        public override void Destroy(Battlefield self)
+        {
+            self.BattlefieldPlayers.Clear();
+        }
+    }
 
     public static class BattlefieldSystem
     {
@@ -18,7 +27,7 @@
 
         public static void AddBattlefieldPlayer(this Battlefield self, long id)
         {
-            BattlefieldPlayer battlefieldPlayer = self.AddChild<BattlefieldPlayer, long>(id);
+            BattlefieldPlayer battlefieldPlayer = self.AddChildWithId<BattlefieldPlayer>(id);
             self.BattlefieldPlayers.Add(battlefieldPlayer);
         }
 

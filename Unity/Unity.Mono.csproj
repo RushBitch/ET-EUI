@@ -138,6 +138,7 @@
      <Compile Include="Assets\Mono\ILRuntime\Generate\ET_ETTask_1_ILTypeInstance_Binding.cs" />
      <Compile Include="Assets\Mono\ILRuntime\Generate\ET_ETCancellationToken_Binding.cs" />
      <Compile Include="Assets\Mono\ILRuntime\Generate\System_Collections_Generic_SortedDictionary_2_Int32_ILTypeInstance_Bi_t1.cs" />
+     <Compile Include="Assets\Mono\BundleDownloader\BundleConfig.cs" />
      <Compile Include="Assets\Mono\ILRuntime\Generate\System_Collections_Generic_Dictionary_2_Int32_ILTypeInstance_Binding_.cs" />
      <Compile Include="Assets\Mono\ILRuntime\Generate\RedDotMonoView_Binding.cs" />
      <Compile Include="Assets\Mono\ILRuntime\Generate\ET_TimeInfo_Binding.cs" />
@@ -210,6 +211,7 @@
      <Compile Include="Assets\Mono\ILRuntime\Generate\UnityEngine_U2D_SpriteAtlas_Binding.cs" />
      <Compile Include="Assets\Mono\ILRuntime\Generate\ET_UnOrderMultiMapSet_2_Type_Type_Binding.cs" />
      <Compile Include="Assets\Mono\ILRuntime\Generate\System_Action_1_Int32_Binding.cs" />
+     <Compile Include="Assets\Mono\BundleDownloader\BundleDownloader.cs" />
      <Compile Include="Assets\Mono\ILRuntime\Generate\System_Object_Binding.cs" />
      <Compile Include="Assets\Mono\ILRuntime\Generate\UnityEngine_SceneManagement_SceneManager_Binding.cs" />
      <Compile Include="Assets\Mono\ILRuntime\Generate\System_Collections_Generic_Dictionary_2_String_ListComponent_1_String.cs" />
@@ -225,6 +227,7 @@
      <Compile Include="Assets\Mono\ILRuntime\Generate\System_Collections_Generic_List_1_Action_Binding_Enumerator_Binding.cs" />
      <Compile Include="Assets\Mono\ILRuntime\Generate\System_Collections_Generic_Dictionary_2_String_String_Array_Binding.cs" />
      <Compile Include="Assets\Mono\ILRuntime\Generate\System_Int32_Binding.cs" />
+     <Compile Include="Assets\Mono\BundleDownloader\LoadingUI.cs" />
      <Compile Include="Assets\Mono\ILRuntime\Generate\System_Collections_Generic_Dictionary_2_Type_Int32_Binding.cs" />
      <Compile Include="Assets\Mono\ILRuntime\Generate\System_Action_Binding.cs" />
      <Compile Include="Assets\Mono\ILRuntime\Generate\System_Collections_Generic_KeyValuePair_2_Int32_ILTypeInstance_Bindin.cs" />
@@ -276,6 +279,7 @@
      <Compile Include="Assets\Mono\ILRuntime\Generate\System_Collections_Generic_List_1_UnityWebRequest_Binding_Enumerator_.cs" />
      <Compile Include="Assets\Mono\ILRuntime\Generate\System_Collections_Generic_KeyValuePair_2_String_Object_Binding.cs" />
      <Compile Include="Assets\Mono\ILRuntime\Generate\System_Collections_Generic_List_1_Int32_Binding.cs" />
+     <Compile Include="Assets\Mono\BundleDownloader\UnityWebRequestAsync.cs" />
      <Compile Include="Assets\Mono\ILRuntime\Generate\ET_TimeHelper_Binding.cs" />
      <Compile Include="Assets\Mono\ILRuntime\Generate\System_Collections_Generic_Dictionary_2_String_ListComponent_1_String_t1.cs" />
      <Compile Include="Assets\Mono\ILRuntime\Generate\System_Collections_Generic_Dictionary_2_Type_ILTypeInstance_Binding_E.cs" />
@@ -346,10 +350,10 @@
      <Compile Include="Assets\Mono\ILRuntime\Generate\System_Char_Binding.cs" />
      <Compile Include="Assets\Mono\ILRuntime\Generate\System_Collections_Generic_HashSet_1_AService_Binding_Enumerator_Bind.cs" />
      <Compile Include="Assets\Mono\Define.cs" />
-     <Compile Include="Assets\Mono\BundleDownloader\LoadingUI.cs" />
-     <Compile Include="Assets\Mono\BundleDownloader\UnityWebRequestAsync.cs" />
-     <Compile Include="Assets\Mono\BundleDownloader\BundleDownloader.cs" />
-     <Compile Include="Assets\Mono\BundleDownloader\BundleConfig.cs" />
+     <Compile Include="Assets\Mono\ILRuntime\Generate\System_Numerics_Vector3_Binding.cs" />
+     <Compile Include="Assets\Mono\ILRuntime\Generate\System_Int32_Array_Binding.cs" />
+     <Compile Include="Assets\Mono\ILRuntime\Generate\System_Collections_Generic_Dictionary_2_Int32_Vector3_Binding.cs" />
+     <Compile Include="Assets\Mono\ILRuntime\Generate\System_Convert_Binding.cs" />
      <None Include="Assets\Mono\Unity.Mono.asmdef" />
      <Reference Include="UnityEngine">
      <HintPath>D:/Unity/2020.3.22f1c1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>

@@ -12,6 +12,8 @@ namespace ET
         WindowID_Login,     //登录界面
         WindowID_Test,     //测试界面
         WindowID_RedDot,   //红点测试界面
+        WindowID_MenuUI,
+        WindowID_TowerDefenceUI
     }
 
 

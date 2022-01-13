@@ -542,7 +542,7 @@ namespace ET
             {
                 baseWindow.m_uiPrefabGameObject.SetActive(true);
             }
-            self.GetUIEventHandler(id).OnShowWindow(baseWindow,showData);
+            self.GetUIEventHandler(id).OnShowWindow(baseWindow,contextData);
             
             self.VisibleWindowsDic[(int)id] = baseWindow;
             if (preWindowID != WindowID.WindowID_Invaild)

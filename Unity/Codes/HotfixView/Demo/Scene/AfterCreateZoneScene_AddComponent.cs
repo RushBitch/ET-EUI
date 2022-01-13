@@ -6,7 +6,7 @@ namespace ET
         {
             Scene zoneScene = args.ZoneScene;
             zoneScene.AddComponent<UIComponent>();
-            TowerDefenceFactory.CreateSolo(zoneScene);
+            zoneScene.GetComponent<UIComponent>().ShowWindow(WindowID.WindowID_MenuUI);
             await ETTask.CompletedTask;
         }
     }

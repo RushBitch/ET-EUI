@@ -2,7 +2,7 @@
 
 namespace ET
 {
-    public class Battlefield: Entity, IAwake
+    public class Battlefield: Entity, IAwake, IDestroy
     {
         public List<BattlefieldPlayer> BattlefieldPlayers = new List<BattlefieldPlayer>();
     }

@@ -23,14 +23,14 @@ namespace ILRuntime.Runtime.Generated
             Type[] args;
             Type type = typeof(System.Object);
             args = new Type[]{};
-            method = type.GetMethod("GetHashCode", flag, null, args, null);
-            app.RegisterCLRMethodRedirection(method, GetHashCode_0);
+            method = type.GetMethod("GetType", flag, null, args, null);
+            app.RegisterCLRMethodRedirection(method, GetType_0);
             args = new Type[]{};
             method = type.GetMethod("ToString", flag, null, args, null);
             app.RegisterCLRMethodRedirection(method, ToString_1);
             args = new Type[]{};
-            method = type.GetMethod("GetType", flag, null, args, null);
-            app.RegisterCLRMethodRedirection(method, GetType_2);
+            method = type.GetMethod("GetHashCode", flag, null, args, null);
+            app.RegisterCLRMethodRedirection(method, GetHashCode_2);
 
             app.RegisterCLRCreateArrayInstance(type, s => new System.Object[s]);
 
@@ -38,7 +38,7 @@ namespace ILRuntime.Runtime.Generated
         }
 
 
-        static StackObject* GetHashCode_0(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
+        static StackObject* GetType_0(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
         {
             ILRuntime.Runtime.Enviorment.AppDomain __domain = __intp.AppDomain;
             StackObject* ptr_of_this_method;
@@ -48,11 +48,9 @@ namespace ILRuntime.Runtime.Generated
             System.Object instance_of_this_method = (System.Object)typeof(System.Object).CheckCLRTypes(StackObject.ToObject(ptr_of_this_method, __domain, __mStack), (CLR.Utils.Extensions.TypeFlags)0);
             __intp.Free(ptr_of_this_method);
 
-            var result_of_this_method = instance_of_this_method.GetHashCode();
+            var result_of_this_method = instance_of_this_method.GetType();
 
-            __ret->ObjectType = ObjectTypes.Integer;
-            __ret->Value = result_of_this_method;
-            return __ret + 1;
+            return ILIntepreter.PushObject(__ret, __mStack, result_of_this_method);
         }
 
         static StackObject* ToString_1(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
@@ -70,7 +68,7 @@ namespace ILRuntime.Runtime.Generated
             return ILIntepreter.PushObject(__ret, __mStack, result_of_this_method);
         }
 
-        static StackObject* GetType_2(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
+        static StackObject* GetHashCode_2(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
         {
             ILRuntime.Runtime.Enviorment.AppDomain __domain = __intp.AppDomain;
             StackObject* ptr_of_this_method;
@@ -80,9 +78,11 @@ namespace ILRuntime.Runtime.Generated
             System.Object instance_of_this_method = (System.Object)typeof(System.Object).CheckCLRTypes(StackObject.ToObject(ptr_of_this_method, __domain, __mStack), (CLR.Utils.Extensions.TypeFlags)0);
             __intp.Free(ptr_of_this_method);
 
-            var result_of_this_method = instance_of_this_method.GetType();
+            var result_of_this_method = instance_of_this_method.GetHashCode();
 
-            return ILIntepreter.PushObject(__ret, __mStack, result_of_this_method);
+            __ret->ObjectType = ObjectTypes.Integer;
+            __ret->Value = result_of_this_method;
+            return __ret + 1;
         }
 
 
