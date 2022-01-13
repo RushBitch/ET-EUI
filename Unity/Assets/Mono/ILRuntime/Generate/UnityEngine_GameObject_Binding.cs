@@ -39,6 +39,20 @@ namespace ILRuntime.Runtime.Generated
                     lst.Add(m);
                 }
             }
+            args = new Type[]{typeof(UnityEngine.UI.Text)};
+            if (genericMethods.TryGetValue("GetComponent", out lst))
+            {
+                foreach(var m in lst)
+                {
+                    if(m.MatchGenericParameters(args, typeof(UnityEngine.UI.Text)))
+                    {
+                        method = m.MakeGenericMethod(args);
+                        app.RegisterCLRMethodRedirection(method, GetComponent_1);
+
+                        break;
+                    }
+                }
+            }
             args = new Type[]{typeof(UnityEngine.UI.Button)};
             if (genericMethods.TryGetValue("GetComponent", out lst))
             {
@@ -47,7 +61,7 @@ namespace ILRuntime.Runtime.Generated
                     if(m.MatchGenericParameters(args, typeof(UnityEngine.UI.Button)))
                     {
                         method = m.MakeGenericMethod(args);
-                        app.RegisterCLRMethodRedirection(method, GetComponent_1);
+                        app.RegisterCLRMethodRedirection(method, GetComponent_2);
 
                         break;
                     }
@@ -59,20 +73,6 @@ namespace ILRuntime.Runtime.Generated
                 foreach(var m in lst)
                 {
                     if(m.MatchGenericParameters(args, typeof(UnityEngine.UI.Image)))
-                    {
-                        method = m.MakeGenericMethod(args);
-                        app.RegisterCLRMethodRedirection(method, GetComponent_2);
-
-                        break;
-                    }
-                }
-            }
-            args = new Type[]{typeof(UnityEngine.UI.Text)};
-            if (genericMethods.TryGetValue("GetComponent", out lst))
-            {
-                foreach(var m in lst)
-                {
-                    if(m.MatchGenericParameters(args, typeof(UnityEngine.UI.Text)))
                     {
                         method = m.MakeGenericMethod(args);
                         app.RegisterCLRMethodRedirection(method, GetComponent_3);
@@ -179,7 +179,7 @@ namespace ILRuntime.Runtime.Generated
             UnityEngine.GameObject instance_of_this_method = (UnityEngine.GameObject)typeof(UnityEngine.GameObject).CheckCLRTypes(StackObject.ToObject(ptr_of_this_method, __domain, __mStack), (CLR.Utils.Extensions.TypeFlags)0);
             __intp.Free(ptr_of_this_method);
 
-            var result_of_this_method = instance_of_this_method.GetComponent<UnityEngine.UI.Button>();
+            var result_of_this_method = instance_of_this_method.GetComponent<UnityEngine.UI.Text>();
 
             return ILIntepreter.PushObject(__ret, __mStack, result_of_this_method);
         }
@@ -194,7 +194,7 @@ namespace ILRuntime.Runtime.Generated
             UnityEngine.GameObject instance_of_this_method = (UnityEngine.GameObject)typeof(UnityEngine.GameObject).CheckCLRTypes(StackObject.ToObject(ptr_of_this_method, __domain, __mStack), (CLR.Utils.Extensions.TypeFlags)0);
             __intp.Free(ptr_of_this_method);
 
-            var result_of_this_method = instance_of_this_method.GetComponent<UnityEngine.UI.Image>();
+            var result_of_this_method = instance_of_this_method.GetComponent<UnityEngine.UI.Button>();
 
             return ILIntepreter.PushObject(__ret, __mStack, result_of_this_method);
         }
@@ -209,7 +209,7 @@ namespace ILRuntime.Runtime.Generated
             UnityEngine.GameObject instance_of_this_method = (UnityEngine.GameObject)typeof(UnityEngine.GameObject).CheckCLRTypes(StackObject.ToObject(ptr_of_this_method, __domain, __mStack), (CLR.Utils.Extensions.TypeFlags)0);
             __intp.Free(ptr_of_this_method);
 
-            var result_of_this_method = instance_of_this_method.GetComponent<UnityEngine.UI.Text>();
+            var result_of_this_method = instance_of_this_method.GetComponent<UnityEngine.UI.Image>();
 
             return ILIntepreter.PushObject(__ret, __mStack, result_of_this_method);
         }

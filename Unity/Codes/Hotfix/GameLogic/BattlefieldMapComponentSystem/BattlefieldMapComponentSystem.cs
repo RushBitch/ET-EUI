@@ -12,7 +12,7 @@ namespace ET
             self.Awake(battlefieldMap);
         }
     }
-    
+
     [ObjectSystem]
     public class BattlefieldMapComponentDestroySystem: DestroySystem<BattlefieldMapComponent>
     {
@@ -20,6 +20,8 @@ namespace ET
         {
             self.battlefieldMap = null;
             self.IndexPositonDictionary.Clear();
+            self.spawnPoints.Clear();
+            self.endPoinit = Vector3.Zero;
         }
     }
 
@@ -29,15 +31,35 @@ namespace ET
         {
             self.battlefieldMap = battlefieldMap;
             self.IndexPositonDictionary = new Dictionary<int, Vector3>();
+            self.spawnPoints = new List<Vector3>();
+            self.endPoinit = new Vector3();
             for (int i = 0; i < self.battlefieldMap.Length; i++)
             {
                 for (int j = 0; j < self.battlefieldMap[i].Length; j++)
                 {
-                    float x = j - 3f;
-                    float z = i - 5f;
-                    self.IndexPositonDictionary.Add(i * self.battlefieldMap[i].Length + j, new Vector3(x, 0, z));
+                    Vector3 points = new Vector3(j - 3f, 0, i - 5f);
+                    self.IndexPositonDictionary.Add(i * self.battlefieldMap[i].Length + j, points);
+                    if (self.battlefieldMap[i][j] == 3)
+                    {
+                        self.spawnPoints.Add(points);
+                    }
+
+                    if (self.battlefieldMap[i][j] == 3)
+                    {
+                        self.endPoinit = points;
+                    }
                 }
             }
+        }
+
+        public static List<Vector3> GetSpawnPoints(this BattlefieldMapComponent self)
+        {
+            return self.spawnPoints;
+        }
+
+        public static Vector3 GetDestinationPoints(this BattlefieldMapComponent self)
+        {
+            return self.endPoinit;
         }
     }
 }

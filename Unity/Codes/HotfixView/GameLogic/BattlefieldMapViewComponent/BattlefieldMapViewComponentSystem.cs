@@ -29,7 +29,10 @@ namespace ET
     {
         public static void Awake(this BattlefieldMapViewComponent self, Transform parent)
         {
-            self.mapGridParent = parent;
+            self.gameObject = new GameObject();
+            self.gameObject.name = self.ToString();
+            self.gameObject.transform.parent = parent;
+            self.gameObject.transform.localPosition = UnityEngine.Vector3.zero;
             self.indexGameObjects = new Dictionary<int, GameObject>();
             BattlefieldMapComponent battlefieldMapComponent = (BattlefieldMapComponent)self.Parent;
             int[][] battlefieldMap = battlefieldMapComponent.battlefieldMap;
@@ -38,7 +41,7 @@ namespace ET
                 for (int j = 0; j < battlefieldMap[i].Length; j++)
                 {
                     int mapGridType = battlefieldMap[i][j];
-                    GameObject gameObject = InstantiateMapGrid(mapGridType, self.mapGridParent);
+                    GameObject gameObject = InstantiateMapGrid(mapGridType, self.gameObject.transform);
                     Vector3 pos;
                     int index = i * battlefieldMap[i].Length + j;
                     battlefieldMapComponent.IndexPositonDictionary.TryGetValue(i*battlefieldMap[i].Length + j, out pos);

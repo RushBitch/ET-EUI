@@ -27,10 +27,7 @@
 
 		public void OnHideWindow(UIBaseWindow uiBaseWindow)
 		{
-<<<<<<< HEAD:Unity/Codes/HotfixView/GameLogic/UI/DlgTowerDefenceUI/Event/DlgTowerDefenceUIEventHandler.cs
-=======
 			
->>>>>>> upstream/main:Unity/Codes/HotfixView/Demo/UI/DlgTest/Event/DlgTestEventHandler.cs
 		}
 
 		public void BeforeUnload(UIBaseWindow uiBaseWindow)

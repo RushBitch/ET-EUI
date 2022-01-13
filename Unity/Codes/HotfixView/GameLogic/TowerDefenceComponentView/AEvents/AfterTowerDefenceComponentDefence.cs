@@ -5,10 +5,10 @@
         protected override async ETTask Run(EventType.AfterCreateTowerDefence args)
         {
             await TowerDefenceComponentViewFactory.Create(args.TowerDefence);
-            UIComponent.Instance.HideWindow(WindowID.WindowID_MenuUI);
+            args.TowerDefence.DomainScene().GetComponent<UIComponent>().HideWindow(WindowID.WindowID_MenuUI);
             ShowWindowData showWindowData = new ShowWindowData();
             showWindowData.contextData = args.TowerDefence;
-            UIComponent.Instance.ShowWindow(WindowID.WindowID_TowerDefenceUI,WindowID.WindowID_Invaild,showWindowData);
+            args.TowerDefence.DomainScene().GetComponent<UIComponent>().ShowWindow(WindowID.WindowID_TowerDefenceUI,WindowID.WindowID_Invaild,showWindowData);
 
             await ETTask.CompletedTask;
         }

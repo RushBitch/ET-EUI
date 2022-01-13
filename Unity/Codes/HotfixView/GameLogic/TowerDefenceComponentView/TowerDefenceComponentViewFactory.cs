@@ -34,11 +34,19 @@ namespace ET
             {
                 BattlefieldView battlefieldView = battlefield.AddComponent<BattlefieldView, GameObject>(towerDefenceView.towerDefenceRoot);
 
+                //地图配置
                 BattlefieldMapComponent battlefieldMapComponent = battlefield.GetComponent<BattlefieldMapComponent>();
                 if (battlefieldMapComponent != null)
                 {
                     await ResourcesComponent.Instance.LoadBundleAsync("MapGrid.Unity3d");
                     battlefieldMapComponent.AddComponent<BattlefieldMapViewComponent, Transform>(battlefieldView.BattleRoot.transform);
+                }
+
+                //显示地图敌人出生点
+                if (battlefield.GetComponent<EnemySpawnComponent>() != null)
+                {
+
+                    battlefield.GetComponent<EnemySpawnComponent>().AddComponent<EnemySpawnViewComponent, Transform>(battlefieldView.BattleRoot.transform);
                 }
             }
 

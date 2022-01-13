@@ -24,7 +24,7 @@
             battlefield.AddComponent<BattlefieldMapComponent, int[][]>(battlefieldMapConfig.battlefieldMap);
             //添加玩家数据
             battlefield.AddBattlefieldPlayer(IdGenerater.Instance.GenerateId());
-            //配置玩家位置等
+            //配置敌人出生点、敌人死亡点等等
             battlefield.SetUp();
             //更新显示层
             Game.EventSystem.PublishAsync(new EventType.AfterCreateTowerDefence() { TowerDefence = towerDefence });
@@ -35,6 +35,7 @@
         {
             //创建塔防对局
             TowerDefenceComponent towerDefence = zoneScene.AddChild<TowerDefenceComponent, TowerDefenceType>(TowerDefenceType.Pvp);
+            towerDefence.AddComponent<EnemySpawnComponent>();
             towerDefence.battlefieldIds = new long[2];
             long[] playerIds = { IdGenerater.Instance.GenerateId(), IdGenerater.Instance.GenerateId() };
 
@@ -62,6 +63,7 @@
         {
             //创建塔防对局
             TowerDefenceComponent towerDefence = zoneScene.AddChild<TowerDefenceComponent, TowerDefenceType>(TowerDefenceType.Team);
+            towerDefence.AddComponent<EnemySpawnComponent>();
             towerDefence.battlefieldIds = new long[1];
             //添加战场
             Battlefield battlefield = towerDefence.AddChild<Battlefield>();

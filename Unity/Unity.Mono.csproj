@@ -354,8 +354,9 @@
      <Compile Include="Assets\Mono\ILRuntime\Generate\System_Char_Binding.cs" />
      <Compile Include="Assets\Mono\ILRuntime\Generate\System_Collections_Generic_HashSet_1_AService_Binding_Enumerator_Bind.cs" />
      <Compile Include="Assets\Mono\Define.cs" />
-     <Compile Include="Assets\Mono\ILRuntime\Generate\UnityEngine_UI_InputField_Binding.cs" />
-     <Compile Include="Assets\Mono\BundleDownloader\LoginFinish_CreateLobbyUI.cs" />
+     <Compile Include="Assets\Mono\ILRuntime\Generate\System_Collections_Generic_Dictionary_2_Int32_GameObject_Binding.cs" />
+     <Compile Include="Assets\Mono\ILRuntime\Generate\System_Collections_Generic_Dictionary_2_Int32_GameObject_Binding_Valu_t1.cs" />
+     <Compile Include="Assets\Mono\ILRuntime\Generate\System_Collections_Generic_Dictionary_2_Int32_GameObject_Binding_Valu.cs" />
      <None Include="Assets\Mono\Unity.Mono.asmdef" />
      <Reference Include="UnityEngine">
      <HintPath>D:/Unity/2020.3.22f1c1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>

@@ -8,5 +8,7 @@ namespace ET
     {
         public int[][] battlefieldMap;
         public Dictionary<int, Vector3> IndexPositonDictionary;
+        public List<Vector3> spawnPoints;
+        public Vector3 endPoinit;
     }
 }

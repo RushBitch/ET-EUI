@@ -20,8 +20,8 @@ namespace ET
 
         private static void OnBackToMainButton(this DlgTowerDefenceUI self)
         {
-            UIComponent.Instance.HideWindow(WindowID.WindowID_TowerDefenceUI);
-            UIComponent.Instance.ShowWindow(WindowID.WindowID_MenuUI);
+            self.DomainScene().GetComponent<UIComponent>().HideWindow(WindowID.WindowID_TowerDefenceUI);
+            self.DomainScene().GetComponent<UIComponent>().ShowWindow(WindowID.WindowID_MenuUI);
             if (self.towerDefenceComponent != null)
             {
                 self.towerDefenceComponent.Dispose();

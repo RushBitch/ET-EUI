@@ -10,28 +10,28 @@ namespace ET
     {
         public static void RegisterUIEvent(this DlgMenuUI self)
         {
-            self.View.EButton_Solo.AddListener(OnSoloButton);
-            self.View.EButton_Pvp.AddListener(OnPvpButton);
-            self.View.EButton_Team.AddListener(OnTeamButton);
+            self.View.EButton_Solo.AddListener(self.OnSoloButton);
+            self.View.EButton_Pvp.AddListener(self.OnPvpButton);
+            self.View.EButton_Team.AddListener(self.OnTeamButton);
         }
 
         public static void ShowWindow(this DlgMenuUI self, Entity contextData = null)
         {
         }
 
-        public static void OnSoloButton()
+        public static void OnSoloButton(this DlgMenuUI self)
         {
-            TowerDefenceComponentFactory.CreateSolo(UIComponent.Instance.DomainScene());
+            TowerDefenceComponentFactory.CreateSolo(self.DomainScene());
         }
 
-        public static void OnPvpButton()
+        public static void OnPvpButton(this DlgMenuUI self)
         {
-            TowerDefenceComponentFactory.CreatePvp(UIComponent.Instance.DomainScene());
+            TowerDefenceComponentFactory.CreatePvp(self.DomainScene());
         }
 
-        public static void OnTeamButton()
+        public static void OnTeamButton(this DlgMenuUI self)
         {
-            TowerDefenceComponentFactory.CreateTeam(UIComponent.Instance.DomainScene());
+            TowerDefenceComponentFactory.CreateTeam(self.DomainScene());
         }
     }
 }

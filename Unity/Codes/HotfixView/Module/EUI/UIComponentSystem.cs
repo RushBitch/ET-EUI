@@ -391,17 +391,8 @@ namespace ET
             }
             
             Entity contextData = showData == null ? null : showData.contextData;
-<<<<<<< HEAD
-            if (null != baseWindow.m_uiPrefabGameObject)
-            {
-                baseWindow.m_uiPrefabGameObject.SetActive(true);
-            }
-            self.GetUIEventHandler(id).OnShowWindow(baseWindow,contextData);
-=======
             baseWindow.UIPrefabGameObject?.SetActive(true);
             UIEventComponent.Instance.GetUIEventHandler(id).OnShowWindow(baseWindow,contextData);
->>>>>>> upstream/main
-            
             self.VisibleWindowsDic[(int)id] = baseWindow;
             if (preWindowID != WindowID.WindowID_Invaild)
             {
@@ -420,7 +411,8 @@ namespace ET
 
             UIBaseWindow baseWindow = self.VisibleWindowsDic[(int)id];
             baseWindow.UIPrefabGameObject?.SetActive(false);
-          
+            Log.Info(UIEventComponent.Instance.GetUIEventHandler(id).ToString());
+
             UIEventComponent.Instance.GetUIEventHandler(id).OnHideWindow(baseWindow);
             self.VisibleWindowsDic.Remove((int)id);
             self.VisibleWindowsQueue.Remove(id);
