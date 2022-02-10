@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Unity/Assets/Bundles/Hero.meta
 guid: 38c0946ca8640ae44975970d8ec6d12c
+=======
+guid: faf34db9a0adfa5479844f8588715832
+>>>>>>> upstream/main:Unity/Assets/Res/Mat.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

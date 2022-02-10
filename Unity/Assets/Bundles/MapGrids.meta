@@ -1,8 +1,14 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Unity/Assets/Bundles/MapGrids.meta
 guid: 295c2312282cc9245b1b5a5f8529bf38
 folderAsset: yes
 DefaultImporter:
+=======
+guid: 313955cd6271f5c4985cba4adc30fc8e
+NativeFormatImporter:
+>>>>>>> upstream/main:Unity/Assets/Res/UniversalRenderPipelineAsset.asset.meta
   externalObjects: {}
+  mainObjectFileID: 11400000
   userData: 
   assetBundleName: 
   assetBundleVariant: 
