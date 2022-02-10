@@ -50,6 +50,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Codes\HotfixView\**\*.cs" />
+    <Reference Include="DOTween, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>Assets\ThirdParty\DOTween\DOTween.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine">
       <HintPath>./Temp/bin/Debug/UnityEngine.dll</HintPath>
     </Reference>

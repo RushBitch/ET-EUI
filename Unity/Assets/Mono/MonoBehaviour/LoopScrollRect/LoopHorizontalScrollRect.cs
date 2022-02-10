@@ -7,9 +7,9 @@ namespace UnityEngine.UI
     [DisallowMultipleComponent]
     public class LoopHorizontalScrollRect : LoopScrollRect
     {
-        protected override float GetSize(RectTransform item)
+        protected override float GetSize(RectTransform item, bool includeSpacing)
         {
-            float size = contentSpacing;
+            float size = includeSpacing ? contentSpacing : 0;
             if (m_GridLayout != null)
             {
                 size += m_GridLayout.cellSize.x;
@@ -18,12 +18,18 @@ namespace UnityEngine.UI
             {
                 size += LayoutUtility.GetPreferredWidth(item);
             }
+            size *= m_Content.localScale.x;
             return size;
         }
 
         protected override float GetDimension(Vector2 vector)
         {
             return -vector.x;
+        }
+        
+        protected override float GetAbsDimension(Vector2 vector)
+        {
+            return vector.x;
         }
 
         protected override Vector2 GetVector(float value)
@@ -33,8 +39,8 @@ namespace UnityEngine.UI
 
         protected override void Awake()
         {
+            direction = LoopScrollRectDirection.Horizontal;
             base.Awake();
-            directionSign = 1;
 
             GridLayoutGroup layout = content.GetComponent<GridLayoutGroup>();
             if (layout != null && layout.constraint != GridLayoutGroup.Constraint.FixedRowCount)
@@ -109,10 +115,10 @@ namespace UnityEngine.UI
                 changed = true;
             }
 
-            if (viewBounds.max.x < contentBounds.max.x - threshold)
+            if (viewBounds.max.x < contentBounds.max.x - threshold - m_ContentRightPadding)
             {
                 float size = DeleteItemAtEnd(), totalSize = size;
-                while (size > 0 && viewBounds.max.x < contentBounds.max.x - threshold - totalSize)
+                while (size > 0 && viewBounds.max.x < contentBounds.max.x - threshold - m_ContentRightPadding - totalSize)
                 {
                     size = DeleteItemAtEnd();
                     totalSize += size;
@@ -121,10 +127,10 @@ namespace UnityEngine.UI
                     changed = true;
             }
 
-            if (viewBounds.min.x > contentBounds.min.x + threshold)
+            if (viewBounds.min.x > contentBounds.min.x + threshold + m_ContentLeftPadding)
             {
                 float size = DeleteItemAtStart(), totalSize = size;
-                while (size > 0 && viewBounds.min.x > contentBounds.min.x + threshold + totalSize)
+                while (size > 0 && viewBounds.min.x > contentBounds.min.x + threshold + m_ContentLeftPadding + totalSize)
                 {
                     size = DeleteItemAtStart();
                     totalSize += size;
@@ -133,10 +139,10 @@ namespace UnityEngine.UI
                     changed = true;
             }
 
-            if (viewBounds.max.x > contentBounds.max.x)
+            if (viewBounds.max.x > contentBounds.max.x - m_ContentRightPadding)
             {
                 float size = NewItemAtEnd(), totalSize = size;
-                while (size > 0 && viewBounds.max.x > contentBounds.max.x + totalSize)
+                while (size > 0 && viewBounds.max.x > contentBounds.max.x - m_ContentRightPadding + totalSize)
                 {
                     size = NewItemAtEnd();
                     totalSize += size;
@@ -145,10 +151,10 @@ namespace UnityEngine.UI
                     changed = true;
             }
 
-            if (viewBounds.min.x < contentBounds.min.x)
+            if (viewBounds.min.x < contentBounds.min.x + m_ContentLeftPadding)
             {
                 float size = NewItemAtStart(), totalSize = size;
-                while (size > 0 && viewBounds.min.x < contentBounds.min.x - totalSize)
+                while (size > 0 && viewBounds.min.x < contentBounds.min.x + m_ContentLeftPadding - totalSize)
                 {
                     size = NewItemAtStart();
                     totalSize += size;

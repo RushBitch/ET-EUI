@@ -7,14 +7,14 @@ using UnityEngine;
 
 public partial class UICodeSpawner
 {
-    static public void SpawnSubUICode(GameObject go)
+    static public void SpawnSubUICode(GameObject gameObject)
     {
       
         Path2WidgetCachedDict?.Clear();
-        Path2WidgetCachedDict = new Dictionary<string, Component>();
-        FindAllWidgets(go.transform, "");
-        SpawnCodeForSubUI(go);
-        SpawnCodeForSubUIBehaviour(go);
+        Path2WidgetCachedDict = new Dictionary<string, List<Component>>();
+        FindAllWidgets(gameObject.transform, "");
+        SpawnCodeForSubUI(gameObject);
+        SpawnCodeForSubUIBehaviour(gameObject);
         AssetDatabase.Refresh();
     }
     
@@ -26,14 +26,14 @@ public partial class UICodeSpawner
         }
         string strDlgName = objPanel.name;
 
-        string strFilePath = Application.dataPath + "/../Codes/HotfixView/GameLogic/UIBehaviour/CommonUI" +
+        string strFilePath = Application.dataPath + "/../Codes/HotfixView/Demo/UIBehaviour/CommonUI" +
                              "";
 
         if ( !System.IO.Directory.Exists(strFilePath) )
         {
             System.IO.Directory.CreateDirectory(strFilePath);
         }
-        strFilePath     = Application.dataPath + "/../Codes/HotfixView/GameLogic/UIBehaviour/CommonUI/" + strDlgName + "ViewSystem.cs";
+        strFilePath     = Application.dataPath + "/../Codes/HotfixView/Demo/UIBehaviour/CommonUI/" + strDlgName + "ViewSystem.cs";
 	    
         StreamWriter sw = new StreamWriter(strFilePath, false, Encoding.UTF8);
 
@@ -59,10 +59,9 @@ public partial class UICodeSpawner
         strBuilder.AppendLine("\t{");
         strBuilder.AppendFormat("\t\tpublic override void Destroy({0} self)",strDlgName);
         strBuilder.AppendLine("\n\t\t{");
-        
-        CreateDlgWidgetDisposeCode(ref strBuilder,true);
-        strBuilder.AppendFormat("\t\t\tself.uiTransform = null;\r\n");
 
+        strBuilder.AppendFormat("\t\t\tself.DestroyWidget();\r\n");
+        
         strBuilder.AppendLine("\t\t}");
         strBuilder.AppendLine("\t}");
         strBuilder.AppendLine("}");
@@ -80,13 +79,13 @@ public partial class UICodeSpawner
         }
         string strDlgName = objPanel.name;
 
-        string strFilePath = Application.dataPath + "/../Codes/ModelView/GameLogic/UIBehaviour/CommonUI";
+        string strFilePath = Application.dataPath + "/../Codes/ModelView/Demo/UIBehaviour/CommonUI";
 
         if ( !System.IO.Directory.Exists(strFilePath) )
         {
             System.IO.Directory.CreateDirectory(strFilePath);
         }
-        strFilePath = Application.dataPath + "/../Codes/ModelView/GameLogic/UIBehaviour/CommonUI/" + strDlgName + ".cs";
+        strFilePath = Application.dataPath + "/../Codes/ModelView/Demo/UIBehaviour/CommonUI/" + strDlgName + ".cs";
 	    
         StreamWriter sw = new StreamWriter(strFilePath, false, Encoding.UTF8);
 
@@ -101,6 +100,7 @@ public partial class UICodeSpawner
         
        
         CreateWidgetBindCode(ref strBuilder, objPanel.transform);
+        CreateDestroyWidgetCode(ref strBuilder);
         CreateDeclareCode(ref strBuilder);
         strBuilder.AppendLine("\t\tpublic Transform uiTransform = null;");
         strBuilder.AppendLine("\t}");

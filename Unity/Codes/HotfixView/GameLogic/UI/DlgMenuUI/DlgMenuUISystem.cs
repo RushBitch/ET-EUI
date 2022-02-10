@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System;
+using ET.EventType;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -21,17 +22,31 @@ namespace ET
 
         public static void OnSoloButton(this DlgMenuUI self)
         {
-            TowerDefenceComponentFactory.CreateSolo(self.DomainScene());
+            long id = self.DomainScene().GetComponent<PlayerComponent>().MyId;
+            Game.EventSystem.Publish(new CreateTowerDefenceSolo() { myId = id, zoneScene = self.DomainScene() });
         }
 
         public static void OnPvpButton(this DlgMenuUI self)
         {
-            TowerDefenceComponentFactory.CreatePvp(self.DomainScene());
+            long id = self.DomainScene().GetComponent<PlayerComponent>().MyId;
+            long opponentId = IdGenerater.Instance.GenerateId();
+            Game.EventSystem.Publish(new CreateTowerDefencePvp() { myId = id, zoneScene = self.DomainScene(), opponentId = opponentId });
         }
 
         public static void OnTeamButton(this DlgMenuUI self)
         {
-            TowerDefenceComponentFactory.CreateTeam(self.DomainScene());
+            long id = self.DomainScene().GetComponent<PlayerComponent>().MyId;
+            long myIndex = 0;
+            long opponentId = IdGenerater.Instance.GenerateId();
+            long opponentIndex = 1;
+            Game.EventSystem.Publish(new CreateTowerDefenceTeam()
+            {
+                myId = id,
+                zoneScene = self.DomainScene(),
+                opponentId = opponentId,
+                myIndex = myIndex,
+                opponentIndex = opponentIndex
+            });
         }
     }
 }

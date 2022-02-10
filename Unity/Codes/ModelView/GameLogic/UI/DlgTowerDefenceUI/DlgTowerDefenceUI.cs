@@ -4,8 +4,6 @@
 	{
 
 		public DlgTowerDefenceUIViewComponent View { get => this.Parent.GetComponent<DlgTowerDefenceUIViewComponent>();}
-
-		public TowerDefenceComponent towerDefenceComponent;
-
+		
 	}
 }

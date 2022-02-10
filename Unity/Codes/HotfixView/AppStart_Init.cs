@@ -6,7 +6,7 @@ namespace ET
         {
             Game.Scene.AddComponent<TimerComponent>();
             Game.Scene.AddComponent<CoroutineLockComponent>();
-            
+
             // 加载配置
             Game.Scene.AddComponent<ResourcesComponent>();
             await ResourcesComponent.Instance.LoadBundleAsync("config.unity3d");
@@ -20,11 +20,12 @@ namespace ET
             Game.Scene.AddComponent<NetThreadComponent>();
             Game.Scene.AddComponent<SessionStreamDispatcher>();
             Game.Scene.AddComponent<ZoneSceneManagerComponent>();
-                
-            Game.Scene.AddComponent<GlobalComponent>();
             
+            Game.Scene.AddComponent<GlobalComponent>();
+
             Game.Scene.AddComponent<AIDispatcherComponent>();
-            Game.Scene.AddComponent<PolymorohicEventComponent>();
+            await ResourcesComponent.Instance.LoadBundleAsync("unit.unity3d");
+            
             Scene zoneScene = SceneFactory.CreateZoneScene(1, "Game", Game.Scene);
             
             await Game.EventSystem.PublishAsync(new EventType.AppStartInitFinish() { ZoneScene = zoneScene });

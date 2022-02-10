@@ -9,31 +9,31 @@ using ET;
 
 public partial class UICodeSpawner
 {
-    static public void SpawnLoopItemCode(GameObject go)
+    static public void SpawnLoopItemCode(GameObject gameObject)
     {
         Path2WidgetCachedDict?.Clear();
-        Path2WidgetCachedDict = new Dictionary<string, Component>();
-        FindAllWidgets(go.transform, "");
-        SpawnCodeForScrollLoopItemBehaviour(go);
-        SpawnCodeForScrollLoopItemViewSystem(go);
+        Path2WidgetCachedDict = new Dictionary<string, List<Component>>();
+        FindAllWidgets(gameObject.transform, "");
+        SpawnCodeForScrollLoopItemBehaviour(gameObject);
+        SpawnCodeForScrollLoopItemViewSystem(gameObject);
         AssetDatabase.Refresh();
     }
     
-    static void SpawnCodeForScrollLoopItemViewSystem(GameObject gameoBject)
+    static void SpawnCodeForScrollLoopItemViewSystem(GameObject gameObject)
     {
-        if (null == gameoBject)
+        if (null == gameObject)
         {
             return;
         }
-        string strDlgName = gameoBject.name;
+        string strDlgName = gameObject.name;
 
-        string strFilePath = Application.dataPath + "/../Codes/HotfixView/GameLogic/UIItemBehaviour";
+        string strFilePath = Application.dataPath + "/../Codes/HotfixView/Demo/UIItemBehaviour";
 
         if ( !System.IO.Directory.Exists(strFilePath) )
         {
             System.IO.Directory.CreateDirectory(strFilePath);
         }
-        strFilePath     = Application.dataPath + "/../Codes/HotfixView/GameLogic/UIItemBehaviour/" + strDlgName + "ViewSystem.cs";
+        strFilePath     = Application.dataPath + "/../Codes/HotfixView/Demo/UIItemBehaviour/" + strDlgName + "ViewSystem.cs";
         StreamWriter sw = new StreamWriter(strFilePath, false, Encoding.UTF8);
 
         StringBuilder strBuilder = new StringBuilder();
@@ -50,8 +50,7 @@ public partial class UICodeSpawner
         strBuilder.AppendFormat("\t\tpublic override void Destroy( Scroll_{0} self )",strDlgName);
         strBuilder.AppendLine("\n\t\t{");
         
-        CreateDlgWidgetDisposeCode(ref strBuilder,true);
-        strBuilder.AppendFormat("\t\t\tself.uiTransform = null;\r\n");
+        strBuilder.AppendFormat("\t\t\tself.DestroyWidget();\r\n");
 
         strBuilder.AppendLine("\t\t}");
         strBuilder.AppendLine("\t}");
@@ -63,21 +62,21 @@ public partial class UICodeSpawner
     }
     
     
-    static void SpawnCodeForScrollLoopItemBehaviour(GameObject gameoBject)
+    static void SpawnCodeForScrollLoopItemBehaviour(GameObject gameObject)
     {
-        if (null == gameoBject)
+        if (null == gameObject)
         {
             return;
         }
-        string strDlgName = gameoBject.name;
+        string strDlgName = gameObject.name;
 
-        string strFilePath = Application.dataPath + "/../Codes/ModelView/GameLogic/UIItemBehaviour";
+        string strFilePath = Application.dataPath + "/../Codes/ModelView/Demo/UIItemBehaviour";
 
         if ( !System.IO.Directory.Exists(strFilePath) )
         {
             System.IO.Directory.CreateDirectory(strFilePath);
         }
-        strFilePath     = Application.dataPath + "/../Codes/ModelView/GameLogic/UIItemBehaviour/" + strDlgName + ".cs";
+        strFilePath     = Application.dataPath + "/../Codes/ModelView/Demo/UIItemBehaviour/" + strDlgName + ".cs";
         StreamWriter sw = new StreamWriter(strFilePath, false, Encoding.UTF8);
 
         StringBuilder strBuilder = new StringBuilder();
@@ -90,7 +89,7 @@ public partial class UICodeSpawner
             .AppendLine("\t{");
         
         
-        strBuilder.AppendLine("\t\tprivate bool isCacheNode = true;");
+        strBuilder.AppendLine("\t\tprivate bool isCacheNode = false;");
         strBuilder.AppendLine("\t\tpublic void SetCacheMode(bool isCache)");
         strBuilder.AppendLine("\t\t{");
         strBuilder.AppendLine("\t\t\tthis.isCacheNode = isCache;");
@@ -101,8 +100,8 @@ public partial class UICodeSpawner
         strBuilder.AppendLine("\t\t\treturn this;");
         strBuilder.AppendLine("\t\t}\n");
         
-        CreateWidgetBindCode(ref strBuilder, gameoBject.transform);
-        
+        CreateWidgetBindCode(ref strBuilder, gameObject.transform);
+        CreateDestroyWidgetCode(ref strBuilder);
         CreateDeclareCode(ref strBuilder);
         
         strBuilder.AppendLine("\t\tpublic Transform uiTransform = null;");

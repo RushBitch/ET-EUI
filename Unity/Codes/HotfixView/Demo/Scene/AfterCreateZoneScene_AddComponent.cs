@@ -6,10 +6,12 @@ namespace ET
         {
             Scene zoneScene = args.ZoneScene;
             zoneScene.AddComponent<UIComponent>();
-            zoneScene.AddComponent<UIEventComponent>();
             zoneScene.AddComponent<UIPathComponent>();
-            zoneScene.GetComponent<UIComponent>().ShowWindow(WindowID.WindowID_MenuUI);
-
+            zoneScene.AddComponent<UIEventComponent>();
+            zoneScene.AddComponent<RedDotComponent>();
+            zoneScene.AddComponent<ResourcesLoaderComponent>();
+        
+            zoneScene.GetComponent<UIComponent>().ShowWindow(WindowID.WindowID_Login);
             await ETTask.CompletedTask;
         }
     }

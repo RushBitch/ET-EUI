@@ -345,7 +345,7 @@ namespace ET
             foreach (KeyValuePair<int, UIBaseWindow> window in self.AllWindowsDic)
             {
                 UIBaseWindow baseWindow = window.Value;
-                if (baseWindow == null)
+                if (baseWindow == null|| baseWindow.IsDisposed)
                 {
                     continue;
                 }
@@ -368,6 +368,11 @@ namespace ET
             {
                 if (window.Value.WindowData.windowType == UIWindowType.Fixed && !includeFixed)
                     continue;
+                if (window.Value.IsDisposed)
+                {
+                    continue;
+                }
+                
                 self.UIBaseWindowlistCached.Add((WindowID)window.Key);
                 window.Value.UIPrefabGameObject?.SetActive(false);
                 UIEventComponent.Instance.GetUIEventHandler(window.Value.WindowID).OnHideWindow(window.Value);
@@ -393,6 +398,7 @@ namespace ET
             Entity contextData = showData == null ? null : showData.contextData;
             baseWindow.UIPrefabGameObject?.SetActive(true);
             UIEventComponent.Instance.GetUIEventHandler(id).OnShowWindow(baseWindow,contextData);
+            
             self.VisibleWindowsDic[(int)id] = baseWindow;
             if (preWindowID != WindowID.WindowID_Invaild)
             {
@@ -410,10 +416,11 @@ namespace ET
             }
 
             UIBaseWindow baseWindow = self.VisibleWindowsDic[(int)id];
-            baseWindow.UIPrefabGameObject?.SetActive(false);
-            Log.Info(UIEventComponent.Instance.GetUIEventHandler(id).ToString());
-
-            UIEventComponent.Instance.GetUIEventHandler(id).OnHideWindow(baseWindow);
+            if (baseWindow != null && !baseWindow.IsDisposed )
+            {
+                baseWindow.UIPrefabGameObject?.SetActive(false);
+                UIEventComponent.Instance.GetUIEventHandler(id).OnHideWindow(baseWindow);
+            }
             self.VisibleWindowsDic.Remove((int)id);
             self.VisibleWindowsQueue.Remove(id);
             return true;
@@ -434,10 +441,11 @@ namespace ET
             baseWindow.UIPrefabGameObject      = UnityEngine.Object.Instantiate(go);
             baseWindow.UIPrefabGameObject.name = go.name;
             
+            UIEventComponent.Instance.GetUIEventHandler(baseWindow.WindowID).OnInitWindowCoreData(baseWindow);
+            
             baseWindow?.SetRoot(EUIRootHelper.GetTargetRoot(baseWindow.WindowData.windowType));
             baseWindow.uiTransform.SetAsLastSibling();
             
-            UIEventComponent.Instance.GetUIEventHandler(baseWindow.WindowID).OnInitWindowCoreData(baseWindow);
             UIEventComponent.Instance.GetUIEventHandler(baseWindow.WindowID).OnInitComponent(baseWindow);
             UIEventComponent.Instance.GetUIEventHandler(baseWindow.WindowID).OnRegisterUIEvent(baseWindow);
             
@@ -461,10 +469,11 @@ namespace ET
             baseWindow.UIPrefabGameObject      = UnityEngine.Object.Instantiate(go);
             baseWindow.UIPrefabGameObject.name = go.name;
             
+            UIEventComponent.Instance.GetUIEventHandler(baseWindow.WindowID).OnInitWindowCoreData(baseWindow);
+            
             baseWindow?.SetRoot(EUIRootHelper.GetTargetRoot(baseWindow.WindowData.windowType));
             baseWindow.uiTransform.SetAsLastSibling();
             
-            UIEventComponent.Instance.GetUIEventHandler(baseWindow.WindowID).OnInitWindowCoreData(baseWindow);
             UIEventComponent.Instance.GetUIEventHandler(baseWindow.WindowID).OnInitComponent(baseWindow);
             UIEventComponent.Instance.GetUIEventHandler(baseWindow.WindowID).OnRegisterUIEvent(baseWindow);
             
