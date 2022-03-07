@@ -1,4 +1,6 @@
-﻿namespace ET
+﻿using UnityEngine;
+
+namespace ET
 {
     namespace EventType
     {
@@ -24,14 +26,14 @@
             public Scene zoneScene;
             public long myId;
         }
-        
+
         public struct CreateTowerDefencePvp
         {
             public Scene zoneScene;
             public long myId;
             public long opponentId;
-        } 
-        
+        }
+
         public struct CreateTowerDefenceTeam
         {
             public Scene zoneScene;
@@ -39,13 +41,13 @@
             public long opponentId;
             public long myIndex;
             public long opponentIndex;
-        } 
-        
+        }
+
         public struct AfterCreateTowerDefence
         {
             public TowerDefenceCompoment towerDefenceCompoment;
         }
-        
+
         public struct FinishCreateTowerDefence
         {
             public TowerDefenceCompoment towerDefenceCompoment;
@@ -55,12 +57,12 @@
         {
             public Unit unit;
         }
-        
+
         public struct AfterCreateHero
         {
             public Unit unit;
         }
-        
+
         public struct AfterCreateWeapon
         {
             public Unit unit;
@@ -76,8 +78,84 @@
             public Unit unit;
             public int damage;
         }
-        
+
         public struct CleanMaxMoveDistance
+        {
+            public Unit unit;
+        }
+
+        public struct HeroAttackBefore
+        {
+            public Unit unit;
+        }
+
+        public struct HeroAttackAfter
+        {
+            public Unit unit;
+        }
+
+        public struct HeroSkillBefore
+        {
+            public Unit unit;
+        }
+
+        public struct HeroExecuteAttack
+        {
+            public Unit unit;
+        }
+
+        public struct HeroEnterSkillReady
+        {
+            public Unit unit;
+        }
+
+        public struct HeroExecuteSkill
+        {
+            public Unit unit;
+        }
+
+        public struct HeroSkillAfter
+        {
+            public Unit unit;
+        }
+
+        public struct EnemyKilledByHero
+        {
+            public Unit unit;
+        }
+
+        public struct AfterCreateSkill
+        {
+            public Unit unit;
+        }
+
+        public struct AfterEnemyDead
+        {
+            public Unit unit;
+        }
+
+        public struct AfterDestroyWeapon
+        {
+            public Unit unit;
+        }
+
+        public struct PlayerEffect
+        {
+            public Vector3 pos;
+            public int effectId;
+            public int effectTime;
+        }
+
+        public struct EnemySpeedBuffStart
+        {
+            public Unit unit;
+        }
+        public struct EnemySpeedBuffEnd
+        {
+            public Unit unit;
+        }
+        
+        public struct HeroStartIdelState
         {
             public Unit unit;
         }

@@ -9,7 +9,7 @@ namespace ET
         public void Run(long id, long value)
         {
             Unit unit = ZoneSceneManagerComponent.Instance.Get(1).GetComponent<UnitComponent>().Get(id);
-            unit.Position = new Vector3(value % 7 - 3, 0, value / 7 - 5);
+            unit.Position = new Vector3(value % 7 - 3, 0, value / 7 - 5.5f);
             Game.EventSystem.Publish(new ChangeHeroPosition() { unit = unit });
         }
     }

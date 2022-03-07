@@ -48,7 +48,9 @@
     <ImplicitlyExpandNETStandardFacades>false</ImplicitlyExpandNETStandardFacades>
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
-  <ItemGroup><Compile Include="Codes\Hotfix\**\*.cs" />
+  <ItemGroup><Compile Include="Codes\Hotfix\**\*.cs" /><Reference Include="SimpleJson, Version=0.1.0.0, Culture=neutral, PublicKeyToken=2d51d9dcdc7a4d4f">
+  <HintPath>Assets\ThirdParty\SimpleJson\SimpleJson.dll</HintPath>
+</Reference>
  <Reference Include="UnityEngine">
  <HintPath>./Temp/bin/Debug/UnityEngine.dll</HintPath>
  </Reference>

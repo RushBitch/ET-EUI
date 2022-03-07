@@ -45,7 +45,7 @@ namespace ET
 
         public static void StartSpawnEnemy(this EnemySpawnComponent self)
         {
-            self.spwanTimer = TimerComponent.Instance.NewRepeatedTimer(1000, TimerType.EnemySpawnTimer, self);
+            self.spwanTimer = TimerComponent.Instance.NewRepeatedTimer(1300, TimerType.EnemySpawnTimer, self);
             //self.SpawnEnemy();
         }
 
@@ -58,17 +58,21 @@ namespace ET
         {
             foreach (var config in self.pathConfigs)
             {
-                Unit unit = MyUnityFactory.Create(self.DomainScene(), UnitType.Enemy);
-                MoveWithListComponent moveWithListComponent = unit.GetComponent<MoveWithListComponent>();
-                if (moveWithListComponent != null)
-                {
-                    moveWithListComponent.recordMaxMoveDistanceComponent =
-                            self.GetParent<TowerDefence>().GetComponent<RecordMaxMoveDistanceComponent>();
-                    moveWithListComponent.StartMove(config.pathList, () => { self.DomainScene().GetComponent<UnitComponent>().Remove(unit.Id); });
-                }
+                //int configId = 1000 + RandomHelper.RandomNumber(1, 3);
+                Log.Info("创建英雄");
+                Unit unit = EnemyFactory.Create(self.DomainScene(), 1002, self.Id);
+                unit.GetComponent<MoveWithListComponent>()
+                        .StartMove(config.pathList, () => { self.DomainScene().GetComponent<UnitComponent>().Remove(unit.Id); });
+            }
+        }
 
-                unit.AddComponent<TowerDefenceIdComponent, long>(self.Id);
-                Game.EventSystem.Publish(new AfterCreateEnemy() { unit = unit });
+        public static void SpawnBoss(this EnemySpawnComponent self)
+        {
+            foreach (var config in self.pathConfigs)
+            {
+                Unit unit = EnemyFactory.Create(self.DomainScene(), 1001, self.Id);
+                unit.GetComponent<MoveWithListComponent>()
+                        .StartMove(config.pathList, () => { self.DomainScene().GetComponent<UnitComponent>().Remove(unit.Id); });
             }
         }
     }

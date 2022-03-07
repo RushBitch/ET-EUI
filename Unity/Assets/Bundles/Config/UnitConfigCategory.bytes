@@ -1,2 +1,43 @@
 
-1�"	米克尔*带有强力攻击技能08�@D
++�"北欧神话中的火巨人*Boss8@�.
+#�"地狱犬加姆*Monster8@<
+ �"尖刺勇士*Warrior8H#
+�"酒鬼*Drunkard8H#P�
+
+$�"礌石少年*StoneBoy8H#P�
+
+ �"杂技演员*Acrobat8H#
+�"法师*Master8HP�
+
+�"呤游诗人*Peot8H#
+$�	"勇士武器*WarriorWeapon8
+%�		"酒鬼武器*DrunkardWeapon8
++�	
+"礌石少年武器*StoneBoyWeapon8
+*�	"杂技演员武器*AcrobatWeapon8
+#�	"法师武器*MasterWeapon8
+
+'�	"呤游诗人武器*
+PeotWeapon8
+(�
+"酒鬼技能*DrunkardSkillEffect
+(�
+"礌石技能*StoneBoySkillEffect
+.�
+"普通攻击特效*EnemyAttackedEffect
+/�
+"酒鬼攻击特效*DrunkardAttackEffect
+*�
+"英雄出场特效*HeroSpawnEffect
+/�
+"攻速加成特效*AddAttackSpeedEffect
+3�
+"攻击力加成特效*AddAttackDamageEffect
+&�
+"法师技能*MasterSkillEffect
+6�
+"礌石少年技能武器*StoneBoySkillWeapon8
+
+�
+"诗人特效*
+PeotEffect

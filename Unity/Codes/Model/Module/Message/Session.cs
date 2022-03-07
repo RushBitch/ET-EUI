@@ -19,43 +19,27 @@ namespace ET
     {
         private readonly struct RpcInfo
         {
-            public readonly IRequest Request;
-            public readonly ETTask<IResponse> Tcs;
+            public readonly IMessage Request;
+            public readonly ETTask<IMessage> Tcs;
 
-            public RpcInfo(IRequest request)
+            public RpcInfo(IMessage request)
             {
                 this.Request = request;
-                this.Tcs = ETTask<IResponse>.Create(true);
+                this.Tcs = ETTask<IMessage>.Create(true);
             }
         }
 
         public AService AService;
-        
-        private static int RpcId
-        {
-            get;
-            set;
-        }
+
+        private static int RpcId { get; set; }
 
         private readonly Dictionary<int, RpcInfo> requestCallbacks = new Dictionary<int, RpcInfo>();
-        
-        public long LastRecvTime
-        {
-            get;
-            set;
-        }
 
-        public long LastSendTime
-        {
-            get;
-            set;
-        }
+        public long LastRecvTime { get; set; }
 
-        public int Error
-        {
-            get;
-            set;
-        }
+        public long LastSendTime { get; set; }
+
+        public int Error { get; set; }
 
         public void Awake(AService aService)
         {
@@ -65,7 +49,7 @@ namespace ET
             this.LastSendTime = timeNow;
 
             this.requestCallbacks.Clear();
-            
+
             Log.Info($"session create: zone: {this.DomainZone()} id: {this.Id} {timeNow} ");
         }
 
@@ -82,27 +66,24 @@ namespace ET
             base.Dispose();
 
             this.AService.RemoveChannel(this.Id);
-            
+
             foreach (RpcInfo responseCallback in this.requestCallbacks.Values.ToArray())
             {
                 responseCallback.Tcs.SetException(new RpcException(this.Error, $"session dispose: {id} {this.RemoteAddress}"));
             }
 
-            Log.Info($"session dispose: {this.RemoteAddress} zone: {zone} id: {id} ErrorCode: {this.Error}, please see ErrorCode.cs! {TimeHelper.ClientNow()}");
+            Log.Info(
+                $"session dispose: {this.RemoteAddress} zone: {zone} id: {id} ErrorCode: {this.Error}, please see ErrorCode.cs! {TimeHelper.ClientNow()}");
 
             this.requestCallbacks.Clear();
         }
 
-        public IPEndPoint RemoteAddress
-        {
-            get;
-            set;
-        }
+        public IPEndPoint RemoteAddress { get; set; }
 
         public void OnRead(ushort opcode, IResponse response)
         {
             OpcodeHelper.LogMsg(this.DomainZone(), opcode, response);
-            
+
             if (!this.requestCallbacks.TryGetValue(response.RpcId, out var action))
             {
                 return;
@@ -114,18 +95,35 @@ namespace ET
                 action.Tcs.SetException(new Exception($"Rpc error, request: {action.Request} response: {response}"));
                 return;
             }
+
             action.Tcs.SetResult(response);
         }
-        
-        public async ETTask<IResponse> Call(IRequest request, ETCancellationToken cancellationToken)
+
+        public void OnRead(int RouteCode, IPomeloResponse response, int rpcId)
+        {
+            OpcodeHelper.LogMsg(this.DomainZone(), (ushort) RouteCode, response);
+
+            if (!this.requestCallbacks.TryGetValue(rpcId, out var action))
+            {
+                return;
+            }
+
+            this.requestCallbacks.Remove(rpcId);
+            action.Tcs.SetResult(response);
+        }
+
+        public async ETTask<IMessage> Call(IMessage request, ETCancellationToken cancellationToken)
         {
             int rpcId = ++RpcId;
             RpcInfo rpcInfo = new RpcInfo(request);
             this.requestCallbacks[rpcId] = rpcInfo;
-            request.RpcId = rpcId;
+            if (request is IRequest readRequest)
+            {
+                readRequest.RpcId = rpcId;
+            }
 
-            this.Send(request);
-            
+            this.Send(request, rpcId);
+
             void CancelAction()
             {
                 if (!this.requestCallbacks.TryGetValue(rpcId, out RpcInfo action))
@@ -135,12 +133,15 @@ namespace ET
 
                 this.requestCallbacks.Remove(rpcId);
                 Type responseType = OpcodeTypeComponent.Instance.GetResponseType(action.Request.GetType());
-                IResponse response = (IResponse) Activator.CreateInstance(responseType);
-                response.Error = ErrorCore.ERR_Cancel;
+                IMessage response = (IMessage) Activator.CreateInstance(responseType);
+                if (response is IResponse iresponse)
+                {
+                    iresponse.Error = ErrorCore.ERR_Cancel;
+                }
                 action.Tcs.SetResult(response);
             }
 
-            IResponse ret;
+            IMessage ret;
             try
             {
                 cancellationToken?.Add(CancelAction);
@@ -150,16 +151,21 @@ namespace ET
             {
                 cancellationToken?.Remove(CancelAction);
             }
+
             return ret;
         }
 
-        public async ETTask<IResponse> Call(IRequest request)
+        public async ETTask<IMessage> Call(IMessage request)
         {
             int rpcId = ++RpcId;
             RpcInfo rpcInfo = new RpcInfo(request);
             this.requestCallbacks[rpcId] = rpcInfo;
-            request.RpcId = rpcId;
-            this.Send(request);
+            if (request is IRequest readRequest)
+            {
+                readRequest.RpcId = rpcId;
+            }
+
+            this.Send(request, rpcId);
             return await rpcInfo.Tcs;
         }
 
@@ -168,7 +174,7 @@ namespace ET
             this.Send(message);
         }
 
-        public void Send(IMessage message)
+        public void Send(IMessage message, int rpcId = 0)
         {
             switch (this.AService.ServiceType)
             {
@@ -186,20 +192,37 @@ namespace ET
                     this.Send(0, stream);
                     break;
                 }
+                case ServiceType.Polome:
+                {
+                    (long messageType, MemoryStream stream) = PomeloMessageHelper.MessageToStream(message, (uint) rpcId);
+                    OpcodeHelper.LogMsg(this.DomainZone(), 0, message);
+                    this.Send(messageType, stream);
+                    break;
+                }
             }
         }
-        
+
         public void Send(long actorId, IMessage message)
         {
             (ushort opcode, MemoryStream stream) = MessageSerializeHelper.MessageToStream(actorId, message);
             OpcodeHelper.LogMsg(this.DomainZone(), opcode, message);
             this.Send(actorId, stream);
         }
-        
+
         public void Send(long actorId, MemoryStream memoryStream)
         {
             this.LastSendTime = TimeHelper.ClientNow();
             this.AService.SendStream(this.Id, actorId, memoryStream);
+        }
+
+        public Type GetRequestType(int rpcId)
+        {
+            if (!this.requestCallbacks.TryGetValue(rpcId, out var action))
+            {
+                return null;
+                
+            }
+            return action.Request.GetType();
         }
     }
 }

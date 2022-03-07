@@ -48,7 +48,7 @@ namespace ET
 
         public static string GetUrl()
         {
-            return "https://xiaoyudi-1259481479.cos.ap-guangzhou.myqcloud.com/BenFei/Test/UnityDemo/remote3/";
+            return "https://xiaoyudi-1259481479.cos.ap-guangzhou.myqcloud.com/BenFei/Test/UnityDemo/remote14/";
         }
     }
     

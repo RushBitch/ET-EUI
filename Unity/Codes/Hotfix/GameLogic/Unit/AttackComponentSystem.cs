@@ -1,59 +1,62 @@
-﻿using UnityEngine;
+﻿using ET.EventType;
+using UnityEngine;
 
 namespace ET
 {
-    public class AttackComponentAwakeSystem: AwakeSystem<AttackComponent>
-    {
-        public override void Awake(AttackComponent self)
-        {
-            self.Awake();
-        }
-    }
-
-    public class AttackComponentUpdateSystem: UpdateSystem<AttackComponent>
-    {
-        public override void Update(AttackComponent self)
-        {
-            self.Update();
-        }
-    }
-
     public static class AttackComponentSystem
     {
-        public static void Awake(this AttackComponent self)
+        public static bool EnterReady(this AttackComponent self)
         {
-            self.startAttack = false;
-            //self.changeWeaponPosition = new ChangeWeaponPosition() { weapon = self };
-        }
+            //获取敌人并判断敌人血量是否能够死亡，如果可以则让其置为预死亡，同时移除它的最远距离
+            long id = self.Parent.GetComponent<TowerDefenceIdComponent>().ID;
+            TowerDefence towerDefence = self.DomainScene().GetComponent<TowerDefenceCompoment>().GetChild<TowerDefence>(id);
 
-        public static void Update(this AttackComponent self)
-        {
-            if (!self.startAttack)
-                return;
-            if (self.enemy.IsDisposed)
+            Unit enemy = towerDefence.GetComponent<RecordMaxMoveDistanceComponent>().unit;
+
+            if (enemy != null)
             {
-                self.DomainScene().GetComponent<UnitComponent>().Remove(self.Id);
-                return;
+                self.attackEnemy = enemy;
+                return true;
             }
-
-            float delta = MyTimeHelper.GetDeltaTime();
-            Vector3 dir = self.enemy.Position - self.GetParent<Unit>().Position;
-            self.SetPosition(self.GetParent<Unit>().Position + dir.normalized * delta * self.speed);
-            if (dir.magnitude < 0.2)
+            else
             {
-                self.enemy.GetComponent<LifeComponent>().Attacked(self.damage);
-                self.DomainScene().GetComponent<UnitComponent>().Remove(self.Id);
+                self.attackEnemy = null;
+                return false;
             }
         }
 
-        public static void StartAttack(this AttackComponent self)
+        public static void EnterAttack(this AttackComponent self)
         {
-            self.startAttack = true;
+            if (self.attackEnemy != null)
+            {
+                Game.EventSystem.Publish(new HeroExecuteAttack(){unit = (Unit) self.Parent});
+            }
         }
 
-        public static void SetPosition(this AttackComponent self, Vector3 position)
+        public static bool EnterSkillReady(this AttackComponent self)
         {
-            self.GetParent<Unit>().Position = position;
+            Game.EventSystem.Publish(new HeroEnterSkillReady(){unit = (Unit) self.Parent});
+            return self.canExeuteSkill;
+        }
+        
+        public static void EnterSkill(this AttackComponent self)
+        {
+            Game.EventSystem.Publish(new HeroExecuteSkill() { unit = (Unit) self.Parent });
+        }
+
+        public static void StopAttack(this AttackComponent self)
+        {
+            self.stop = true;
+        }
+
+        public static void PuseAttack(this AttackComponent self)
+        {
+            self.stop = true;
+        }
+
+        public static void ResumeAttack(this AttackComponent self)
+        {
+            self.stop = false;
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using ET.EventType;
+using UnityEngine;
 
 namespace ET
 {
@@ -18,126 +19,59 @@ namespace ET
         }
     }
 
+    public class WeaponComponentDestorySystem: DestroySystem<WeaponComponent>
+    {
+        public override void Destroy(WeaponComponent self)
+        {
+            Game.EventSystem.Publish(new AfterDestroyWeapon() { unit = (Unit) self.Parent });
+        }
+    }
+
     public static class WeaponComponentSystem
     {
         public static void Awake(this WeaponComponent self)
         {
-            self.state = WeaponState.Null;
-            NumericalComponent numericComponent = self.AddComponent<NumericalComponent>();
-            numericComponent.Set(NumericalType.HeroDamageBase, 5);
-            numericComponent.Set(NumericalType.HeroSpeedBase, 1);
-            self.EnterNextState();
+            self.startAttack = false;
         }
 
         public static void Update(this WeaponComponent self)
         {
-            if (self.stop)
+            if (!self.startAttack)
                 return;
-            float delta = MyTimeHelper.GetDeltaTime() * 1000;
-            if (delta > 200)
-                return;
-            self.currentTiem += delta;
-            if (self.currentTiem >= self.targetTime)
+            if (self.enemy == null)
             {
-                self.EnterNextState();
+                self.DomainScene().GetComponent<UnitComponent>().Remove(self.Id);
+                return;
             }
-        }
-
-        private static void EnterNull(this WeaponComponent self)
-        {
-            self.targetTime = 500;
-            self.currentTiem = 0f;
-            self.state = WeaponState.Null;
-        }
-
-        private static void EnterReady(this WeaponComponent self)
-        {
-            //获取敌人并判断敌人血量是否能够死亡，如果可以则让其置为预死亡，同时移除它的最远距离
-            long id = self.Parent.GetComponent<TowerDefenceIdComponent>().ID;
-            TowerDefence towerDefence = self.DomainScene().GetComponent<TowerDefenceCompoment>().GetChild<TowerDefence>(id);
-
-            Unit enemy = towerDefence.GetComponent<RecordMaxMoveDistanceComponent>().unit;
-
-            if (enemy != null)
+            if (self.enemy.IsDisposed)
             {
-                if (enemy.GetComponent<LifeComponent>().preDead)
+                self.DomainScene().GetComponent<UnitComponent>().Remove(self.Id);
+                return;
+            }
+
+            float delta = MyTimeHelper.GetDeltaTime();
+            Vector3 dir = self.enemy.Position - self.GetParent<Unit>().Position;
+            self.SetPosition(self.GetParent<Unit>().Position + dir.normalized * delta * self.speed);
+            if (dir.magnitude < 0.2)
+            {
+                bool isDead = self.enemy.GetComponent<LifeComponent>().Attacked(self.damage);
+                if (isDead)
                 {
-                    //Log.Info("敌人已经预死亡了");
+                    Game.EventSystem.Publish(new EnemyKilledByHero() { unit = self.GetParent<Unit>().GetComponent<WeaponComponent>().hero });
                 }
 
-                enemy.GetComponent<LifeComponent>().PreAttacked(self.GetComponent<NumericalComponent>().GetAsInt(NumericalType.HeroDamage));
-                self.attackEnemy = enemy;
-            }
-            else
-            {
-                self.EnterNull();
-                self.attackEnemy = null;
-            }
-
-            self.targetTime = 100;
-            self.currentTiem = 0f;
-            self.state = WeaponState.Ready;
-        }
-
-        private static void EnterAttack(this WeaponComponent self)
-        {
-            if (self.attackEnemy != null)
-            {
-                Unit weapon = MyUnityFactory.Create(self.DomainScene(), UnitType.Weapon);
-                weapon.AddComponent<TowerDefenceIdComponent, long>(self.Parent.GetComponent<TowerDefenceIdComponent>().ID);
-                Game.EventSystem.Publish(new AfterCreateWeapon(){unit = weapon});
-                weapon.GetComponent<AttackComponent>().enemy = self.attackEnemy;
-                weapon.GetComponent<AttackComponent>().damage = self.GetComponent<NumericalComponent>().GetAsInt(NumericalType.HeroDamage);
-                weapon.GetComponent<AttackComponent>().speed = 20;
-                weapon.GetComponent<AttackComponent>().SetPosition(self.GetParent<Unit>().Position);
-                weapon.GetComponent<AttackComponent>().StartAttack();
-            }
-
-            self.targetTime = 100;
-            self.currentTiem = 0f;
-            self.state = WeaponState.Attack;
-        }
-
-        private static void EnterRest(this WeaponComponent self)
-        {
-            self.targetTime = 500;
-            self.currentTiem = 0f;
-            self.state = WeaponState.Rest;
-        }
-
-        private static void EnterNextState(this WeaponComponent self)
-        {
-            switch (self.state)
-            {
-                case WeaponState.Null:
-                    self.EnterReady();
-                    return;
-                case WeaponState.Ready:
-                    self.EnterAttack();
-                    return;
-                case WeaponState.Attack:
-                    self.EnterRest();
-                    return;
-                case WeaponState.Rest:
-                    self.EnterReady();
-                    return;
+                self.DomainScene().GetComponent<UnitComponent>().Remove(self.Id);
             }
         }
 
-        public static void StopAttack(this WeaponComponent self)
+        public static void StartAttack(this WeaponComponent self)
         {
-            self.stop = true;
-            self.EnterNull();
+            self.startAttack = true;
         }
 
-        public static void PuseAttack(this WeaponComponent self)
+        public static void SetPosition(this WeaponComponent self, Vector3 position)
         {
-            self.stop = true;
-        }
-
-        public static void ResumeAttack(this WeaponComponent self)
-        {
-            self.stop = false;
+            self.GetParent<Unit>().Position = position;
         }
     }
 }

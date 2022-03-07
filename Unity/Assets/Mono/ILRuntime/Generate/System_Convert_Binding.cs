@@ -25,6 +25,15 @@ namespace ILRuntime.Runtime.Generated
             args = new Type[]{typeof(System.String)};
             method = type.GetMethod("ToInt32", flag, null, args, null);
             app.RegisterCLRMethodRedirection(method, ToInt32_0);
+            args = new Type[]{typeof(System.Object)};
+            method = type.GetMethod("ToUInt16", flag, null, args, null);
+            app.RegisterCLRMethodRedirection(method, ToUInt16_1);
+            args = new Type[]{typeof(System.Object)};
+            method = type.GetMethod("ToByte", flag, null, args, null);
+            app.RegisterCLRMethodRedirection(method, ToByte_2);
+            args = new Type[]{typeof(System.Int32)};
+            method = type.GetMethod("ToByte", flag, null, args, null);
+            app.RegisterCLRMethodRedirection(method, ToByte_3);
 
 
         }
@@ -42,6 +51,59 @@ namespace ILRuntime.Runtime.Generated
 
 
             var result_of_this_method = System.Convert.ToInt32(@value);
+
+            __ret->ObjectType = ObjectTypes.Integer;
+            __ret->Value = result_of_this_method;
+            return __ret + 1;
+        }
+
+        static StackObject* ToUInt16_1(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
+        {
+            ILRuntime.Runtime.Enviorment.AppDomain __domain = __intp.AppDomain;
+            StackObject* ptr_of_this_method;
+            StackObject* __ret = ILIntepreter.Minus(__esp, 1);
+
+            ptr_of_this_method = ILIntepreter.Minus(__esp, 1);
+            System.Object @value = (System.Object)typeof(System.Object).CheckCLRTypes(StackObject.ToObject(ptr_of_this_method, __domain, __mStack), (CLR.Utils.Extensions.TypeFlags)0);
+            __intp.Free(ptr_of_this_method);
+
+
+            var result_of_this_method = System.Convert.ToUInt16(@value);
+
+            __ret->ObjectType = ObjectTypes.Integer;
+            __ret->Value = result_of_this_method;
+            return __ret + 1;
+        }
+
+        static StackObject* ToByte_2(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
+        {
+            ILRuntime.Runtime.Enviorment.AppDomain __domain = __intp.AppDomain;
+            StackObject* ptr_of_this_method;
+            StackObject* __ret = ILIntepreter.Minus(__esp, 1);
+
+            ptr_of_this_method = ILIntepreter.Minus(__esp, 1);
+            System.Object @value = (System.Object)typeof(System.Object).CheckCLRTypes(StackObject.ToObject(ptr_of_this_method, __domain, __mStack), (CLR.Utils.Extensions.TypeFlags)0);
+            __intp.Free(ptr_of_this_method);
+
+
+            var result_of_this_method = System.Convert.ToByte(@value);
+
+            __ret->ObjectType = ObjectTypes.Integer;
+            __ret->Value = result_of_this_method;
+            return __ret + 1;
+        }
+
+        static StackObject* ToByte_3(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
+        {
+            ILRuntime.Runtime.Enviorment.AppDomain __domain = __intp.AppDomain;
+            StackObject* ptr_of_this_method;
+            StackObject* __ret = ILIntepreter.Minus(__esp, 1);
+
+            ptr_of_this_method = ILIntepreter.Minus(__esp, 1);
+            System.Int32 @value = ptr_of_this_method->Value;
+
+
+            var result_of_this_method = System.Convert.ToByte(@value);
 
             __ret->ObjectType = ObjectTypes.Integer;
             __ret->Value = result_of_this_method;

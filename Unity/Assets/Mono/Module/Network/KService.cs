@@ -21,6 +21,7 @@ namespace ET
     {
         Outer,
         Inner,
+        Polome,
     }
 
     public sealed class KService: AService

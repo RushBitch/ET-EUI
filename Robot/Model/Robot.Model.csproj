@@ -31,6 +31,72 @@
         <Compile Include="..\..\Server\Model\Base\StructBsonSerialize.cs">
           <Link>Base\StructBsonSerialize.cs</Link>
         </Compile>
+        <Compile Include="..\..\Unity\Assets\Mono\GameLogic\NetworkPomelo\Decoder.cs">
+          <Link>Module\NetworkPomelo\Decoder.cs</Link>
+        </Compile>
+        <Compile Include="..\..\Unity\Assets\Mono\GameLogic\NetworkPomelo\Encoder.cs">
+          <Link>Module\NetworkPomelo\Encoder.cs</Link>
+        </Compile>
+        <Compile Include="..\..\Unity\Assets\Mono\GameLogic\NetworkPomelo\MsgDecoder.cs">
+          <Link>Module\NetworkPomelo\MsgDecoder.cs</Link>
+        </Compile>
+        <Compile Include="..\..\Unity\Assets\Mono\GameLogic\NetworkPomelo\MsgEncoder.cs">
+          <Link>Module\NetworkPomelo\MsgEncoder.cs</Link>
+        </Compile>
+        <Compile Include="..\..\Unity\Assets\Mono\GameLogic\NetworkPomelo\PChannel.cs">
+          <Link>Module\NetworkPomelo\PChannel.cs</Link>
+        </Compile>
+        <Compile Include="..\..\Unity\Assets\Mono\GameLogic\NetworkPomelo\PomeloPacketParser.cs">
+          <Link>Module\NetworkPomelo\PomeloPacketParser.cs</Link>
+        </Compile>
+        <Compile Include="..\..\Unity\Assets\Mono\GameLogic\NetworkPomelo\Protobuf.cs">
+          <Link>Module\NetworkPomelo\Protobuf.cs</Link>
+        </Compile>
+        <Compile Include="..\..\Unity\Assets\Mono\GameLogic\NetworkPomelo\PService.cs">
+          <Link>Module\NetworkPomelo\PService.cs</Link>
+        </Compile>
+        <Compile Include="..\..\Unity\Assets\Mono\GameLogic\NetworkPomelo\SimpleJsonHelper.cs">
+          <Link>Module\NetworkPomelo\SimpleJsonHelper.cs</Link>
+        </Compile>
+        <Compile Include="..\..\Unity\Assets\Mono\GameLogic\NetworkPomelo\Util.cs">
+          <Link>Module\NetworkPomelo\Util.cs</Link>
+        </Compile>
+        <Compile Include="..\..\Unity\Codes\Model\GameLogic\Network\HandShakeServiceComponent.cs">
+          <Link>Network\HandShakeServiceComponent.cs</Link>
+        </Compile>
+        <Compile Include="..\..\Unity\Codes\Model\GameLogic\Network\HeartBeatComponent.cs">
+          <Link>Network\HeartBeatComponent.cs</Link>
+        </Compile>
+        <Compile Include="..\..\Unity\Codes\Model\GameLogic\Network\NetPcpComponent.cs">
+          <Link>Network\NetPcpComponent.cs</Link>
+        </Compile>
+        <Compile Include="..\..\Unity\Codes\Model\GameLogic\Network\PolomeMessageHelper.cs">
+          <Link>Network\PolomeMessageHelper.cs</Link>
+        </Compile>
+        <Compile Include="..\..\Unity\Codes\Model\GameLogic\Network\PomeloMessage.cs">
+          <Link>Network\PomeloMessage.cs</Link>
+        </Compile>
+        <Compile Include="..\..\Unity\Codes\Model\GameLogic\Network\PomeloMessageAttribute.cs">
+          <Link>Network\PomeloMessageAttribute.cs</Link>
+        </Compile>
+        <Compile Include="..\..\Unity\Codes\Model\GameLogic\Network\PomeloMessageDispatcherComponent.cs">
+          <Link>Network\PomeloMessageDispatcherComponent.cs</Link>
+        </Compile>
+        <Compile Include="..\..\Unity\Codes\Model\GameLogic\Network\PomeloMessageHandlerAttribute.cs">
+          <Link>Network\PomeloMessageHandlerAttribute.cs</Link>
+        </Compile>
+        <Compile Include="..\..\Unity\Codes\Model\GameLogic\Network\PomeloRouteInfoComponent.cs">
+          <Link>Network\PomeloRouteInfoComponent.cs</Link>
+        </Compile>
+        <Compile Include="..\..\Unity\Codes\Model\GameLogic\Network\PomeloRouteInfoComponentSystem.cs">
+          <Link>Network\PomeloRouteInfoComponentSystem.cs</Link>
+        </Compile>
+        <Compile Include="..\..\Unity\Codes\Model\Generate\Message\RouteMessage.cs">
+          <Link>Generate\Message\RouteMessage.cs</Link>
+        </Compile>
+        <Compile Include="..\..\Unity\Codes\Model\Generate\Message\RouteString.cs">
+          <Link>Generate\Message\RouteString.cs</Link>
+        </Compile>
         <Compile Include="..\..\Unity\Codes\Model\Module\Config\**\*.cs">
             <Link>Module\Config\%(RecursiveDir)%(FileName)%(Extension)</Link>
         </Compile>
@@ -119,6 +185,37 @@
       <ProjectReference Include="..\..\ThirdParty\ETTask\ETTask.csproj" />
       <ProjectReference Include="..\..\ThirdParty\ShareLib\ShareLib.csproj" />
       <ProjectReference Include="..\..\ThirdParty\UnityEngine\UnityEngine.csproj" />
+    </ItemGroup>
+    <ItemGroup>
+      <Reference Include="SimpleJson, Version=0.1.0.0, Culture=neutral, PublicKeyToken=2d51d9dcdc7a4d4f">
+        <HintPath>..\..\Unity\Assets\ThirdParty\SimpleJson\SimpleJson.dll</HintPath>
+      </Reference>
+    </ItemGroup>
+    <ItemGroup>
+      <Content Include="..\..\Unity\Assets\Mono\GameLogic\NetworkPomelo\Decoder.cs.meta">
+        <Link>Module\NetworkPomelo\Decoder.cs.meta</Link>
+      </Content>
+      <Content Include="..\..\Unity\Assets\Mono\GameLogic\NetworkPomelo\Encoder.cs.meta">
+        <Link>Module\NetworkPomelo\Encoder.cs.meta</Link>
+      </Content>
+      <Content Include="..\..\Unity\Assets\Mono\GameLogic\NetworkPomelo\PChannel.cs.meta">
+        <Link>Module\NetworkPomelo\PChannel.cs.meta</Link>
+      </Content>
+      <Content Include="..\..\Unity\Assets\Mono\GameLogic\NetworkPomelo\PomeloPacketParser.cs.meta">
+        <Link>Module\NetworkPomelo\PomeloPacketParser.cs.meta</Link>
+      </Content>
+      <Content Include="..\..\Unity\Assets\Mono\GameLogic\NetworkPomelo\Protobuf.cs.meta">
+        <Link>Module\NetworkPomelo\Protobuf.cs.meta</Link>
+      </Content>
+      <Content Include="..\..\Unity\Assets\Mono\GameLogic\NetworkPomelo\PService.cs.meta">
+        <Link>Module\NetworkPomelo\PService.cs.meta</Link>
+      </Content>
+      <Content Include="..\..\Unity\Assets\Mono\GameLogic\NetworkPomelo\SimpleJsonHelper.cs.meta">
+        <Link>Module\NetworkPomelo\SimpleJsonHelper.cs.meta</Link>
+      </Content>
+      <Content Include="..\..\Unity\Assets\Mono\GameLogic\NetworkPomelo\Util.cs.meta">
+        <Link>Module\NetworkPomelo\Util.cs.meta</Link>
+      </Content>
     </ItemGroup>
 
 </Project>

@@ -13,7 +13,7 @@ namespace ET
     {
         public static void Update(this HeroLookAtEnemyComponent self)
         {
-            Unit enemy = self.Parent.GetComponent<WeaponComponent>().attackEnemy;
+            Unit enemy = self.Parent.GetComponent<AttackComponent>().attackEnemy;
             if (enemy == null)
             {
                 return;

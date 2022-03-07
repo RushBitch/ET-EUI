@@ -2,14 +2,11 @@
 
 namespace ET
 {
-    public class AttackComponent:Entity, IUpdate, IAwake
+    public class AttackComponent: Entity, IAwake
     {
-        public int damage;
-        public float speed;
-        public Unit enemy;
-
-        public bool startAttack = false;
-
-        //public ChangeWeaponPosition changeWeaponPosition;
+        public bool stop;
+        public Unit attackEnemy;
+        public bool canExeuteSkill;
+        public Vector3 skillPosition;
     }
 }

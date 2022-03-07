@@ -96,6 +96,17 @@ namespace ET
                     ((Action)act)();
                 });
             });
+            
+            appdomain.DelegateManager.RegisterDelegateConvertor<DG.Tweening.TweenCallback>((act) =>
+            {
+                return new DG.Tweening.TweenCallback(() =>
+                {
+                    ((Action)act)();
+                });
+            });
+            
+            appdomain.DelegateManager.RegisterMethodDelegate<UnityEngine.EventSystems.PointerEventData>();
+            appdomain.DelegateManager.RegisterMethodDelegate<UnityEngine.UI.Text, System.Int32>();
 
             // 注册适配器
             RegisterAdaptor(appdomain);

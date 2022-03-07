@@ -22,6 +22,24 @@
     <Compile Include="..\..\Unity\Codes\Hotfix\Demo\Move\MoveComponentSystem.cs">
       <Link>Demo\Move\MoveComponentSystem.cs</Link>
     </Compile>
+    <Compile Include="..\..\Unity\Codes\Hotfix\GameLogic\Network\Events\OnChatHandler.cs">
+      <Link>Demo\Network\Events\OnChatHandler.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Unity\Codes\Hotfix\GameLogic\Network\HandShakeServiceComponentSystem.cs">
+      <Link>Demo\Network\HandShakeServiceComponentSystem.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Unity\Codes\Hotfix\GameLogic\Network\HeartBeatComponentSystem.cs">
+      <Link>Demo\Network\HeartBeatComponentSystem.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Unity\Codes\Hotfix\GameLogic\Network\NetPcpComponentSystem.cs">
+      <Link>Demo\Network\NetPcpComponentSystem.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Unity\Codes\Hotfix\GameLogic\Network\PomeloMessageDispatcherComponentSystem.cs">
+      <Link>Demo\Network\PomeloMessageDispatcherComponentSystem.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Unity\Codes\Hotfix\GameLogic\Network\SessionStreamDispatcherPolome.cs">
+      <Link>Demo\Network\SessionStreamDispatcherPolome.cs</Link>
+    </Compile>
     <Compile Include="..\..\Unity\Codes\Hotfix\Module\Config\ConfigComponentSystem.cs">
       <Link>Module\Config\ConfigComponentSystem.cs</Link>
     </Compile>
@@ -46,5 +64,10 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Model\Server.Model.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="SimpleJson, Version=0.1.0.0, Culture=neutral, PublicKeyToken=2d51d9dcdc7a4d4f">
+      <HintPath>..\..\Unity\Assets\ThirdParty\SimpleJson\SimpleJson.dll</HintPath>
+    </Reference>
   </ItemGroup>
 </Project>

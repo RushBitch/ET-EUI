@@ -18,15 +18,7 @@ namespace ET
 	{
 		public override void Destroy(DlgTowerDefenceUIViewComponent self)
 		{
-			self.m_EButton_BackToMainImage = null;
-			self.m_EButton_BackToMain = null;
-			self.m_ELabel_BackToMain = null;
-			self.m_EButton_CreateHeroImage = null;
-			self.m_EButton_CreateHero = null;
-			self.m_ELabel_CreateHero = null;
-			self.m_EButton_CreateHero_PvpImage = null;
-			self.m_EButton_CreateHero_Pvp = null;
-			self.uiTransform = null;
+			self.DestroyWidget();
 		}
 	}
 }

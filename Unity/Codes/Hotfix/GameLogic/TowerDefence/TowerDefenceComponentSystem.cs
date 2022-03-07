@@ -7,6 +7,8 @@ namespace ET
         public override void Awake(TowerDefenceCompoment self)
         {
             self.playerIdTowerDefences = new Dictionary<long, TowerDefence>();
+            CountDownComponent countDownComponent = self.AddComponent<CountDownComponent>();
+            countDownComponent.StartCountDown(120);
         }
     }
 

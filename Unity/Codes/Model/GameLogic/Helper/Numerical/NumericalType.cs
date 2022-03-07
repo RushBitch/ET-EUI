@@ -32,5 +32,32 @@
 
         HeroSpeed = 1006,
         HeroSpeedBase = HeroSpeed * 10 + 1,
+        
+        TowerDefenceHp = 1007,
+        TowerDefenceHpBase = TowerDefenceHp * 10 + 1,
+        
+        PlayerEnergy = 1008,
+        PlayerEnergyBase = PlayerEnergy * 10 + 1,
+        
+        PlayerBuyCount = 1009,
+        PlayerBuyCountBase = PlayerBuyCount * 10 + 1,
+        
+        AttackToSkillCount = 1010,
+        AttackToSkillCountBase = AttackToSkillCount * 10 + 1,
+        
+        DeltaTimeToSkill = 1011,
+        DeltaTimeToSkillBase = DeltaTimeToSkill * 10 + 1,
+        
+        SkillShowTime = 1012,
+        SkillShowTimeBase = SkillShowTime * 10 + 1,
+        
+        SkillBeforeTime = 1013,
+        SkillBeforeTimeBase = SkillBeforeTime * 10 + 1,
+        
+        SkillAfterTime = 1014,
+        SkillAfterTimeBase = SkillAfterTime * 10 + 1,
+        
+        Level = 1015,
+        LevelBase = Level * 10 + 1,
     }
 }

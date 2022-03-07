@@ -1,22 +1,15 @@
-﻿namespace ET
+﻿using UnityEngine;
+
+namespace ET
 {
-    public enum WeaponState
+    public class WeaponComponent:Entity, IUpdate, IAwake, IDestroy
     {
-        Null,
-        Ready,
-        Attack,
-        Rest,
-    }
-    
-    public class WeaponComponent: Entity, IAwake, IUpdate
-    {
-        public float targetTime;
-        public float currentTiem;
+        public int damage;
+        public float speed;
+        public Unit enemy;
+        public Unit hero;
+        public bool startAttack = false;
 
-        public WeaponState state;
-
-        public bool stop;
-
-        public Unit attackEnemy;
+        //public ChangeWeaponPosition changeWeaponPosition;
     }
 }

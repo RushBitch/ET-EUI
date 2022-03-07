@@ -5,6 +5,13 @@ using UnityEngine;
 
 namespace ET
 {
+    namespace EventType
+    {
+        public struct EnemyBreakDefence
+        {
+            public Unit unit;
+        }
+    }
     public class MoveWithListComponentAwakeSystem: AwakeSystem<MoveWithListComponent>
     {
         public override void Awake(MoveWithListComponent self)
@@ -31,7 +38,7 @@ namespace ET
             {
                 Unit unit = self.GetParent<Unit>();
                 Vector3 forWard = (self.targetPoint - unit.Position).normalized;
-                Vector3 moveInterval = forWard * deltaTime * unit.GetComponent<NumericalComponent>().GetAsInt(NumericalType.Speed);
+                Vector3 moveInterval = forWard * deltaTime * unit.GetComponent<NumericalComponent>().GetAsInt(NumericalType.Speed)/20f;
                 self.moveDistance += moveInterval.magnitude;
                 self.recordMaxMoveDistanceComponent.Record(self.GetParent<Unit>(), self.moveDistance);
                 unit.Position = unit.Position + moveInterval;
@@ -70,6 +77,7 @@ namespace ET
             {
                 self.canMove = false;
                 Game.EventSystem.Publish(new CleanMaxMoveDistance() { unit = self.GetParent<Unit>() });
+                Game.EventSystem.Publish(new EnemyBreakDefence() { unit = self.GetParent<Unit>() });
                 self.finishCallback?.Invoke();
                 return;
             }

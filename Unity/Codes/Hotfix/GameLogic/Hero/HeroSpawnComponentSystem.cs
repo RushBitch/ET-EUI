@@ -128,17 +128,21 @@ namespace ET
             if (indexs.Count > 0)
             {
                 int random = RandomHelper.RandomNumber(0, indexs.Count);
-                Unit hero = MyUnityFactory.Create(self.DomainScene(), UnitType.Hero);
-                hero.GetComponent<NumericalComponent>().Set(NumericalType.HeroIndexBase, indexs[random]);
+                int configId = 1100 + RandomHelper.RandomNumber(2, 7);
+                Unit hero = HeroFactory.Create(self.DomainScene(), configId, self.Id, indexs[random], 1);
                 self.Add(id, hero, indexs[random]);
-                hero.AddComponent<TowerDefenceIdComponent,long>(self.Id);
-                hero.AddComponent<WeaponComponent>();
-                Game.EventSystem.Publish(new AfterCreateHero() { unit = hero });
             }
             else
             {
                 Log.Info("英雄已满");
             }
+        }
+
+        public static void SpawnRandomHeroWithIndex(this HeroSpawnComponent self, long id, int index, int level)
+        {
+            int configId = 1100 + RandomHelper.RandomNumber(2, 7);
+            Unit hero = HeroFactory.Create(self.DomainScene(), configId, self.Id, index, level + 1);
+            self.Add(id, hero, index);
         }
     }
 }

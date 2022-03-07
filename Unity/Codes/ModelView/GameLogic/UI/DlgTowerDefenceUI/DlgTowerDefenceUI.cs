@@ -4,6 +4,6 @@
 	{
 
 		public DlgTowerDefenceUIViewComponent View { get => this.Parent.GetComponent<DlgTowerDefenceUIViewComponent>();}
-		
+		public bool switchState = true;
 	}
 }

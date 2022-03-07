@@ -18,6 +18,7 @@ namespace ET
 
         public static void ShowWindow(this DlgMenuUI self, Entity contextData = null)
         {
+
         }
 
         public static void OnSoloButton(this DlgMenuUI self)
@@ -30,6 +31,8 @@ namespace ET
         {
             long id = self.DomainScene().GetComponent<PlayerComponent>().MyId;
             long opponentId = IdGenerater.Instance.GenerateId();
+            PlayerFactory.Create(self.DomainScene(), id);
+            PlayerFactory.Create(self.DomainScene(), opponentId);
             Game.EventSystem.Publish(new CreateTowerDefencePvp() { myId = id, zoneScene = self.DomainScene(), opponentId = opponentId });
         }
 
