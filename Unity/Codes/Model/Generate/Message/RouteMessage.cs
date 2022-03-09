@@ -11,7 +11,7 @@
     {
         public int code;
         public string host;
-        public string port;
+        public int port;
     }
 
     [PomeloMessage(RouteString.connector_entryHandler_enter)]

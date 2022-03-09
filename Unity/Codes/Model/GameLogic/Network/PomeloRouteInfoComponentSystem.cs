@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using LitJson;
 using SimpleJson;
 
 namespace ET
@@ -144,24 +145,25 @@ namespace ET
             return routrStr;
         }
 
-        public static void InitProtobuf(this PomeloRouteInfoComponent self, object config)
+        public static void InitProtobuf(this PomeloRouteInfoComponent self, string config)
         {
-            JsonObject jsonObject = config as JsonObject;
-            Log.Info("初始化protobuf:" + jsonObject);
-            JsonObject dict = new JsonObject();
-            JsonObject protos = new JsonObject();
-            JsonObject serverProtos = new JsonObject();
-            JsonObject clientProtos = new JsonObject();
-            if (jsonObject.ContainsKey("dict"))
+            JsonData jsonData = JsonMapper.ToObject(config);
+            JsonData jsonObject = jsonData["sys"];
+            Log.Info("初始化protobuf");
+            JsonData dict = new JsonData();
+            JsonData protos = new JsonData();
+            JsonData serverProtos = new JsonData();
+            JsonData clientProtos = new JsonData();
+            if (jsonObject["dict"] != null)
             {
-                dict = (JsonObject) jsonObject["dict"];
+                dict = jsonObject["dict"];
             }
 
             ICollection<string> keys = dict.Keys;
 
             foreach (string key in keys)
             {
-                ushort value = Convert.ToUInt16(dict[key]);
+                ushort value = (ushort) dict[key];
                 byte[] bytes = Encoding.UTF8.GetBytes(key);
                 int routeCode = Util.BytesToInt(bytes, 0, bytes.Length);
                 if (!self.routeCodeCompressCode.ContainsKey(routeCode))
@@ -175,11 +177,11 @@ namespace ET
                 }
             }
 
-            if (jsonObject.ContainsKey("protos"))
+            if (jsonObject["protos"] != null)
             {
-                protos = (JsonObject) jsonObject["protos"];
-                serverProtos = (JsonObject) protos["server"];
-                clientProtos = (JsonObject) protos["client"];
+                protos = jsonObject["protos"];
+                serverProtos = protos["server"];
+                clientProtos = protos["client"];
             }
 
             self.protobuf = new Protobuf(clientProtos, serverProtos);
@@ -192,7 +194,7 @@ namespace ET
             if (self.typeCode.TryGetValue(type, out int code))
             {
                 self.codeStr.TryGetValue(code, out string str);
-                if (str != null && self.encodeProtos.ContainsKey(str))
+                if (str != null && self.encodeProtos[str] != null)
                 {
                     return true;
                 }
@@ -206,7 +208,7 @@ namespace ET
             if (self.typeCode.TryGetValue(type, out int code))
             {
                 self.codeStr.TryGetValue(code, out string str);
-                if (str != null && self.decodeProtos.ContainsKey(str))
+                if (str != null && self.decodeProtos[str] != null)
                 {
                     return true;
                 }

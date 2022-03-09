@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using LitJson;
 using SimpleJson;
 
 namespace ET
@@ -16,8 +17,8 @@ namespace ET
         public Dictionary<int, int> routeCodeCompressCode = new Dictionary<int, int>();
         public Dictionary<int, int> compressCodeRouteCode = new Dictionary<int, int>();
 
-        public JsonObject encodeProtos;
-        public JsonObject decodeProtos;
+        public JsonData encodeProtos;
+        public JsonData decodeProtos;
         
         public Protobuf protobuf;
     }

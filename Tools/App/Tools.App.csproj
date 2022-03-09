@@ -56,13 +56,15 @@
     </ItemGroup>
     
     <ItemGroup>
-      <Folder Include="Apps" />
-    </ItemGroup>
-    
-    <ItemGroup>
       <None Update="Template.txt">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </None>
+    </ItemGroup>
+    
+    <ItemGroup>
+      <Reference Include="SimpleJson, Version=0.1.0.0, Culture=neutral, PublicKeyToken=2d51d9dcdc7a4d4f">
+        <HintPath>..\..\Unity\Assets\ThirdParty\SimpleJson\SimpleJson.dll</HintPath>
+      </Reference>
     </ItemGroup>
 
 </Project>

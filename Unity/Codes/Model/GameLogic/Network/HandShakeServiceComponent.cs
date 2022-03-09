@@ -23,7 +23,7 @@
     public class HandShakeMessage_Response: IMessage
     {
         public int code;
-        public object sys;
+        public string str;
     }
 
     public class HandShakeServiceComponent: Entity, IAwake

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Text;
+using LitJson;
 using SimpleJson;
 
 namespace ET
@@ -40,8 +41,11 @@ namespace ET
         private void DispatchHandShake(Session session, MemoryStream stream)
         {
             string bytesStr = stream.GetBuffer().ToStr(1, stream.GetBuffer().Length - 1);
-            object msg = PomeloMessageHelper.DeserializeMessage(bytesStr, typeof (HandShakeMessage_Response));
-            session.GetComponent<HandShakeServiceComponent>().tcs.SetResult((HandShakeMessage_Response) msg);
+            HandShakeMessage_Response handShakeMessageResponse = new HandShakeMessage_Response();
+            JsonData jsonData = JsonMapper.ToObject(bytesStr);
+            handShakeMessageResponse.code = (int)jsonData["code"];
+            handShakeMessageResponse.str = bytesStr;
+            session.GetComponent<HandShakeServiceComponent>().tcs.SetResult(handShakeMessageResponse);
         }
 
         private void DispatchData(Session session, MemoryStream stream)
@@ -73,11 +77,11 @@ namespace ET
                         JsonObject jsonObject =
                                 PomeloRouteInfoComponent.Instance.protobuf.decode(PomeloRouteInfoComponent.Instance.GetRouteStrByType(responseType),
                                     body);
-                        message = SimpleJsonHelper.DeserializeObject(jsonObject.ToString(), responseType);
+                        message = JsonHelper.FromJson(responseType,jsonObject.ToString());
                     }
                     else
                     {
-                        message = PomeloMessageHelper.DeserializeMessage(Encoding.UTF8.GetString(body), responseType);
+                        message = JsonHelper.FromJson(responseType,Encoding.UTF8.GetString(body));
                     }
 
                     if (message is IPomeloResponse pomeloResponse)
@@ -102,7 +106,7 @@ namespace ET
                         routeCode = Util.BytesToInt(buffer, offset, length);
                         offset += length;
                     }
-                   
+
                     Type messageType = PomeloRouteInfoComponent.Instance.GetMessageTypeByCode(routeCode);
                     if (messageType != null)
                     {
@@ -119,11 +123,11 @@ namespace ET
                                     PomeloRouteInfoComponent.Instance.protobuf.decode(
                                         PomeloRouteInfoComponent.Instance.GetRouteStrByType(messageType),
                                         body);
-                            message = SimpleJsonHelper.DeserializeObject(jsonObject.ToString(), messageType);
+                            message = JsonHelper.FromJson(messageType, jsonObject.ToString());
                         }
                         else
                         {
-                            message = PomeloMessageHelper.DeserializeMessage(Encoding.UTF8.GetString(body), messageType);
+                            message = JsonHelper.FromJson(messageType,Encoding.UTF8.GetString(body));
                         }
 
                         PomeloMessageDispatcherComponent.Instance.Handle(session, routeCode, message);
@@ -153,7 +157,7 @@ namespace ET
             Log.Info($"id：{session.Id}被服务器踢出");
             session.Dispose();
         }
-        
+
         private static ushort ReadShort(int offset, byte[] bytes)
         {
             ushort result = 0;

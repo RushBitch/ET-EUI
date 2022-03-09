@@ -14,24 +14,24 @@ using ILRuntime.CLR.Utils;
 
 namespace ILRuntime.Runtime.Generated
 {
-    unsafe class SimpleJson_SimpleJson_Binding
+    unsafe class LitJson_JsonMapper_Binding
     {
         public static void Register(ILRuntime.Runtime.Enviorment.AppDomain app)
         {
             BindingFlags flag = BindingFlags.Public | BindingFlags.Instance | BindingFlags.Static | BindingFlags.DeclaredOnly;
             MethodBase method;
             Type[] args;
-            Type type = typeof(SimpleJson.SimpleJson);
+            Type type = typeof(LitJson.JsonMapper);
             MethodInfo[] methods = type.GetMethods(flag).Where(t => !t.IsGenericMethod).ToArray();
             args = new Type[]{typeof(System.String)};
-            method = methods.Where(t => t.Name.Equals("DeserializeObject") && t.CheckMethodParams(args)).Single();
-            app.RegisterCLRMethodRedirection(method, DeserializeObject_0);
+            method = methods.Where(t => t.Name.Equals("ToObject") && t.CheckMethodParams(args)).Single();
+            app.RegisterCLRMethodRedirection(method, ToObject_0);
 
 
         }
 
 
-        static StackObject* DeserializeObject_0(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
+        static StackObject* ToObject_0(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
         {
             ILRuntime.Runtime.Enviorment.AppDomain __domain = __intp.AppDomain;
             StackObject* ptr_of_this_method;
@@ -42,14 +42,9 @@ namespace ILRuntime.Runtime.Generated
             __intp.Free(ptr_of_this_method);
 
 
-            var result_of_this_method = SimpleJson.SimpleJson.DeserializeObject(@json);
+            var result_of_this_method = LitJson.JsonMapper.ToObject(@json);
 
-            object obj_result_of_this_method = result_of_this_method;
-            if(obj_result_of_this_method is CrossBindingAdaptorType)
-            {    
-                return ILIntepreter.PushObject(__ret, __mStack, ((CrossBindingAdaptorType)obj_result_of_this_method).ILInstance, true);
-            }
-            return ILIntepreter.PushObject(__ret, __mStack, result_of_this_method, true);
+            return ILIntepreter.PushObject(__ret, __mStack, result_of_this_method);
         }
 
 

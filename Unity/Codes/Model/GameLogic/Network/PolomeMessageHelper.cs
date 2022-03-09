@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Text;
+using LitJson;
 using SimpleJson;
 
 namespace ET
@@ -23,7 +24,7 @@ namespace ET
         {
             if (message is HandShakeMessage_Request)
             {
-                byte[] buffer = Encoding.UTF8.GetBytes(SimpleJsonHelper.SerializeObject(message));
+                byte[] buffer = Encoding.UTF8.GetBytes(JsonHelper.ToJson(message));
                 MemoryStream stream = new MemoryStream(buffer.Length);
                 stream.Write(buffer, 0, buffer.Length);
                 stream.Seek(0, SeekOrigin.Begin);
@@ -68,11 +69,6 @@ namespace ET
             }
 
             return (0, null);
-        }
-
-        public static object DeserializeMessage(string message, Type type)
-        {
-            return SimpleJsonHelper.DeserializeObject(message, type);
         }
 
         public static MemoryStream EncodeRequest(object message, uint rpcId = 0)
@@ -124,12 +120,12 @@ namespace ET
             if (PomeloRouteInfoComponent.Instance.SendBodyNeedCompress(message.GetType()))
             {
                 string route = PomeloRouteInfoComponent.Instance.GetRouteStrByType(message.GetType());
-                JsonObject jsonObject = (JsonObject) SimpleJsonHelper.DeserializeObject(SimpleJsonHelper.SerializeObject(message));
+                JsonData jsonObject = JsonMapper.ToObject(JsonHelper.ToJson(message));
                 body = PomeloRouteInfoComponent.Instance.protobuf.encode(route, jsonObject);
             }
             else
             {
-                body = Encoding.UTF8.GetBytes(SimpleJsonHelper.SerializeObject(message));
+                body = Encoding.UTF8.GetBytes(JsonHelper.ToJson(message));
             }
 
             //写入路由身体

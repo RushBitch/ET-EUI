@@ -24,7 +24,7 @@
             session.Send(handShakeMessageRequest);
             HandShakeMessage_Response response = (HandShakeMessage_Response) await self.tcs;
             Log.Info("HandShake开启成功：" + response.code);
-            PomeloRouteInfoComponent.Instance.InitProtobuf(response.sys);
+            PomeloRouteInfoComponent.Instance.InitProtobuf(response.str);
             session.Send(new HandShakeAckMessage());
             Log.Info("发送第三次握手");
             await TimerComponent.Instance.WaitAsync(1000);
