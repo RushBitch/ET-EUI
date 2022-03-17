@@ -398,6 +398,7 @@ namespace ET
                     {
                         string assetName = Path.GetFileNameWithoutExtension(s);
                         UnityEngine.Object resource = Define.LoadAssetAtPath(s);
+                        Log.Info($"{assetBundleName}:{assetName}:{resource}");
                         AddResource(assetBundleName, assetName, resource);
                     }
 

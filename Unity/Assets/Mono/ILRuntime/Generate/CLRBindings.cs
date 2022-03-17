@@ -80,7 +80,7 @@ namespace ILRuntime.Runtime.Generated
             System_Byte_Binding.Register(app);
             ET_Protobuf_Binding.Register(app);
             System_Object_Binding.Register(app);
-            ET_SimpleJsonHelper_Binding.Register(app);
+            ET_JsonHelper_Binding.Register(app);
             System_Text_Encoding_Binding.Register(app);
             ET_Util_Binding.Register(app);
             System_Runtime_CompilerServices_AsyncVoidMethodBuilder_Binding.Register(app);
@@ -219,7 +219,6 @@ namespace ILRuntime.Runtime.Generated
             System_Collections_Generic_KeyValuePair_2_Type_Int32_Binding.Register(app);
             System_Collections_Generic_Dictionary_2_Type_UnOrderMultiMap_2_Type_Object_Binding.Register(app);
             System_DateTime_Binding.Register(app);
-            ET_JsonHelper_Binding.Register(app);
             System_Collections_Generic_Dictionary_2_Type_Queue_1_ILTypeInstance_Binding.Register(app);
             System_Collections_Generic_Queue_1_ILTypeInstance_Binding.Register(app);
             ProtoBuf_Meta_RuntimeTypeModel_Binding.Register(app);
