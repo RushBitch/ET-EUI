@@ -40,7 +40,7 @@ namespace ET
      		}
      	}
 
-		public UnityEngine.UI.Image EnergyImage
+		public ES_ButtomInfo ES_ButtomInfo
      	{
      		get
      		{
@@ -49,28 +49,12 @@ namespace ET
      				Log.Error("uiTransform is null.");
      				return null;
      			}
-     			if( this.m_EnergyImage == null )
+     			if( this.m_es_buttominfo == null )
      			{
-		    		this.m_EnergyImage = UIFindHelper.FindDeepChild<UnityEngine.UI.Image>(this.uiTransform.gameObject,"Buttom/Energy");
+		    	   Transform subTrans = UIFindHelper.FindDeepChild<Transform>(this.uiTransform.gameObject,"ES_ButtomInfo");
+		    	   this.m_es_buttominfo = this.AddChild<ES_ButtomInfo,Transform>(subTrans);
      			}
-     			return this.m_EnergyImage;
-     		}
-     	}
-
-		public UnityEngine.UI.Text ELabel_EnergyText
-     	{
-     		get
-     		{
-     			if (this.uiTransform == null)
-     			{
-     				Log.Error("uiTransform is null.");
-     				return null;
-     			}
-     			if( this.m_ELabel_EnergyText == null )
-     			{
-		    		this.m_ELabel_EnergyText = UIFindHelper.FindDeepChild<UnityEngine.UI.Text>(this.uiTransform.gameObject,"Buttom/Energy/ELabel_Energy");
-     			}
-     			return this.m_ELabel_EnergyText;
+     			return this.m_es_buttominfo;
      		}
      	}
 
@@ -228,13 +212,30 @@ namespace ET
      		}
      	}
 
+		public UnityEngine.UI.Text E_TextTipText
+     	{
+     		get
+     		{
+     			if (this.uiTransform == null)
+     			{
+     				Log.Error("uiTransform is null.");
+     				return null;
+     			}
+     			if( this.m_E_TextTipText == null )
+     			{
+		    		this.m_E_TextTipText = UIFindHelper.FindDeepChild<UnityEngine.UI.Text>(this.uiTransform.gameObject,"E_TextTip");
+     			}
+     			return this.m_E_TextTipText;
+     		}
+     	}
+
 		public void DestroyWidget()
 		{
 			this.m_EGSprite_HeroComboundRectTransform = null;
 			this.m_es_topinfo?.Dispose();
 			this.m_es_topinfo = null;
-			this.m_EnergyImage = null;
-			this.m_ELabel_EnergyText = null;
+			this.m_es_buttominfo?.Dispose();
+			this.m_es_buttominfo = null;
 			this.m_EButton_CreateHero_PvpButton = null;
 			this.m_EButton_CreateHero_PvpImage = null;
 			this.m_EButton_CreateHeroButton = null;
@@ -245,13 +246,13 @@ namespace ET
 			this.m_EButton_BackToMainButton = null;
 			this.m_EButton_BackToMainImage = null;
 			this.m_ELabel_BackToMainText = null;
+			this.m_E_TextTipText = null;
 			this.uiTransform = null;
 		}
 
 		private UnityEngine.RectTransform m_EGSprite_HeroComboundRectTransform = null;
 		private ES_TopInfo m_es_topinfo = null;
-		private UnityEngine.UI.Image m_EnergyImage = null;
-		private UnityEngine.UI.Text m_ELabel_EnergyText = null;
+		private ES_ButtomInfo m_es_buttominfo = null;
 		private UnityEngine.UI.Button m_EButton_CreateHero_PvpButton = null;
 		private UnityEngine.UI.Image m_EButton_CreateHero_PvpImage = null;
 		private UnityEngine.UI.Button m_EButton_CreateHeroButton = null;
@@ -261,6 +262,7 @@ namespace ET
 		private UnityEngine.UI.Button m_EButton_BackToMainButton = null;
 		private UnityEngine.UI.Image m_EButton_BackToMainImage = null;
 		private UnityEngine.UI.Text m_ELabel_BackToMainText = null;
+		private UnityEngine.UI.Text m_E_TextTipText = null;
 		public Transform uiTransform = null;
 	}
 }

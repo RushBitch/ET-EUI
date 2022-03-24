@@ -18,7 +18,7 @@ namespace ET
             zoneScene.GetComponent<PlayerComponent>().MyId = id;
             zoneScene.AddComponent<MainCameraComponent>();
             ResourcesComponent.Instance.LoadBundle("config.unity3d");
-            
+            zoneScene.AddComponent<BgmComponent>();
             DOTween.SetTweensCapacity(3000, 200);
             await ETTask.CompletedTask;
         }

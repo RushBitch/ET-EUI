@@ -17,11 +17,11 @@ namespace ET
                 Transform transform;
                 if (towerdefenceID == myId)
                 {
-                    transform = window.GetComponent<DlgTowerDefenceUIViewComponent>().ES_BattleInfo.EG_MyHpRectTransform;
+                    transform = window.GetComponent<DlgTowerDefenceUIViewComponent>().ES_ButtomInfo.EG_MyHpRectTransform;
                 }
                 else
                 {
-                    transform = window.GetComponent<DlgTowerDefenceUIViewComponent>().ES_BattleInfo.EG_EnemyMyHpRectTransform;
+                    transform = window.GetComponent<DlgTowerDefenceUIViewComponent>().ES_TopInfo.EG_EnemyMyHpRectTransform;
                 }
 
                 for (int i = 0; i < transform.childCount; i++)

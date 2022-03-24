@@ -1,6 +1,6 @@
 ﻿namespace ET
 {
-    public class CountDownComponent:Entity,IAwake
+    public class CountDownComponent:Entity,IAwake, IDestroy
     {
         public int count;
         public int additionCount;

@@ -67,5 +67,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2858959318140273083, guid: 776e55259fe797a428408aee11698379,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2858959318140273083, guid: 776e55259fe797a428408aee11698379,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2858959318140273083, guid: 776e55259fe797a428408aee11698379,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 3235485547853716225, guid: 776e55259fe797a428408aee11698379,
+        type: 3}
+      propertyPath: m_Name
+      value: Acrobat
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 776e55259fe797a428408aee11698379, type: 3}

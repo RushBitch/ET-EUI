@@ -7,6 +7,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 33802520531017554, guid: eb66092af097e764ea6a85eb4501df4a,
+        type: 3}
+      propertyPath: m_Name
+      value: Drunkard
+      objectReference: {fileID: 0}
+    - target: {fileID: 807208222576592360, guid: eb66092af097e764ea6a85eb4501df4a,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 807208222576592360, guid: eb66092af097e764ea6a85eb4501df4a,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 807208222576592360, guid: eb66092af097e764ea6a85eb4501df4a,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.7
+      objectReference: {fileID: 0}
     - target: {fileID: 6241894986327239903, guid: eb66092af097e764ea6a85eb4501df4a,
         type: 3}
       propertyPath: m_Name
@@ -81,7 +101,7 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 7448900712039130033}
   m_PrefabAsset: {fileID: 0}
---- !u!111 &-6975095885598986140
+--- !u!111 &-5530731138227275531
 Animation:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -93,10 +113,10 @@ Animation:
   m_Animation: {fileID: 1827226128182048838, guid: a5c011b9c95e2bb4d9afb0d7414ec7a9,
     type: 3}
   m_Animations:
-  - {fileID: -5363545603547399956, guid: a5c011b9c95e2bb4d9afb0d7414ec7a9, type: 3}
   - {fileID: 1827226128182048838, guid: a5c011b9c95e2bb4d9afb0d7414ec7a9, type: 3}
+  - {fileID: -5363545603547399956, guid: a5c011b9c95e2bb4d9afb0d7414ec7a9, type: 3}
   - {fileID: -2909182693340229495, guid: a5c011b9c95e2bb4d9afb0d7414ec7a9, type: 3}
   m_WrapMode: 0
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
-  m_CullingType: 0
+  m_CullingType: 1

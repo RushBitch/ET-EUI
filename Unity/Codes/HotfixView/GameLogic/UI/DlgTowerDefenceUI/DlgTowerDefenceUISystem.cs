@@ -38,6 +38,16 @@ namespace ET
                 NumericalComponent numericalComponent = VARIABLE.AddComponent<NumericalComponent>();
                 numericalComponent.Set(NumericalType.TowerDefenceHpBase, 3);
             }
+
+            for (int i = 0; i < self.View.ES_ButtomInfo.EG_MyHpRectTransform.childCount; i++)
+            {
+                self.View.ES_ButtomInfo.EG_MyHpRectTransform.GetChild(i).gameObject.SetActive(true);
+            }
+
+            for (int i = 0; i < self.View.ES_TopInfo.EG_EnemyMyHpRectTransform.childCount; i++)
+            {
+                self.View.ES_TopInfo.EG_EnemyMyHpRectTransform.GetChild(i).gameObject.SetActive(true);
+            }
         }
 
         private static void OnBackToMainButton(this DlgTowerDefenceUI self)
@@ -90,6 +100,8 @@ namespace ET
             {
                 UnityEngine.Object.Destroy(gameObject);
             }
+
+            BgmComponent.Instance.Stop();
         }
 
         private static void OnCreateHero(this DlgTowerDefenceUI self)
@@ -102,6 +114,7 @@ namespace ET
             if (energy < cost)
             {
                 Log.Info("能量不够");
+                self.ShowEnergyTip();
                 return;
             }
 
@@ -180,6 +193,15 @@ namespace ET
                 self.DomainScene().GetComponent<TowerDefenceCompoment>().GetComponent<TowerDefenceCameraComponent>().SwitchToFar();
                 self.View.ES_TopInfo.EButton_InfoSwitchButton.transform.Rotate(new Vector3(0, 0, 1), -180f);
             }
+        }
+
+        public static void ShowEnergyTip(this DlgTowerDefenceUI self)
+        {
+            self.View.E_TextTipText.gameObject.SetActive(true);
+            self.View.E_TextTipText.rectTransform.anchoredPosition3D = new Vector3(0, -555);
+            self.Sequence = DOTween.Sequence();
+            self.Sequence.Append(self.View.E_TextTipText.rectTransform.DOLocalMoveY(-500, 0.5f));
+            self.Sequence.AppendCallback(() => { self.View.E_TextTipText.gameObject.SetActive(false); });
         }
     }
 }

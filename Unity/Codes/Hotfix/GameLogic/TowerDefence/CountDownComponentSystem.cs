@@ -23,7 +23,6 @@ namespace ET
                 Game.EventSystem.Publish(new AfterCountDown() { count = self.count });
                 if (self.count <= 0)
                 {
-                    
                     TimerComponent.Instance?.Remove(ref self.countDownTimer);
                 }
             }
@@ -31,6 +30,14 @@ namespace ET
             {
                 Log.Error($"move timer error: {self.Id}\n{e}");
             }
+        }
+    }
+
+    public class CountDownComponentDestorySystem: DestroySystem<CountDownComponent>
+    {
+        public override void Destroy(CountDownComponent self)
+        {
+            TimerComponent.Instance?.Remove(ref self.countDownTimer);
         }
     }
 

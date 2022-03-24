@@ -17,19 +17,6 @@ namespace ET
             zoneScene.AddComponent<PlayerComponent>();
             zoneScene.AddComponent<UnitComponent>();
             zoneScene.AddComponent<AIDispatcherComponent>();
-            NetPcpComponent netPcpComponent =
-                    zoneScene.AddComponent<NetPcpComponent, int>(SessionStreamDispatcherType.SessionStreamDispatcherPomelo);
-            Session session = netPcpComponent.Create(NetworkHelper.ToIPEndPoint("121.4.31.76:3014"));
-            await session.AddComponent<HandShakeServiceComponent>().StartServer();
-            gate_gateHandler_queryEnter_Request message = new gate_gateHandler_queryEnter_Request() { uid = "123" };
-            gate_gateHandler_queryEnter_Response response = (gate_gateHandler_queryEnter_Response) await session.Call(message);
-            session.Dispose();
-            Session connectorSession = netPcpComponent.Create(NetworkHelper.ToIPEndPoint($"{response.host}:{response.port} "));
-            await connectorSession.AddComponent<HandShakeServiceComponent>().StartServer();
-            connectorSession.AddComponent<HeartBeatComponent>();
-            connector_entryHandler_enter_Response connectorEntryHandlerEnterResponse =(connector_entryHandler_enter_Response) await connectorSession.Call(new connector_entryHandler_enter_Request() { username = "123",rid = "123"});
-            chat_chatHandler_send_Response chatChatHandlerSendResponse = (chat_chatHandler_send_Response)await connectorSession.Call(new chat_chatHandler_send_Request() { content = "aaa", from = "123",target = "*",rid = "123"});
-
             await Game.EventSystem.PublishAsync(new EventType.MyAfterCreateZoneScene() { zoneScene = zoneScene });
             await ETTask.CompletedTask;
         }

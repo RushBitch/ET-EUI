@@ -42,11 +42,13 @@
   </PropertyGroup>
   <ItemGroup>
      <None Include="Assets\Res\towerdefense-res\gcwj\Assets\PWL\Shader\shuimian.shader" />
+     <None Include="Assets\Resources\Shader\fll-Billboard.shader" />
      <None Include="Assets\Res\towerdefense-res\gcwj\Assets\PWL\Shader\Ice.shader" />
      <None Include="Assets\Res\towerdefense-res\gcwj\Assets\PWL\Shader\cj_qz.shader" />
      <None Include="Assets\Res\towerdefense-res\gcwj\Assets\PWL\Shader\zw_shu.shader" />
      <None Include="Assets\StreamingAssets\Version.txt" />
      <None Include="Assets\link.xml" />
+     <None Include="Assets\Res\towerdefense-res\gcwj\Assets\PWL\Shader\MoveGrass.shader" />
      <Reference Include="UnityEngine">
      <HintPath>D:/Unity/2020.3.22f1c1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
      </Reference>

@@ -118,7 +118,7 @@ namespace ET
                 closetUnit = (Unit) unit;
             }
 
-            if (closetUnit != null && maxDistance <= 0.5 && IsCanCpompound(self.sellectUnit, closetUnit))
+            if (closetUnit != null && maxDistance <= 1 && IsCanCpompound(self.sellectUnit, closetUnit))
             {
                 self.CompoundUnit(self.sellectUnit, closetUnit);
             }
@@ -170,9 +170,10 @@ namespace ET
 
                 if (IsCanCpompound(unit, sellectUnit))
                 {
+                    unit.GetComponent<HeroComboundPlaneCompoment>()?.Show();
                     continue;
                 }
-
+                unit.GetComponent<LevelFlagComponent>()?.Hide();
                 unit.GetComponent<HeroGreyComponent>().BecomeGrey();
             }
         }
@@ -209,6 +210,8 @@ namespace ET
                 }
 
                 unit.GetComponent<HeroGreyComponent>().BecomeNormal();
+                unit.GetComponent<HeroComboundPlaneCompoment>()?.Hide();
+                unit.GetComponent<LevelFlagComponent>()?.Show();
             }
         }
     }

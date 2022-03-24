@@ -59,7 +59,7 @@ namespace ET
             foreach (var config in self.pathConfigs)
             {
                 //int configId = 1000 + RandomHelper.RandomNumber(1, 3);
-                Log.Info("创建英雄");
+                //Log.Info("创建英雄");
                 Unit unit = EnemyFactory.Create(self.DomainScene(), 1002, self.Id);
                 unit.GetComponent<MoveWithListComponent>()
                         .StartMove(config.pathList, () => { self.DomainScene().GetComponent<UnitComponent>().Remove(unit.Id); });

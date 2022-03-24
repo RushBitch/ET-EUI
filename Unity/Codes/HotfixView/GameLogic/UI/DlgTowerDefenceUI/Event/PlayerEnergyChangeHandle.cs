@@ -12,7 +12,7 @@
                 scene.GetComponent<UIComponent>().VisibleWindowsDic.TryGetValue((int) WindowID.WindowID_TowerDefenceUI,out dlgTowerDefenceUI) ;
                 if (dlgTowerDefenceUI!=null)
                 {
-                    dlgTowerDefenceUI.GetComponent<DlgTowerDefenceUIViewComponent>().ELabel_EnergyText.text = value.ToString();
+                    dlgTowerDefenceUI.GetComponent<DlgTowerDefenceUIViewComponent>().ES_ButtomInfo.ELabel_EnergyText.text = value.ToString();
                 }
             }
             await ETTask.CompletedTask;

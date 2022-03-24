@@ -16,7 +16,7 @@ namespace ET
             ResourcesComponent.Instance.LoadBundle("Weapon.unity3d");
             ResourcesComponent.Instance.LoadBundle("mat.unity3d");
             ResourcesComponent.Instance.LoadBundle("Map.unity3d");
-
+            ResourcesComponent.Instance.LoadBundle("music.unity3d");
             await Inistance();
             args.towerDefenceCompoment.DomainScene().GetComponent<UIComponent>().HideWindow(WindowID.WindowID_MenuUI);
 
@@ -27,6 +27,7 @@ namespace ET
             args.towerDefenceCompoment.DomainScene().GetComponent<UIComponent>().ShowWindow(WindowID.WindowID_TowerDefenceUI);
             args.towerDefenceCompoment.AddComponent<TowerDefenceCameraComponent, GameObject>(GlobalComponent.Instance.Global.Find("MainCamera")
                     .gameObject);
+            BgmComponent.Instance.Play(Music.BGM,0.5f);
             await ETTask.CompletedTask;
         }
 
