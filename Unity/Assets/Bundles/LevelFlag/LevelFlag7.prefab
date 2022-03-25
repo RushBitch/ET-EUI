@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3714886563476283007}
   - component: {fileID: 5725889535813228530}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: LevelFlag7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -58,7 +58,7 @@ GameObject:
   - component: {fileID: 3097954701709402942}
   - component: {fileID: 8347696581653505024}
   - component: {fileID: 4502104850346266294}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Star (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -73,7 +73,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1736962767810024978}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.5, y: 0.797, z: 0.449}
+  m_LocalPosition: {x: 0.072, y: -0.01, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3714886563476283007}
@@ -154,7 +154,7 @@ GameObject:
   - component: {fileID: 52334277970802174}
   - component: {fileID: 6457934321362039488}
   - component: {fileID: 1458454201873373302}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Star (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -169,7 +169,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3629099427903307986}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.241, y: 0.945, z: 0.449}
+  m_LocalPosition: {x: -0.012000002, y: 0.111, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3714886563476283007}
@@ -250,7 +250,7 @@ GameObject:
   - component: {fileID: 52334278331937086}
   - component: {fileID: 6457934321001821696}
   - component: {fileID: 1458454202049961142}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Star (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -265,7 +265,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3629099428113777682}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.021, y: 0.793, z: 0.449}
+  m_LocalPosition: {x: -0.097, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3714886563476283007}
@@ -346,7 +346,7 @@ GameObject:
   - component: {fileID: 1098173682211991855}
   - component: {fileID: 6204732777657366033}
   - component: {fileID: 1997886039032437927}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Star
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -361,7 +361,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4456791395707585539}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.068, y: 0.944, z: 0.449}
+  m_LocalPosition: {x: -0.179, y: 0.116, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3714886563476283007}
@@ -442,7 +442,7 @@ GameObject:
   - component: {fileID: 9190131896949291262}
   - component: {fileID: 2787504933102354368}
   - component: {fileID: 7713959888597423478}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Star (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -457,7 +457,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5579154309190290898}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.159, y: 0.789, z: 0.449}
+  m_LocalPosition: {x: 0.15900001, y: 0.111, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3714886563476283007}
@@ -538,7 +538,7 @@ GameObject:
   - component: {fileID: 7097558421261994952}
   - component: {fileID: 4276532284908604662}
   - component: {fileID: 8573448680952522304}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Star (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -553,7 +553,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5808338173941645028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.338, y: 0.793, z: 0.449}
+  m_LocalPosition: {x: -0.25599998, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3714886563476283007}
@@ -637,17 +637,17 @@ PrefabInstance:
     - target: {fileID: 4992064562816831833, guid: c0337f4f41ff0b446be8afade48d4981,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.423
+      value: 0.245
       objectReference: {fileID: 0}
     - target: {fileID: 4992064562816831833, guid: c0337f4f41ff0b446be8afade48d4981,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.946
+      value: -0.009
       objectReference: {fileID: 0}
     - target: {fileID: 4992064562816831833, guid: c0337f4f41ff0b446be8afade48d4981,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.449
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4992064562816831833, guid: c0337f4f41ff0b446be8afade48d4981,
         type: 3}
@@ -688,6 +688,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Star (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8388129350783447320, guid: c0337f4f41ff0b446be8afade48d4981,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c0337f4f41ff0b446be8afade48d4981, type: 3}

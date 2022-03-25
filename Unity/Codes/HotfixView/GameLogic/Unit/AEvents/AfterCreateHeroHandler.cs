@@ -43,7 +43,7 @@ namespace ET
             GameObject bundle3 = (GameObject) ResourcesComponent.Instance.GetAsset("levelFlag.unity3d",
                 "LevelFlag" + args.unit.GetComponent<NumericalComponent>().GetAsInt(NumericalType.Level));
             GameObject gameObject3 = UnityEngine.Object.Instantiate(bundle3, GlobalComponent.Instance.Unit);
-            gameObject3.transform.position = gameObject.transform.position + new Vector3(0, -0.1f, 0);
+            gameObject3.transform.position = gameObject.transform.position + new Vector3(0, 0.8f, 0);
             args.unit.AddComponent<LevelFlagComponent>().gameObject = gameObject3;
             Game.EventSystem.Publish(new PlayerEffect() { effectId = 1305, effectTime = 600, pos = gameObject.transform.position });
             if (args.unit.Config.Type == 7)

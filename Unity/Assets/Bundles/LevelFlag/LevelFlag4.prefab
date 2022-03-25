@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3278370785404496015}
   - component: {fileID: 5873964175023907074}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: LevelFlag4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29,9 +29,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1298367266642743986}
+  - {fileID: 7111233598702213987}
   - {fileID: 2125743814216210019}
   - {fileID: 2125743814526948003}
-  - {fileID: 7111233598702213987}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -55,7 +55,7 @@ GameObject:
   - component: {fileID: 1283400948688881631}
   - component: {fileID: 5253821630589747425}
   - component: {fileID: 381429095710337623}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Star
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -70,7 +70,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2534195429483393779}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.077, y: 1.018, z: 0.488}
+  m_LocalPosition: {x: -0.072, y: 0.083, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3278370785404496015}
@@ -151,7 +151,7 @@ GameObject:
   - component: {fileID: 2182870081176897486}
   - component: {fileID: 5146981558249341168}
   - component: {fileID: 778992061904890438}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Star (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -166,11 +166,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3220029521405555426}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.081, y: 0.866, z: 0.488}
+  m_LocalPosition: {x: -0.057, y: -0.06, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3278370785404496015}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &2182870081176897486
 MeshFilter:
@@ -247,7 +247,7 @@ GameObject:
   - component: {fileID: 2182870081504740110}
   - component: {fileID: 5146981557922939952}
   - component: {fileID: 778992062115294854}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Star (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -262,11 +262,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3220029521582208546}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.074, y: 0.866, z: 0.488}
+  m_LocalPosition: {x: 0.078, y: 0.093, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3278370785404496015}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &2182870081504740110
 MeshFilter:
@@ -341,22 +341,22 @@ PrefabInstance:
     - target: {fileID: 4992064562816831833, guid: c0337f4f41ff0b446be8afade48d4981,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4992064562816831833, guid: c0337f4f41ff0b446be8afade48d4981,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.075
+      value: 0.077
       objectReference: {fileID: 0}
     - target: {fileID: 4992064562816831833, guid: c0337f4f41ff0b446be8afade48d4981,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.016
+      value: -0.057
       objectReference: {fileID: 0}
     - target: {fileID: 4992064562816831833, guid: c0337f4f41ff0b446be8afade48d4981,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.488
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4992064562816831833, guid: c0337f4f41ff0b446be8afade48d4981,
         type: 3}
@@ -397,6 +397,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Star (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8388129350783447320, guid: c0337f4f41ff0b446be8afade48d4981,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c0337f4f41ff0b446be8afade48d4981, type: 3}

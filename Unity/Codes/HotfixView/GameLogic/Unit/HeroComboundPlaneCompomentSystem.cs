@@ -11,6 +11,7 @@ namespace ET
             self.gameObject = GameObject.Instantiate(gameobject);
             self.gameObject.SetActive(false);
             position.y += 0.05f;
+            position.z += 0.2f;
             self.gameObject.transform.position = position;
             self.gameObject.transform.SetParent(GlobalComponent.Instance.Unit);
         }

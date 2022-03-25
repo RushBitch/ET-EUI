@@ -20,12 +20,12 @@ PrefabInstance:
     - target: {fileID: 4992064562816831833, guid: c0337f4f41ff0b446be8afade48d4981,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.795
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4992064562816831833, guid: c0337f4f41ff0b446be8afade48d4981,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.489
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4992064562816831833, guid: c0337f4f41ff0b446be8afade48d4981,
         type: 3}
@@ -66,6 +66,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Star
+      objectReference: {fileID: 0}
+    - target: {fileID: 8388129350783447320, guid: c0337f4f41ff0b446be8afade48d4981,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c0337f4f41ff0b446be8afade48d4981, type: 3}
@@ -155,6 +160,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: LevelFlag1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8645458887233238234, guid: ee8cc61ec530c1c49a63a3a372ce01c9,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 8645458887233238234, guid: ee8cc61ec530c1c49a63a3a372ce01c9,
         type: 3}

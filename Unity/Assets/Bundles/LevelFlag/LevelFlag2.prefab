@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2548884659238886204}
   - component: {fileID: 8825271470288575490}
   - component: {fileID: 4025058042921907892}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Star
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1277823945712004624}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.09, y: 0.793, z: 0.469}
+  m_LocalPosition: {x: -0.131, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2301312570980430956}
@@ -106,7 +106,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2301312570980430956}
   - component: {fileID: 7139463253231140321}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: LevelFlag2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -152,17 +152,17 @@ PrefabInstance:
     - target: {fileID: 4992064562816831833, guid: c0337f4f41ff0b446be8afade48d4981,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.086
+      value: 0.058
       objectReference: {fileID: 0}
     - target: {fileID: 4992064562816831833, guid: c0337f4f41ff0b446be8afade48d4981,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.793
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4992064562816831833, guid: c0337f4f41ff0b446be8afade48d4981,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.469
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4992064562816831833, guid: c0337f4f41ff0b446be8afade48d4981,
         type: 3}
@@ -203,6 +203,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Star2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8388129350783447320, guid: c0337f4f41ff0b446be8afade48d4981,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c0337f4f41ff0b446be8afade48d4981, type: 3}

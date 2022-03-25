@@ -24,9 +24,9 @@ namespace ET
                 Vector3 pos = new Vector3();
                 int x = stringsArr[i].ToInt32() % 7;
                 int y = stringsArr[i].ToInt32() / 7;
-                pos.x = x - (x * 0.05f) - 2.85f;
+                pos.x = x - (x * 0.15f) - 2.55f;
                 pos.y = 0;
-                pos.z = y + y / 9f - 5f;
+                pos.z = y + y / 9f - 5.25f;
                 pathList.Add(pos);
             }
         }

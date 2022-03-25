@@ -14,6 +14,21 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4686818911724202505, guid: 6f45ae7d5e6bca148a6e89f230409ca0,
         type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4686818911724202505, guid: 6f45ae7d5e6bca148a6e89f230409ca0,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4686818911724202505, guid: 6f45ae7d5e6bca148a6e89f230409ca0,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4686818911724202505, guid: 6f45ae7d5e6bca148a6e89f230409ca0,
+        type: 3}
       propertyPath: m_LocalPosition.x
       value: 1
       objectReference: {fileID: 0}
@@ -65,7 +80,7 @@ PrefabInstance:
     - target: {fileID: 5350624195935416499, guid: 6f45ae7d5e6bca148a6e89f230409ca0,
         type: 3}
       propertyPath: m_Name
-      value: yx_js_2
+      value: StoneBoy
       objectReference: {fileID: 0}
     - target: {fileID: 6197460087416555846, guid: 6f45ae7d5e6bca148a6e89f230409ca0,
         type: 3}

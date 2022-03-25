@@ -8,7 +8,6 @@ namespace ET
         {
             Unit hero = MyUnitFactory.Create(scene, configId);
             HeroConfig heroConfig = HeroConfigCategory.Instance.Get(hero.Config.Type);
-            hero.GetComponent<NumericalComponent>().Set(NumericalType.HeroIndexBase, index);
             hero.GetComponent<NumericalComponent>().Set(NumericalType.HeroDamageBase, hero.Config.Damage);
             hero.GetComponent<NumericalComponent>().Set(NumericalType.HeroSpeedBase, hero.Config.Speed);
             hero.GetComponent<NumericalComponent>().Set(NumericalType.AttackToSkillCountBase, heroConfig.AttackToSkillCount);
@@ -18,6 +17,7 @@ namespace ET
             hero.GetComponent<NumericalComponent>().Set(NumericalType.LevelBase, level);
             hero.AddComponent<TowerDefenceIdComponent, long>(towerDefenceID);
             hero.AddComponent<AttackComponent>();
+            hero.GetComponent<NumericalComponent>().Set(NumericalType.HeroIndexBase, index);
             Game.EventSystem.Publish(new AfterCreateHero() { unit = hero });
             hero.AddComponent<AIComponent, int>(3);
             return hero;
