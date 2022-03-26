@@ -26,7 +26,7 @@ namespace ET
                 int y = stringsArr[i].ToInt32() / 7;
                 pos.x = x - (x * 0.15f) - 2.55f;
                 pos.y = 0;
-                pos.z = y + y / 9f - 5.25f;
+                pos.z = y + y / 10f - 5.15f;
                 pathList.Add(pos);
             }
         }

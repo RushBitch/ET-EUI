@@ -24,10 +24,12 @@ namespace ET
                     {
                         if (VARIABLE.GetComponent<EnemySpawnComponent>() != null)
                         {
-                            VARIABLE.GetComponent<EnemySpawnComponent>().SpawnBoss();
+                            //VARIABLE.GetComponent<EnemySpawnComponent>().SpawnBoss();
                             VARIABLE.GetComponent<EnemySpawnComponent>().StopSpawnEnemy();
                         }
                     }
+
+                    dlgTowerDefenceUI.GetComponent<DlgTowerDefenceUI>().PlayBossCommingAnim().Coroutine();
                 }
 
                 dlgTowerDefenceUI.GetComponent<DlgTowerDefenceUIViewComponent>().ES_BattleInfo.ELabel_CountDownText.text = valueStr;

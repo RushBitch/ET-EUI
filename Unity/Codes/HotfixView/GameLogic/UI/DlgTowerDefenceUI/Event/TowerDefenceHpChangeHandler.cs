@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using ET.EventType;
+using UnityEngine;
 
 namespace ET
 {
@@ -18,10 +19,13 @@ namespace ET
                 if (towerdefenceID == myId)
                 {
                     transform = window.GetComponent<DlgTowerDefenceUIViewComponent>().ES_ButtomInfo.EG_MyHpRectTransform;
+                    window.GetComponent<DlgTowerDefenceUI>().ShakeMyHp();
+                    scene.GetComponent<TowerDefenceCompoment>().GetComponent<TowerDefenceCameraComponent>()?.Shake(1,0.5f);
                 }
                 else
                 {
                     transform = window.GetComponent<DlgTowerDefenceUIViewComponent>().ES_TopInfo.EG_EnemyMyHpRectTransform;
+                    window.GetComponent<DlgTowerDefenceUI>().ShakeEmenyHp();
                 }
 
                 for (int i = 0; i < transform.childCount; i++)
@@ -32,6 +36,11 @@ namespace ET
                 for (int i = 0; i < value; i++)
                 {
                     transform.GetChild(i).gameObject.SetActive(true);
+                }
+
+                if (value == 0)
+                {
+                    Game.EventSystem.Publish(new StopBattle() { TowerDecenceId = id });
                 }
             }
         }

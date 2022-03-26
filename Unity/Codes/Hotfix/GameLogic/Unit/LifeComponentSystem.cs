@@ -7,7 +7,7 @@ namespace ET
     {
         public override void Run(LifeComponent self)
         {
-            self.DomainScene().GetComponent<UnitComponent>().Remove(self.Id);
+            self.DomainScene().GetComponent<UnitComponent>()?.Remove(self.Id);
         }
     }
 

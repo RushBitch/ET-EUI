@@ -140,15 +140,15 @@ namespace ILRuntime.Runtime.Generated
             UnityEngine_EventSystems_PointerEventData_Binding.Register(app);
             UnityEngine_Vector2_Binding.Register(app);
             TouchEventComponent_Binding.Register(app);
-            UnityEngine_UI_Graphic_Binding.Register(app);
             UnityEngine_RectTransform_Binding.Register(app);
             DG_Tweening_TweenSettingsExtensions_Binding.Register(app);
+            UnityEngine_Color_Binding.Register(app);
+            UnityEngine_UI_Graphic_Binding.Register(app);
+            DG_Tweening_DOTweenModuleUI_Binding.Register(app);
             System_Int64_Binding.Register(app);
             UnityEngine_Animation_Binding.Register(app);
             UnityEngine_AnimationState_Binding.Register(app);
             UnityEngine_RectTransformUtility_Binding.Register(app);
-            UnityEngine_Color_Binding.Register(app);
-            DG_Tweening_DOTweenModuleUI_Binding.Register(app);
             UnityEngine_Renderer_Binding.Register(app);
             System_Collections_Generic_Dictionary_2_Renderer_Material_Binding.Register(app);
             UnityEngine_UI_LoopScrollRectBase_Binding.Register(app);

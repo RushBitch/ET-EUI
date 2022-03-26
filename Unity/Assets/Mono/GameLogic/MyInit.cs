@@ -31,10 +31,10 @@ namespace ET
 
         private async ETTask StartAsync()
         {
-            if (Define.IsAsync)
-            {
-                await this.CheckAndLoadBundle();
-            }
+            // if (Define.IsAsync)
+            // {
+            //     await this.CheckAndLoadBundle();
+            // }
 
             MyCodeLoader.Instance.Start();
         }

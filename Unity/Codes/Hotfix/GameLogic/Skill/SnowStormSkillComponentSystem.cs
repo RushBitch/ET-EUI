@@ -4,6 +4,7 @@
     {
         public static async void Start(this SnowStormSkillComponent self)
         {
+            if (self.DomainScene().GetComponent<UnitComponent>() == null) return;
             for (int i = 0; i < 5; i++)
             {
                 foreach (var unit in self.DomainScene().GetComponent<UnitComponent>().Children.Values)

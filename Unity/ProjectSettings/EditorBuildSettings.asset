@@ -18,9 +18,15 @@ EditorBuildSettings:
     path: Assets/Scenes/MyInit.unity
     guid: e95879be5cabe8146b6168ee332692eb
   - enabled: 0
-    path: Assets/Scenes/Init.unity
-    guid: d8a1f047a9c82754da2af6ccf7d8b632
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 0
+    path: Assets/Scenes/cj_2 1.unity
+    guid: b21c17ecc3f56234795eceaae9f9b215
   - enabled: 1
-    path: Assets/Scenes/InitOrtho.unity
-    guid: fb261aeaf18a7ac4db2e98c60e26b1d8
+    path: Assets/Scenes/cj_2 2.unity
+    guid: c3cd1d69b0f20e54a83e7c7a454fa4d4
   m_configObjects: {}

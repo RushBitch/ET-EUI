@@ -50,7 +50,7 @@ namespace ET
             }
         }
 
-        private static void OnBackToMainButton(this DlgTowerDefenceUI self)
+        public static void OnBackToMainButton(this DlgTowerDefenceUI self)
         {
             self.DomainScene().GetComponent<UIComponent>().HideWindow(WindowID.WindowID_TowerDefenceUI);
             self.DomainScene().GetComponent<UIComponent>().ShowWindow(WindowID.WindowID_MenuUI);
@@ -197,11 +197,83 @@ namespace ET
 
         public static void ShowEnergyTip(this DlgTowerDefenceUI self)
         {
-            self.View.E_TextTipText.gameObject.SetActive(true);
-            self.View.E_TextTipText.rectTransform.anchoredPosition3D = new Vector3(0, -555);
+            ResourcesComponent.Instance.LoadBundle("ui.unity3d");
+            GameObject gameObject = (GameObject) ResourcesComponent.Instance.GetAsset("ui.unity3d", "TextTip");
+            GameObject TextTip = UnityEngine.Object.Instantiate(gameObject);
+            TextTip.transform.SetParent(self.View.uiTransform);
+            TextTip.gameObject.transform.localScale = Vector3.one;
+            TextTip.gameObject.SetActive(true);
+            TextTip.GetComponent<RectTransform>().anchoredPosition3D = new Vector3(0, -555);
             self.Sequence = DOTween.Sequence();
-            self.Sequence.Append(self.View.E_TextTipText.rectTransform.DOLocalMoveY(-500, 0.5f));
-            self.Sequence.AppendCallback(() => { self.View.E_TextTipText.gameObject.SetActive(false); });
+            self.Sequence.Append(TextTip.GetComponent<RectTransform>().DOLocalMoveY(-500, 0.5f));
+            self.Sequence.AppendCallback(() => { TextTip.gameObject.SetActive(false); });
+        }
+
+        public static void ShakeMyHp(this DlgTowerDefenceUI self)
+        {
+            self.View.E_MyHpShakeImage.color = new Color(1, 1, 1, 0);
+            var s = DOTween.Sequence();
+            s.Append(self.View.E_MyHpShakeImage.DOColor(new Color(1, 1, 1, 1), 0.5f));
+            s.Append(self.View.E_MyHpShakeImage.DOColor(new Color(1, 1, 1, 0), 0.5f));
+        }
+
+        public static void ShakeEmenyHp(this DlgTowerDefenceUI self)
+        {
+            self.View.E_EnemyHpShakeImage.color = new Color(255, 0, 0, 0);
+            var s = DOTween.Sequence();
+            s.Append(self.View.E_EnemyHpShakeImage.DOColor(new Color(1, 1, 1, 1), 0.5f));
+            s.Append(self.View.E_EnemyHpShakeImage.DOColor(new Color(1, 1, 1, 0), 0.5f));
+        }
+
+        public static async ETTask PlayBossCommingAnim(this DlgTowerDefenceUI self)
+        {
+            self.View.ES_BossComming.E5Image.gameObject.SetActive(true);
+            self.View.ES_BossComming.E5Image.transform.DOShakeScale(1);
+            self.View.ES_BossComming.E5Image.gameObject.GetComponent<AudioSource>();
+            await TimerComponent.Instance.WaitAsync(1000);
+            self.View.ES_BossComming.E5Image.gameObject.SetActive(false);
+
+            self.View.ES_BossComming.E4Image.gameObject.SetActive(true);
+            self.View.ES_BossComming.E4Image.transform.DOShakeScale(1);
+            self.View.ES_BossComming.E4Image.gameObject.GetComponent<AudioSource>().Play();
+            await TimerComponent.Instance.WaitAsync(1000);
+            self.View.ES_BossComming.E4Image.gameObject.SetActive(false);
+
+            self.View.ES_BossComming.E3Image.gameObject.SetActive(true);
+            self.View.ES_BossComming.E3Image.transform.DOShakeScale(1);
+            self.View.ES_BossComming.E3Image.gameObject.GetComponent<AudioSource>().Play();
+            await TimerComponent.Instance.WaitAsync(1000);
+            self.View.ES_BossComming.E3Image.gameObject.SetActive(false);
+
+            self.View.ES_BossComming.E2Image.gameObject.SetActive(true);
+            self.View.ES_BossComming.E2Image.transform.DOShakeScale(1);
+            self.View.ES_BossComming.E2Image.gameObject.GetComponent<AudioSource>().Play();
+            await TimerComponent.Instance.WaitAsync(1000);
+            self.View.ES_BossComming.E2Image.gameObject.SetActive(false);
+
+            self.View.ES_BossComming.E1Image.gameObject.SetActive(true);
+            self.View.ES_BossComming.E1Image.transform.DOShakeScale(1);
+            self.View.ES_BossComming.E1Image.gameObject.GetComponent<AudioSource>().Play();
+            await TimerComponent.Instance.WaitAsync(1000);
+            self.View.ES_BossComming.E1Image.gameObject.SetActive(false);
+
+            self.View.ES_BossComming.ECommingImage.gameObject.SetActive(true);
+            self.View.ES_BossComming.ETipImage.transform.DOShakeScale(2);
+            self.View.ES_BossComming.ECommingImage.gameObject.GetComponent<AudioSource>().Play();
+            await TimerComponent.Instance.WaitAsync(2000);
+            self.View.ES_BossComming.ECommingImage.gameObject.SetActive(false);
+
+            TowerDefenceCompoment towerDefenceCompoment = self.DomainScene().GetComponent<TowerDefenceCompoment>();
+            foreach (var VARIABLE in towerDefenceCompoment.Children.Values)
+            {
+                if (VARIABLE.GetComponent<EnemySpawnComponent>() != null)
+                {
+                    VARIABLE.GetComponent<EnemySpawnComponent>().SpawnBoss();
+                    //VARIABLE.GetComponent<EnemySpawnComponent>().StopSpawnEnemy();
+                }
+            }
+
+            await ETTask.CompletedTask;
         }
     }
 }

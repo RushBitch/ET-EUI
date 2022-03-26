@@ -5,6 +5,40 @@ namespace ET
 {
 	public  class DlgTowerDefenceUIViewComponent : Entity,IAwake,IDestroy 
 	{
+		public UnityEngine.UI.Image E_MyHpShakeImage
+     	{
+     		get
+     		{
+     			if (this.uiTransform == null)
+     			{
+     				Log.Error("uiTransform is null.");
+     				return null;
+     			}
+     			if( this.m_E_MyHpShakeImage == null )
+     			{
+		    		this.m_E_MyHpShakeImage = UIFindHelper.FindDeepChild<UnityEngine.UI.Image>(this.uiTransform.gameObject,"E_MyHpShake");
+     			}
+     			return this.m_E_MyHpShakeImage;
+     		}
+     	}
+
+		public UnityEngine.UI.Image E_EnemyHpShakeImage
+     	{
+     		get
+     		{
+     			if (this.uiTransform == null)
+     			{
+     				Log.Error("uiTransform is null.");
+     				return null;
+     			}
+     			if( this.m_E_EnemyHpShakeImage == null )
+     			{
+		    		this.m_E_EnemyHpShakeImage = UIFindHelper.FindDeepChild<UnityEngine.UI.Image>(this.uiTransform.gameObject,"E_EnemyHpShake");
+     			}
+     			return this.m_E_EnemyHpShakeImage;
+     		}
+     	}
+
 		public UnityEngine.RectTransform EGSprite_HeroComboundRectTransform
      	{
      		get
@@ -212,7 +246,7 @@ namespace ET
      		}
      	}
 
-		public UnityEngine.UI.Text E_TextTipText
+		public ES_BossComming ES_BossComming
      	{
      		get
      		{
@@ -221,16 +255,19 @@ namespace ET
      				Log.Error("uiTransform is null.");
      				return null;
      			}
-     			if( this.m_E_TextTipText == null )
+     			if( this.m_es_bosscomming == null )
      			{
-		    		this.m_E_TextTipText = UIFindHelper.FindDeepChild<UnityEngine.UI.Text>(this.uiTransform.gameObject,"E_TextTip");
+		    	   Transform subTrans = UIFindHelper.FindDeepChild<Transform>(this.uiTransform.gameObject,"ES_BossComming");
+		    	   this.m_es_bosscomming = this.AddChild<ES_BossComming,Transform>(subTrans);
      			}
-     			return this.m_E_TextTipText;
+     			return this.m_es_bosscomming;
      		}
      	}
 
 		public void DestroyWidget()
 		{
+			this.m_E_MyHpShakeImage = null;
+			this.m_E_EnemyHpShakeImage = null;
 			this.m_EGSprite_HeroComboundRectTransform = null;
 			this.m_es_topinfo?.Dispose();
 			this.m_es_topinfo = null;
@@ -246,10 +283,13 @@ namespace ET
 			this.m_EButton_BackToMainButton = null;
 			this.m_EButton_BackToMainImage = null;
 			this.m_ELabel_BackToMainText = null;
-			this.m_E_TextTipText = null;
+			this.m_es_bosscomming?.Dispose();
+			this.m_es_bosscomming = null;
 			this.uiTransform = null;
 		}
 
+		private UnityEngine.UI.Image m_E_MyHpShakeImage = null;
+		private UnityEngine.UI.Image m_E_EnemyHpShakeImage = null;
 		private UnityEngine.RectTransform m_EGSprite_HeroComboundRectTransform = null;
 		private ES_TopInfo m_es_topinfo = null;
 		private ES_ButtomInfo m_es_buttominfo = null;
@@ -262,7 +302,7 @@ namespace ET
 		private UnityEngine.UI.Button m_EButton_BackToMainButton = null;
 		private UnityEngine.UI.Image m_EButton_BackToMainImage = null;
 		private UnityEngine.UI.Text m_ELabel_BackToMainText = null;
-		private UnityEngine.UI.Text m_E_TextTipText = null;
+		private ES_BossComming m_es_bosscomming = null;
 		public Transform uiTransform = null;
 	}
 }

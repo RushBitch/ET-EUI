@@ -150,14 +150,25 @@ namespace ET
         {
             public Unit unit;
         }
+
         public struct EnemySpeedBuffEnd
         {
             public Unit unit;
         }
-        
+
         public struct HeroStartIdelState
         {
             public Unit unit;
+        }
+
+        public struct StopBattle
+        {
+            public long TowerDecenceId;
+        }
+        
+        public struct AfterStopBattle
+        {
+            public long TowerDecenceId;
         }
     }
 }
