@@ -14,7 +14,7 @@ namespace ET
                 ResourcesComponent.Instance.LoadBundle("ui.unity3d");
                 GameObject bundle = (GameObject) ResourcesComponent.Instance.GetAsset("ui.unity3d", "DamageLabel");
                 GameObject gameObject = UnityEngine.Object.Instantiate(bundle);
-                gameObject.GetComponent<RectTransform>().SetParent(GlobalComponent.Instance.OtherRoot, true);
+                gameObject.GetComponent<RectTransform>().SetParent(GlobalComponent.Instance.PopUpRoot, true);
                 GameObjectComponent gameObjectComponent = args.unit.GetComponent<GameObjectComponent>();
                 Camera camera = args.unit.DomainScene().GetComponent<MainCameraComponent>().camera;
                 Camera uicamera = args.unit.DomainScene().GetComponent<MainCameraComponent>().uiCamera;

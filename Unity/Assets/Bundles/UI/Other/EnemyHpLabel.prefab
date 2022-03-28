@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2279072213332956822}
   - component: {fileID: 2279072213332956823}
   - component: {fileID: 2279072213332956820}
-  m_Layer: 5
+  m_Layer: 13
   m_Name: EnemyHpLabel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
