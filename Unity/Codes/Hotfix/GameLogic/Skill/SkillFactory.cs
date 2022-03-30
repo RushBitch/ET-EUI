@@ -30,10 +30,10 @@ namespace ET
         private static Unit ConfigDrunkardSkill(Unit hero, Unit skill)
         {
             FireSkillComponent fireSkillComponent = skill.GetComponent<FireSkillComponent>();
-            fireSkillComponent.attackRange = 1.3f;
+            fireSkillComponent.attackRange = 0.9f;
             fireSkillComponent.damage = hero.GetComponent<NumericalComponent>().GetAsInt(NumericalType.HeroDamage);
             fireSkillComponent.attackTime = 1000;
-            fireSkillComponent.deltaTime = 100;
+            fireSkillComponent.deltaTime = 200;
             fireSkillComponent.heroId = hero.Id;
             skill.Position = hero.Position;
             fireSkillComponent.StartAttack();

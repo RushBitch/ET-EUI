@@ -9,7 +9,7 @@ namespace ET
         {
             self.gameObject = gameObject;
             self.farPos = new Vector3(0, 11.57f, -11.58f);
-            self.farQuaternion = Quaternion.Euler(new Vector3(130f, -180f, -180f));
+            self.farQuaternion = Quaternion.Euler(new Vector3(130.878f, -180f, -180f));
             self.nearPos = new Vector3(0, 17.89f, -1.69f);
             self.nearQuaternion = Quaternion.Euler(new Vector3(90f, -180, -180f));
         }

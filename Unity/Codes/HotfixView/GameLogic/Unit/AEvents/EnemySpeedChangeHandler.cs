@@ -13,9 +13,12 @@ namespace ET
             {
                 if (unit.GetComponent<AnimationComponent>() != null)
                 {
-                    foreach (AnimationState state in unit.GetComponent<AnimationComponent>().animation)
+                    if (unit.GetComponent<AnimationComponent>() != null)
                     {
-                        state.speed = value / 20f;
+                        foreach (AnimationState state in unit.GetComponent<AnimationComponent>().animation)
+                        {
+                            state.speed = value / 20f;
+                        }
                     }
                 }
             }

@@ -27,6 +27,10 @@ namespace ET
                 pos.x = x - (x * 0.15f) - 2.55f;
                 pos.y = 0;
                 pos.z = y + y / 10f - 5.15f;
+                if (i == 0)
+                {
+                    pos.z += 0.5f;
+                }
                 pathList.Add(pos);
             }
         }

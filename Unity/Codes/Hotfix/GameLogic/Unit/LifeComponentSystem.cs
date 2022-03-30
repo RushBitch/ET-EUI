@@ -3,7 +3,7 @@
 namespace ET
 {
     [Timer(TimerType.EnemyDeadTimer)]
-    public class EnemyDead:ATimer<LifeComponent>
+    public class EnemyDead: ATimer<LifeComponent>
     {
         public override void Run(LifeComponent self)
         {
@@ -26,9 +26,22 @@ namespace ET
             {
                 //Log.Info($"敌人死亡");
                 self.dead = true;
-                Game.EventSystem.Publish(new CleanMaxMoveDistance(){unit = self.GetParent<Unit>()});
-                Game.EventSystem.Publish(new AfterEnemyDead(){unit = self.GetParent<Unit>()});
-                TimerComponent.Instance.NewOnceTimer(TimeHelper.ServerNow() + 5000,TimerType.EnemyDeadTimer,self);
+                Game.EventSystem.Publish(new CleanMaxMoveDistance() { unit = self.GetParent<Unit>() });
+                Game.EventSystem.Publish(new AfterEnemyDead() { unit = self.GetParent<Unit>() });
+                if (self.Parent.GetComponent<ReverseSpwanComponent>() != null)
+                {
+                    Game.EventSystem.Publish(new SpawnReverseEnemy() { unit = self.GetParent<Unit>() });
+                }
+
+                if (self.GetParent<Unit>().Config.Type == (int) UnitType.Boss)
+                {
+                    TimerComponent.Instance.NewOnceTimer(TimeHelper.ServerNow() + 5000, TimerType.EnemyDeadTimer, self);
+                }
+                else
+                {
+                    TimerComponent.Instance.NewOnceTimer(TimeHelper.ServerNow() + 100, TimerType.EnemyDeadTimer, self);
+                }
+
                 return true;
             }
 

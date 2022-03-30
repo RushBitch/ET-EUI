@@ -26,7 +26,17 @@ namespace ET
                 boom.transform.position = new Vector3(2.501f, 0, 5.782f);
             }
 
-            await TimerComponent.Instance.WaitAsync(5000);
+            await TimerComponent.Instance.WaitAsync(1500);
+            if (towerdefenceID == myId)
+            {
+                GameObject.Find("cj_2/shuijingtai").transform.localScale = Vector3.zero;
+            }
+            else
+            {
+                GameObject.Find("cj_2/shuijingtai (1)").transform.localScale = Vector3.zero;
+            }
+
+            await TimerComponent.Instance.WaitAsync(3500);
             UnityEngine.Object.Destroy(boom);
             UIBaseWindow dlgTowerDefenceUI;
             scene.GetComponent<UIComponent>().VisibleWindowsDic.TryGetValue((int) WindowID.WindowID_TowerDefenceUI, out dlgTowerDefenceUI);

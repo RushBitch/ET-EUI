@@ -25,6 +25,10 @@
         AddAttackDamageEffect = 20,
         MasterSkill = 21,
         StoneBoySkillWeapon = 22,
-        Player,
+        Player = 23,
+        SmallMonster = 24,
+        MiddleMonster = 25,
+        BigMonster = 26,
+        EnemyDeadEffect
     }
 }

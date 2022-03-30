@@ -134,6 +134,11 @@ namespace ET
             public Unit unit;
         }
 
+        public struct SpawnReverseEnemy
+        {
+            public Unit unit;
+        }
+        
         public struct AfterDestroyWeapon
         {
             public Unit unit;

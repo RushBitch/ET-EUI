@@ -45,7 +45,7 @@ namespace ET
 
         public static void StartSpawnEnemy(this EnemySpawnComponent self)
         {
-            self.spwanTimer = TimerComponent.Instance.NewRepeatedTimer(1300, TimerType.EnemySpawnTimer, self);
+            self.spwanTimer = TimerComponent.Instance.NewRepeatedTimer(1000, TimerType.EnemySpawnTimer, self);
             //self.SpawnEnemy();
         }
 
@@ -60,7 +60,34 @@ namespace ET
             {
                 //int configId = 1000 + RandomHelper.RandomNumber(1, 3);
                 //Log.Info("创建英雄");
-                Unit unit = EnemyFactory.Create(self.DomainScene(), 1002, self.Id);
+                self.spawnCount += 1;
+                int configId = 0;
+                if (self.spawnCount % 5 == 0)
+                {
+                    configId = 1004;
+                }
+
+                if (self.spawnCount % 10 == 0)
+                {
+                    configId = 1005;
+                }
+
+                if (self.spawnCount % 5 != 0 && self.spawnCount % 10 != 0)
+                {
+                    configId = 1003;
+                }
+
+                Unit unit = EnemyFactory.Create(self.DomainScene(), configId, self.Id, true);
+                unit.GetComponent<MoveWithListComponent>()
+                        .StartMove(config.pathList, () => { self.DomainScene().GetComponent<UnitComponent>().Remove(unit.Id); });
+            }
+        }
+
+        public static void SpawnEnemy(this EnemySpawnComponent self, int configId)
+        {
+            foreach (var config in self.pathConfigs)
+            {
+                Unit unit = EnemyFactory.Create(self.DomainScene(), configId, self.Id);
                 unit.GetComponent<MoveWithListComponent>()
                         .StartMove(config.pathList, () => { self.DomainScene().GetComponent<UnitComponent>().Remove(unit.Id); });
             }

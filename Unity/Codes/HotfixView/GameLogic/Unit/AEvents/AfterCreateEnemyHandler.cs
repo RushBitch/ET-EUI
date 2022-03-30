@@ -41,9 +41,11 @@ namespace ET
             enemyHpViewComponent.gameObject = gameObject1;
             gameObject1.GetComponent<Text>().text = args.unit.GetComponent<NumericalComponent>().GetAsInt(NumericalType.Hp).ToString();
             gameObject1.transform.DOShakeScale(0.3f);
-            AnimationComponent animationComponent =  args.unit.AddComponent<AnimationComponent, GameObject>(gameObject);
-            animationComponent.CrossFade(AnimType.走路);
-
+            if (args.unit.Config.Type == (int)UnitType.Boss)
+            {
+                AnimationComponent animationComponent =  args.unit.AddComponent<AnimationComponent, GameObject>(gameObject);
+                animationComponent.CrossFade(AnimType.走路);
+            }
             args.unit.AddComponent<MonsterMaterialConpoment,GameObject>(gameObject);
             
             

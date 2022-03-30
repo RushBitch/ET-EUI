@@ -1,6 +1,10 @@
 
 +�"北欧神话中的火巨人*Boss8@�.
 #�"地狱犬加姆*Monster8@<
+�"火球*SmallMonster8@<
+ �"火球*MiddleMonster8(@<
+�"火球*
+BigMonster8@x
  �"尖刺勇士*Warrior8H#
 �"酒鬼*Drunkard8H#P�
 
@@ -41,3 +45,5 @@ PeotWeapon8
 �
 "诗人特效*
 PeotEffect
+*�
+"敌人死亡特效*EnemyDeadEffect

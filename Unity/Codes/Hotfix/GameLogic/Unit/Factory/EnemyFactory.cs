@@ -4,7 +4,7 @@ namespace ET
 {
     public static class EnemyFactory
     {
-        public static Unit Create(Scene scene, int configId, long towerDefenceID)
+        public static Unit Create(Scene scene, int configId, long towerDefenceID, bool reverseSpawn = false)
         {
             Unit unit = MyUnitFactory.Create(scene, configId);
             unit.AddComponent<MoveWithListComponent>();
@@ -13,7 +13,7 @@ namespace ET
             CountDownComponent countDownComponent = scene.GetComponent<TowerDefenceCompoment>().GetComponent<CountDownComponent>();
             //Log.Info(countDownComponent.additionCount / 3 * 10);
             numericalComponent.Set(NumericalType.HpBase,
-                unit.Config.HPBase +  countDownComponent.additionCount / 3 * 10);
+                unit.Config.HPBase + countDownComponent.additionCount / 3 * 10);
             numericalComponent.Set(NumericalType.PreHpBase, unit.Config.HPBase);
             unit.AddComponent<LifeComponent>();
             MoveWithListComponent moveWithListComponent = unit.GetComponent<MoveWithListComponent>();
@@ -25,6 +25,12 @@ namespace ET
             }
 
             unit.AddComponent<TowerDefenceIdComponent, long>(towerDefenceID);
+
+            if (reverseSpawn)
+            {
+                unit.AddComponent<ReverseSpwanComponent>();
+            }
+
             Game.EventSystem.Publish(new AfterCreateEnemy() { unit = unit });
             return unit;
         }

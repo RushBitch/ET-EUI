@@ -25,7 +25,7 @@ namespace ET
             }
             else
             {
-                self.ForestMat = (Material) ResourcesComponent.Instance.GetAsset("Mat.unity3d", "jiebing 1");
+                self.ForestMat = (Material) ResourcesComponent.Instance.GetAsset("Mat.unity3d", "jiebing");
             }
         }
     }

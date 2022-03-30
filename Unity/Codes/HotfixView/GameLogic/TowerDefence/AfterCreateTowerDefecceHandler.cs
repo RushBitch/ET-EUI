@@ -28,6 +28,8 @@ namespace ET
             args.towerDefenceCompoment.AddComponent<TowerDefenceCameraComponent, GameObject>(GlobalComponent.Instance.Global.Find("MainCamera")
                     .gameObject);
             BgmComponent.Instance.Play(Music.BGM,0.5f);
+            GameObject.Find("cj_2/shuijingtai").transform.localScale = new Vector3(1,0.2f,1);
+            GameObject.Find("cj_2/shuijingtai (1)").transform.localScale = new Vector3(1,0.2f,1);
             await ETTask.CompletedTask;
         }
 
@@ -118,6 +120,10 @@ namespace ET
             gameObject = (GameObject) UnityEngine.Object.Instantiate(bundle, GlobalComponent.Instance.Global);
             //UnityEngine.Object.Destroy(gameObject);
             list.Add(gameObject);
+            
+            // bundle = ResourcesComponent.Instance.GetAsset("Effect.unity3d", EnemyDeadEffect.ToString());
+            // gameObject = (GameObject) UnityEngine.Object.Instantiate(bundle, GlobalComponent.Instance.Global);
+            // list.Add(gameObject);
 
             await TimerComponent.Instance.WaitAsync(2000);
             foreach (var VARIABLE in list)
