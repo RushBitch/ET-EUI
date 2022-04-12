@@ -11,6 +11,7 @@ namespace ET
             NumericalComponent numericalComponent = unit.GetComponent<NumericalComponent>();
             numericalComponent.Set(NumericalType.SpeedBase, unit.Config.Speed);
             CountDownComponent countDownComponent = scene.GetComponent<TowerDefenceCompoment>().GetComponent<CountDownComponent>();
+            if (countDownComponent == null) return null;
             //Log.Info(countDownComponent.additionCount / 3 * 10);
             numericalComponent.Set(NumericalType.HpBase,
                 unit.Config.HPBase + countDownComponent.additionCount / 3 * 10);

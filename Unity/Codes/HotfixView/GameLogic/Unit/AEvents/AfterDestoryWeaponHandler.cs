@@ -27,6 +27,7 @@ namespace ET
                 case UnitType.StoneBoyWeapon:
                 case UnitType.AcrobatWeapon:
                 case UnitType.MasterWeapon:
+                case UnitType.BuffaloWeapon:
                     configId = 1303;
                     effectTime = 300;
                     break;

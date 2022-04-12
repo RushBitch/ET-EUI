@@ -78,6 +78,7 @@ namespace ET
                 }
 
                 Unit unit = EnemyFactory.Create(self.DomainScene(), configId, self.Id, true);
+                if (unit == null) return;
                 unit.GetComponent<MoveWithListComponent>()
                         .StartMove(config.pathList, () => { self.DomainScene().GetComponent<UnitComponent>().Remove(unit.Id); });
             }
@@ -88,6 +89,7 @@ namespace ET
             foreach (var config in self.pathConfigs)
             {
                 Unit unit = EnemyFactory.Create(self.DomainScene(), configId, self.Id);
+                if (unit == null) return;
                 unit.GetComponent<MoveWithListComponent>()
                         .StartMove(config.pathList, () => { self.DomainScene().GetComponent<UnitComponent>().Remove(unit.Id); });
             }
@@ -98,6 +100,7 @@ namespace ET
             foreach (var config in self.pathConfigs)
             {
                 Unit unit = EnemyFactory.Create(self.DomainScene(), 1001, self.Id);
+                if (unit == null) return;
                 unit.GetComponent<MoveWithListComponent>()
                         .StartMove(config.pathList, () => { self.DomainScene().GetComponent<UnitComponent>().Remove(unit.Id); });
             }

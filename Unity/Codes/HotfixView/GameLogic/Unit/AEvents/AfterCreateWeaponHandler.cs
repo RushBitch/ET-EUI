@@ -68,6 +68,13 @@ namespace ET
                     gameObjecteffect = UnityEngine.Object.Instantiate(effect, GlobalComponent.Instance.Unit);
                     trailEffectCompont.gameObject = gameObjecteffect;
                     break;
+                case UnitType.BuffaloWeapon:
+                    trailEffectCompont = args.unit.AddComponent<TrailEffectCompont>();
+                    trailEffectCompont.followGameObject = gameObject;
+                    effect = (GameObject) ResourcesComponent.Instance.GetAsset("Effect.unity3d", "BuffaloTrailEffect");
+                    gameObjecteffect = UnityEngine.Object.Instantiate(effect, GlobalComponent.Instance.Unit);
+                    trailEffectCompont.gameObject = gameObjecteffect;
+                    break;
             }
 
             await ETTask.CompletedTask;

@@ -99,18 +99,18 @@ namespace ET
             action.Tcs.SetResult(response);
         }
 
-        public void OnRead(int RouteCode, IPomeloResponse response, int rpcId)
-        {
-            OpcodeHelper.LogMsg(this.DomainZone(), (ushort) RouteCode, response);
-
-            if (!this.requestCallbacks.TryGetValue(rpcId, out var action))
-            {
-                return;
-            }
-
-            this.requestCallbacks.Remove(rpcId);
-            action.Tcs.SetResult(response);
-        }
+        // public void OnRead(int RouteCode, IPomeloResponse response, int rpcId)
+        // {
+        //     OpcodeHelper.LogMsg(this.DomainZone(), (ushort) RouteCode, response);
+        //
+        //     if (!this.requestCallbacks.TryGetValue(rpcId, out var action))
+        //     {
+        //         return;
+        //     }
+        //
+        //     this.requestCallbacks.Remove(rpcId);
+        //     action.Tcs.SetResult(response);
+        // }
 
         public async ETTask<IMessage> Call(IMessage request, ETCancellationToken cancellationToken)
         {
@@ -192,13 +192,13 @@ namespace ET
                     this.Send(0, stream);
                     break;
                 }
-                case ServiceType.Polome:
-                {
-                    (long messageType, MemoryStream stream) = PomeloMessageHelper.MessageToStream(message, (uint) rpcId);
-                    OpcodeHelper.LogMsg(this.DomainZone(), 0, message);
-                    this.Send(messageType, stream);
-                    break;
-                }
+                // case ServiceType.Polome:
+                // {
+                //     (long messageType, MemoryStream stream) = PomeloMessageHelper.MessageToStream(message, (uint) rpcId);
+                //     OpcodeHelper.LogMsg(this.DomainZone(), 0, message);
+                //     this.Send(messageType, stream);
+                //     break;
+                // }
             }
         }
 

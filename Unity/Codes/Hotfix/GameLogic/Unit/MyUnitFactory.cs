@@ -30,6 +30,8 @@ namespace ET
                     return ConfigMaster(unit);
                 case UnitType.Peot:
                     return ConfigPeot(unit);
+                case UnitType.Buffalo:
+                    return ConfigBuffalo(unit);
                 case UnitType.DrunkardSkill:
                     return ConfigDrunkardSkill(unit);
                 case UnitType.StoneBoySkill:
@@ -119,6 +121,17 @@ namespace ET
         private static Unit ConfigMasterSkill(Unit unit)
         {
             unit.AddComponent<SnowStormSkillComponent>();
+            return unit;
+        }
+
+        private static Unit ConfigBuffalo(Unit unit)
+        {
+            UnitStateComponent unitStateComponent = unit.AddComponent<UnitStateComponent>();
+            unitStateComponent.unitState = UnitState.Attack;
+            HeroConfig heroConfig = HeroConfigCategory.Instance.Get(unit.Config.Type);
+            unit.GetComponent<NumericalComponent>().Set(NumericalType.DeltaTimeToSkillBase, heroConfig.DeltaTimeToSkill);
+            unit.AddComponent<DeltaTimeAIComponent>();
+            unit.AddComponent<AddAttackSpeedSkillComponent>();
             return unit;
         }
 

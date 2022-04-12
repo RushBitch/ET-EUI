@@ -42,6 +42,7 @@ namespace ET
         {
             UnitComponent unitComponent = self.DomainScene().GetComponent<UnitComponent>();
             Unit hero = unitComponent.Get(self.heroId);
+            if (hero.IsDisposed) return;
             Vector3 pos;
             if (hero.GetComponent<AttackComponent>().attackEnemy != null && !hero.GetComponent<AttackComponent>().attackEnemy.IsDisposed)
             {
@@ -56,10 +57,14 @@ namespace ET
             List<Unit> units = new List<Unit>();
             foreach (var entity in unitComponent.Children.Values)
             {
+                if (entity.IsDisposed)
+                {
+                    continue;
+                }
                 var unit = (Unit) entity;
                 if (unit.GetComponent<MoveWithListComponent>() != null)
                 {
-                    if (unit.GetComponent<TowerDefenceIdComponent>().ID == heroDefenceId)
+                    if (unit.GetComponent<TowerDefenceIdComponent>()?.ID == heroDefenceId)
                     {
                         if (Vector3.Distance(unit.Position, pos) <= self.attackRange)
                         {

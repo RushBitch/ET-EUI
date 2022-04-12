@@ -13,6 +13,7 @@ namespace ET
                 case UnitType.StoneBoy:
                 case UnitType.Acrobat:
                 case UnitType.Master:
+                case UnitType.Buffalo:
                     ExectueNormalAttack(args.unit);
                     break;
             }

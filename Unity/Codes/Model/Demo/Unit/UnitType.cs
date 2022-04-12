@@ -29,6 +29,12 @@
         SmallMonster = 24,
         MiddleMonster = 25,
         BigMonster = 26,
-        EnemyDeadEffect
+        EnemyDeadEffect = 27,
+        Buffalo = 28,
+        Fox = 29,
+        Rebbit = 30,
+        Cheetah = 31,
+        Octopus = 32,
+        BuffaloWeapon = 33
     }
 }

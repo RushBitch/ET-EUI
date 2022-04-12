@@ -9,12 +9,16 @@
             {
                 foreach (var unit in self.DomainScene().GetComponent<UnitComponent>().Children.Values)
                 {
+                    if (unit == null || unit.IsDisposed)
+                    {
+                        continue;
+                    }
                     if (unit.GetComponent<MoveWithListComponent>() == null)
                     {
                         continue;
                     }
 
-                    if (unit.GetComponent<TowerDefenceIdComponent>().ID != self.defenceID)
+                    if (unit.GetComponent<TowerDefenceIdComponent>()?.ID != self.defenceID)
                     {
                         continue;
                     }

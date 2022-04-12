@@ -64,6 +64,12 @@ namespace ET
             gameObject = (GameObject) UnityEngine.Object.Instantiate(bundle, GlobalComponent.Instance.Global);
             //UnityEngine.Object.Destroy(gameObject);
             list.Add(gameObject);
+            
+            bundle = ResourcesComponent.Instance.GetAsset("Hero.unity3d", UnitType.Buffalo.ToString());
+            gameObject = (GameObject) UnityEngine.Object.Instantiate(bundle, GlobalComponent.Instance.Global);
+            //UnityEngine.Object.Destroy(gameObject);
+            list.Add(gameObject);
+            
             bundle = ResourcesComponent.Instance.GetAsset("Weapon.unity3d", UnitType.DrunkardWeapon.ToString());
             gameObject = (GameObject) UnityEngine.Object.Instantiate(bundle, GlobalComponent.Instance.Global);
             //UnityEngine.Object.Destroy(gameObject);
@@ -84,6 +90,11 @@ namespace ET
             gameObject = (GameObject) UnityEngine.Object.Instantiate(bundle, GlobalComponent.Instance.Global);
             //UnityEngine.Object.Destroy(gameObject);
             list.Add(gameObject);
+            bundle = ResourcesComponent.Instance.GetAsset("Weapon.unity3d", UnitType.StoneBoyWeapon.ToString());
+            gameObject = (GameObject) UnityEngine.Object.Instantiate(bundle, GlobalComponent.Instance.Global);
+            //UnityEngine.Object.Destroy(gameObject);
+            list.Add(gameObject);
+            
             bundle = ResourcesComponent.Instance.GetAsset("Effect.unity3d", "DrunkardSkillEffect");
             gameObject = (GameObject) UnityEngine.Object.Instantiate(bundle, GlobalComponent.Instance.Global);
             //UnityEngine.Object.Destroy(gameObject);
@@ -93,6 +104,10 @@ namespace ET
             //UnityEngine.Object.Destroy(gameObject);
             list.Add(gameObject);
             bundle = ResourcesComponent.Instance.GetAsset("Effect.unity3d", "NormalTrailEffect");
+            gameObject = (GameObject) UnityEngine.Object.Instantiate(bundle, GlobalComponent.Instance.Global);
+            //UnityEngine.Object.Destroy(gameObject);
+            list.Add(gameObject);
+            bundle = ResourcesComponent.Instance.GetAsset("Effect.unity3d", "BuffaloTrailEffect");
             gameObject = (GameObject) UnityEngine.Object.Instantiate(bundle, GlobalComponent.Instance.Global);
             //UnityEngine.Object.Destroy(gameObject);
             list.Add(gameObject);
@@ -120,10 +135,12 @@ namespace ET
             gameObject = (GameObject) UnityEngine.Object.Instantiate(bundle, GlobalComponent.Instance.Global);
             //UnityEngine.Object.Destroy(gameObject);
             list.Add(gameObject);
-            
-            // bundle = ResourcesComponent.Instance.GetAsset("Effect.unity3d", EnemyDeadEffect.ToString());
-            // gameObject = (GameObject) UnityEngine.Object.Instantiate(bundle, GlobalComponent.Instance.Global);
-            // list.Add(gameObject);
+
+
+            foreach (var VARIABLE in list)
+            {
+                VARIABLE.transform.position = new Vector3(0, -100, 0);
+            }
 
             await TimerComponent.Instance.WaitAsync(2000);
             foreach (var VARIABLE in list)

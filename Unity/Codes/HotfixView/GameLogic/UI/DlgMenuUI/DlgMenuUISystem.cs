@@ -18,7 +18,7 @@ namespace ET
 
         public static void ShowWindow(this DlgMenuUI self, Entity contextData = null)
         {
-
+            self.View.EButton_Pvp.gameObject.SetActive(true);
         }
 
         public static void OnSoloButton(this DlgMenuUI self)
@@ -34,6 +34,7 @@ namespace ET
             PlayerFactory.Create(self.DomainScene(), id);
             PlayerFactory.Create(self.DomainScene(), opponentId);
             Game.EventSystem.Publish(new CreateTowerDefencePvp() { myId = id, zoneScene = self.DomainScene(), opponentId = opponentId });
+            self.View.EButton_Pvp.gameObject.SetActive(false);
         }
 
         public static void OnTeamButton(this DlgMenuUI self)

@@ -24,6 +24,9 @@ namespace ET
                 case UnitType.Master:
                     this.MasterExetuceSkill(args.unit);
                     break;
+                case UnitType.Buffalo:
+                    this.BuffaloExetuceSkill(args.unit);
+                    break;
             }
             await ETTask.CompletedTask;
         }
@@ -53,6 +56,11 @@ namespace ET
         private void MasterExetuceSkill(Unit unit)
         {
             SkillFactory.Create(unit);
+        }
+
+        private void BuffaloExetuceSkill(Unit unit)
+        {
+            unit.GetComponent<AddAttackSpeedSkillComponent>().Add();
         }
     }
 }
