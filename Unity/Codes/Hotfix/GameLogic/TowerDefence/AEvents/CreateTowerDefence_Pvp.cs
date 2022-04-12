@@ -27,8 +27,9 @@ namespace ET
             heroSpawnComponent = towerDefence.AddComponent<HeroSpawnComponent>();
             heroSpawnComponent.init(args.opponentId, list);
             //towerDefence.GetComponent<EnemySpawnComponent>().StartSpawnEnemy();
-            towerDefence.AddComponent<AutoSpawnHeroComponent>();
             await Game.EventSystem.PublishAsync(new AfterCreateTowerDefence() { towerDefenceCompoment = towerDefenceCompoment });
+            await TimerComponent.Instance.WaitAsync(2200);
+            towerDefence.AddComponent<AutoSpawnHeroComponent>();
             await Game.EventSystem.PublishAsync(new EventType.FinishCreateTowerDefence() { towerDefenceCompoment = towerDefenceCompoment });
             await ETTask.CompletedTask;
         }

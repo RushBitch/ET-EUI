@@ -8,11 +8,11 @@ PlayerSettings:
   AndroidProfiler: 0
   AndroidFilterTouchesWhenObscured: 0
   AndroidEnableSustainedPerformanceMode: 0
-  defaultScreenOrientation: 1
+  defaultScreenOrientation: 0
   targetDevice: 2
   useOnDemandResources: 0
   accelerometerFrequency: 60
-  companyName: BenFeiKeJiOthro
+  companyName: BenFeiKeJi
   productName: TowerDefensePre
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}

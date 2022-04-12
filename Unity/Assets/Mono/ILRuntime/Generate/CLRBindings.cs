@@ -57,6 +57,9 @@ namespace ILRuntime.Runtime.Generated
             System_Collections_Generic_List_1_Int64_Binding.Register(app);
             System_Collections_Generic_List_1_Int64_Binding_Enumerator_Binding.Register(app);
             System_Collections_Generic_List_1_Int32_Binding.Register(app);
+            System_Collections_Generic_Dictionary_2_Int64_ILTypeInstance_Binding.Register(app);
+            System_Collections_Generic_Dictionary_2_Int64_ILTypeInstance_Binding_ValueCollection_Binding.Register(app);
+            System_Collections_Generic_Dictionary_2_Int64_ILTypeInstance_Binding_ValueCollection_Binding_Enumerator_Binding.Register(app);
             System_Collections_Generic_Dictionary_2_Int64_Dictionary_2_Int32_ILTypeInstance_Binding.Register(app);
             System_Collections_Generic_Dictionary_2_Int32_ILTypeInstance_Binding_Enumerator_Binding.Register(app);
             System_Collections_Generic_KeyValuePair_2_Int32_ILTypeInstance_Binding.Register(app);
@@ -84,9 +87,6 @@ namespace ILRuntime.Runtime.Generated
             System_Text_Encoding_Binding.Register(app);
             ET_Util_Binding.Register(app);
             System_Runtime_CompilerServices_AsyncVoidMethodBuilder_Binding.Register(app);
-            System_Collections_Generic_Dictionary_2_Int64_ILTypeInstance_Binding.Register(app);
-            System_Collections_Generic_Dictionary_2_Int64_ILTypeInstance_Binding_ValueCollection_Binding.Register(app);
-            System_Collections_Generic_Dictionary_2_Int64_ILTypeInstance_Binding_ValueCollection_Binding_Enumerator_Binding.Register(app);
             System_Collections_Generic_Dictionary_2_Int32_SortedDictionary_2_Int32_ILTypeInstance_Binding.Register(app);
             System_Collections_Generic_SortedDictionary_2_Int32_ILTypeInstance_Binding.Register(app);
             System_Collections_Generic_SortedDictionary_2_Int32_ILTypeInstance_Binding_ValueCollection_Binding.Register(app);
@@ -139,11 +139,11 @@ namespace ILRuntime.Runtime.Generated
             System_Collections_Generic_List_1_GameObject_Binding_Enumerator_Binding.Register(app);
             UnityEngine_EventSystems_PointerEventData_Binding.Register(app);
             UnityEngine_Vector2_Binding.Register(app);
+            DG_Tweening_TweenSettingsExtensions_Binding.Register(app);
+            UnityEngine_UI_Graphic_Binding.Register(app);
             TouchEventComponent_Binding.Register(app);
             UnityEngine_RectTransform_Binding.Register(app);
-            DG_Tweening_TweenSettingsExtensions_Binding.Register(app);
             UnityEngine_Color_Binding.Register(app);
-            UnityEngine_UI_Graphic_Binding.Register(app);
             DG_Tweening_DOTweenModuleUI_Binding.Register(app);
             System_Int64_Binding.Register(app);
             UnityEngine_Animation_Binding.Register(app);

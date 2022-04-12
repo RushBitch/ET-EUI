@@ -241,6 +241,7 @@ namespace ET
             using FileStream txt = new FileStream(jsonPath, FileMode.Create);
             using StreamWriter sw = new StreamWriter(txt);
             sw.Write(sb.ToString());
+            Log.Console(sb.ToString());
         }
         
         static void ExportSheetJson(ExcelWorksheet worksheet, string name, Dictionary<string, HeadInfo> classField, ConfigType configType, StringBuilder sb)

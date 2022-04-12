@@ -24,7 +24,7 @@ namespace ET
             GameObject gameObject = (GameObject) UnityEngine.Object.Instantiate(bundle, GlobalComponent.Instance.Global);
             args.towerDefenceCompoment.AddComponent<GameObjectComponent>().GameObject = gameObject;
             args.towerDefenceCompoment.AddComponent<HeroCompoundComponent>();
-            args.towerDefenceCompoment.DomainScene().GetComponent<UIComponent>().ShowWindow(WindowID.WindowID_TowerDefenceUI);
+            args.towerDefenceCompoment.DomainScene().GetComponent<UIComponent>().ShowWindow(WindowID.WindowID_StartAnimUI);
             args.towerDefenceCompoment.AddComponent<TowerDefenceCameraComponent, GameObject>(GlobalComponent.Instance.Global.Find("MainCamera")
                     .gameObject);
             BgmComponent.Instance.Play(Music.BGM,0.5f);

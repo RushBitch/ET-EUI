@@ -48,7 +48,9 @@
      <None Include="Assets\Res\towerdefense-res\gcwj\Assets\PWL\Shader\zw_shu.shader" />
      <None Include="Assets\StreamingAssets\Version.txt" />
      <None Include="Assets\link.xml" />
+     <None Include="Assets\Temp\towerdefenseresource\Shader\yx_jiaose.shader" />
      <None Include="Assets\Res\towerdefense-res\gcwj\Assets\PWL\Shader\MoveGrass.shader" />
+     <None Include="Assets\Temp\towerdefenseresource\Shader\CelSilhouette.shader" />
      <None Include="Assets\Res\towerdefense-res\gcwj\Assets\PWL\Shader\CelSilhouette.shader" />
      <Reference Include="UnityEngine">
      <HintPath>D:/Unity/2020.3.22f1c1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>

@@ -25,7 +25,7 @@ namespace ET
             {
                 boom.transform.position = new Vector3(2.501f, 0, 5.782f);
             }
-
+            scene.GetComponent<UIComponent>().HideWindow(WindowID.WindowID_TowerDefenceUI);
             await TimerComponent.Instance.WaitAsync(1500);
             if (towerdefenceID == myId)
             {
@@ -38,13 +38,22 @@ namespace ET
 
             await TimerComponent.Instance.WaitAsync(3500);
             UnityEngine.Object.Destroy(boom);
-            UIBaseWindow dlgTowerDefenceUI;
-            scene.GetComponent<UIComponent>().VisibleWindowsDic.TryGetValue((int) WindowID.WindowID_TowerDefenceUI, out dlgTowerDefenceUI);
-            if (dlgTowerDefenceUI != null)
+            
+            scene.GetComponent<UIComponent>().ShowWindow(WindowID.WindowID_SettleUI);
+            UIBaseWindow window;
+            scene.GetComponent<UIComponent>().VisibleWindowsDic.TryGetValue((int) WindowID.WindowID_SettleUI, out window);
+            if (window != null)
             {
-                dlgTowerDefenceUI.GetComponent<DlgTowerDefenceUI>().OnBackToMainButton();
+                if (towerdefenceID == myId)
+                {
+                    window.GetComponent<DlgSettleUI>().ShowLose();
+                }
+                else
+                {
+                    window.GetComponent<DlgSettleUI>().ShowWin();
+                }
+                
             }
-
             await ETTask.CompletedTask;
         }
     }

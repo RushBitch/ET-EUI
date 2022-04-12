@@ -9,6 +9,8 @@
         WindowID_RedDot,   //红点测试界面
         WindowID_Helper,   //提示界面
         WindowID_TowerDefenceUI,
-        WindowID_MenuUI
+        WindowID_MenuUI,
+        WindowID_StartAnimUI,
+        WindowID_SettleUI
     }
 }

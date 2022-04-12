@@ -48,6 +48,22 @@ namespace ET
             {
                 self.View.ES_TopInfo.EG_EnemyMyHpRectTransform.GetChild(i).gameObject.SetActive(true);
             }
+            
+            List<GameObject> gameObjects = new List<GameObject>();
+            for (int i = 0; i < self.View.ES_BattleInfo.EG_MyEnemyCountRectTransform.childCount; i++)
+            {
+                gameObjects.Add(self.View.ES_BattleInfo.EG_MyEnemyCountRectTransform.GetChild(i).gameObject);
+            }
+
+            for (int i = 0; i < self.View.ES_BattleInfo.EG_EnemyEnemyCountRectTransform.childCount; i++)
+            {
+                gameObjects.Add(self.View.ES_BattleInfo.EG_EnemyEnemyCountRectTransform.GetChild(i).gameObject);
+            }
+
+            foreach (var gameObject in gameObjects)
+            {
+                UnityEngine.Object.Destroy(gameObject);
+            }
         }
 
         public static void OnBackToMainButton(this DlgTowerDefenceUI self)
