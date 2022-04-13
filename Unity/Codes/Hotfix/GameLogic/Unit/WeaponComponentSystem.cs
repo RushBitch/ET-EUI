@@ -57,9 +57,9 @@ namespace ET
                 bool isDead = self.enemy.GetComponent<LifeComponent>().Attacked(self.damage);
                 if (isDead)
                 {
-                    Game.EventSystem.Publish(new EnemyKilledByHero() { unit = self.GetParent<Unit>().GetComponent<WeaponComponent>().hero });
+                    Game.EventSystem.Publish(new EnemyKilledByHero() { id = self.towerDefenceId});
                 }
-
+                
                 self.DomainScene().GetComponent<UnitComponent>().Remove(self.Id);
             }
         }

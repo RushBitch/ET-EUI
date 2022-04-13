@@ -14,6 +14,8 @@ namespace ET
                 case UnitType.Acrobat:
                 case UnitType.Master:
                 case UnitType.Buffalo:
+                case UnitType.Fox:
+                case UnitType.Rebbit:
                     ExectueNormalAttack(args.unit);
                     break;
             }

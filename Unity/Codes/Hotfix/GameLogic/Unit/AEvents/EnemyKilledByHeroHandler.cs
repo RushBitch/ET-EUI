@@ -6,7 +6,7 @@ namespace ET
     {
         protected async override ETTask Run(EnemyKilledByHero args)
         {
-            long id = args.unit.GetComponent<TowerDefenceIdComponent>().ID;
+            long id = args.id;
             Scene scene = ZoneSceneManagerComponent.Instance.Get(1);
             TowerDefence towerDefence = scene.GetComponent<TowerDefenceCompoment>().GetChild<TowerDefence>(id);
             Player player = scene.GetComponent<PlayerComponent>().Get(towerDefence.playerIds[0]);

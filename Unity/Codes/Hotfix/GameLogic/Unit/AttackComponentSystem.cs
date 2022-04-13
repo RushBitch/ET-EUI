@@ -3,6 +3,14 @@ using UnityEngine;
 
 namespace ET
 {
+    public class AttackComponentDestroySystem: DestroySystem<AttackComponent>
+    {
+        public override void Destroy(AttackComponent self)
+        {
+            self.Parent.GetComponent<PreAttackComponent>()?.EnablePreAttack();
+        }
+    }
+
     public static class AttackComponentSystem
     {
         public static bool EnterReady(this AttackComponent self)
@@ -12,10 +20,21 @@ namespace ET
             TowerDefence towerDefence = self.DomainScene().GetComponent<TowerDefenceCompoment>().GetChild<TowerDefence>(id);
 
             Unit enemy = towerDefence.GetComponent<RecordMaxMoveDistanceComponent>().unit;
-
             if (enemy != null)
             {
+                //Log.Info($"有可以预攻击的对象：{enemy.Id}");
                 self.attackEnemy = enemy;
+                Unit unit = (Unit) self.Parent;
+                if (unit.Config.Type == (int) UnitType.Fox)
+                {
+                    self.Parent.GetComponent<NumericalComponent>().Set(NumericalType.HeroDamageBase, RandomHelper.RandomNumber(1, 70));
+                }
+
+                int damage = self.Parent.GetComponent<NumericalComponent>().GetAsInt(NumericalType.HeroDamage);
+                enemy.GetComponent<LifeComponent>().PreAttacked(damage);
+                PreAttackComponent preAttackComponent = self.Parent.AddComponent<PreAttackComponent>();
+                preAttackComponent.enemy = enemy;
+                preAttackComponent.damage = damage;
                 return true;
             }
             else
@@ -29,16 +48,16 @@ namespace ET
         {
             if (self.attackEnemy != null)
             {
-                Game.EventSystem.Publish(new HeroExecuteAttack(){unit = (Unit) self.Parent});
+                Game.EventSystem.Publish(new HeroExecuteAttack() { unit = (Unit) self.Parent });
             }
         }
 
         public static bool EnterSkillReady(this AttackComponent self)
         {
-            Game.EventSystem.Publish(new HeroEnterSkillReady(){unit = (Unit) self.Parent});
+            Game.EventSystem.Publish(new HeroEnterSkillReady() { unit = (Unit) self.Parent });
             return self.canExeuteSkill;
         }
-        
+
         public static void EnterSkill(this AttackComponent self)
         {
             Game.EventSystem.Publish(new HeroExecuteSkill() { unit = (Unit) self.Parent });

@@ -20,18 +20,8 @@ namespace ILRuntime.Runtime.Generated
         {
             BindingFlags flag = BindingFlags.Public | BindingFlags.Instance | BindingFlags.Static | BindingFlags.DeclaredOnly;
             MethodBase method;
-            FieldInfo field;
             Type[] args;
             Type type = typeof(System.ValueTuple<System.Int64, System.IO.MemoryStream>);
-
-            field = type.GetField("Item1", flag);
-            app.RegisterCLRFieldGetter(field, get_Item1_0);
-            app.RegisterCLRFieldSetter(field, set_Item1_0);
-            app.RegisterCLRFieldBinding(field, CopyToStack_Item1_0, AssignFromStack_Item1_0);
-            field = type.GetField("Item2", flag);
-            app.RegisterCLRFieldGetter(field, get_Item2_1);
-            app.RegisterCLRFieldSetter(field, set_Item2_1);
-            app.RegisterCLRFieldBinding(field, CopyToStack_Item2_1, AssignFromStack_Item2_1);
 
             app.RegisterCLRCreateDefaultInstance(type, () => new System.ValueTuple<System.Int64, System.IO.MemoryStream>());
 
@@ -85,65 +75,6 @@ namespace ILRuntime.Runtime.Generated
                     }
                     break;
             }
-        }
-
-
-        static object get_Item1_0(ref object o)
-        {
-            return ((System.ValueTuple<System.Int64, System.IO.MemoryStream>)o).Item1;
-        }
-
-        static StackObject* CopyToStack_Item1_0(ref object o, ILIntepreter __intp, StackObject* __ret, IList<object> __mStack)
-        {
-            var result_of_this_method = ((System.ValueTuple<System.Int64, System.IO.MemoryStream>)o).Item1;
-            __ret->ObjectType = ObjectTypes.Long;
-            *(long*)&__ret->Value = result_of_this_method;
-            return __ret + 1;
-        }
-
-        static void set_Item1_0(ref object o, object v)
-        {
-            System.ValueTuple<System.Int64, System.IO.MemoryStream> ins =(System.ValueTuple<System.Int64, System.IO.MemoryStream>)o;
-            ins.Item1 = (System.Int64)v;
-            o = ins;
-        }
-
-        static StackObject* AssignFromStack_Item1_0(ref object o, ILIntepreter __intp, StackObject* ptr_of_this_method, IList<object> __mStack)
-        {
-            ILRuntime.Runtime.Enviorment.AppDomain __domain = __intp.AppDomain;
-            System.Int64 @Item1 = *(long*)&ptr_of_this_method->Value;
-            System.ValueTuple<System.Int64, System.IO.MemoryStream> ins =(System.ValueTuple<System.Int64, System.IO.MemoryStream>)o;
-            ins.Item1 = @Item1;
-            o = ins;
-            return ptr_of_this_method;
-        }
-
-        static object get_Item2_1(ref object o)
-        {
-            return ((System.ValueTuple<System.Int64, System.IO.MemoryStream>)o).Item2;
-        }
-
-        static StackObject* CopyToStack_Item2_1(ref object o, ILIntepreter __intp, StackObject* __ret, IList<object> __mStack)
-        {
-            var result_of_this_method = ((System.ValueTuple<System.Int64, System.IO.MemoryStream>)o).Item2;
-            return ILIntepreter.PushObject(__ret, __mStack, result_of_this_method);
-        }
-
-        static void set_Item2_1(ref object o, object v)
-        {
-            System.ValueTuple<System.Int64, System.IO.MemoryStream> ins =(System.ValueTuple<System.Int64, System.IO.MemoryStream>)o;
-            ins.Item2 = (System.IO.MemoryStream)v;
-            o = ins;
-        }
-
-        static StackObject* AssignFromStack_Item2_1(ref object o, ILIntepreter __intp, StackObject* ptr_of_this_method, IList<object> __mStack)
-        {
-            ILRuntime.Runtime.Enviorment.AppDomain __domain = __intp.AppDomain;
-            System.IO.MemoryStream @Item2 = (System.IO.MemoryStream)typeof(System.IO.MemoryStream).CheckCLRTypes(StackObject.ToObject(ptr_of_this_method, __domain, __mStack), (CLR.Utils.Extensions.TypeFlags)0);
-            System.ValueTuple<System.Int64, System.IO.MemoryStream> ins =(System.ValueTuple<System.Int64, System.IO.MemoryStream>)o;
-            ins.Item2 = @Item2;
-            o = ins;
-            return ptr_of_this_method;
         }
 
 

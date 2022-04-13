@@ -6,7 +6,7 @@
         public override void Run(DeltaTimeAIComponent t)
         {
             if (t.Parent.GetComponent<UnitStateComponent>().unitState == UnitState.Idle) return;
-            t.Parent.GetComponent<UnitStateComponent>().unitState = UnitState.Skill;
+            t.Parent.GetComponent<UnitStateComponent>().unitState = UnitState.ReadySkill;
         }
     }
 

@@ -49,10 +49,11 @@ namespace ET
 
             for (int i = 0; i < units.Count; i++)
             {
+                units[i].GetComponent<LifeComponent>().PreAttacked(self.damage);
                 bool isDead = units[i].GetComponent<LifeComponent>().Attacked(self.damage);
                 if (isDead)
                 {
-                    Game.EventSystem.Publish(new EnemyKilledByHero() { unit = hero });
+                    Game.EventSystem.Publish(new EnemyKilledByHero() { id = self.towerDefenceID });
                 }
             }
         }

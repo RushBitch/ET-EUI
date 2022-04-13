@@ -17,7 +17,7 @@ namespace ET
         {
             if (self.dead) return false;
             NumericalComponent numericalComponent = self.Parent.GetComponent<NumericalComponent>();
-            //Log.Info($"敌人受到伤害{Damage},剩余HP为{numericalComponent.GetAsInt(NumericalType.Hp) - Damage}");
+            //Log.Info($"敌人{self.Parent.Id}受到伤害{Damage},剩余HP为{numericalComponent.GetAsInt(NumericalType.Hp) - Damage}");
             var hp = numericalComponent.GetAsInt(NumericalType.HpBase);
             hp -= Damage;
             self.Parent.GetComponent<NumericalComponent>().Set(NumericalType.HpBase, hp);
@@ -26,7 +26,7 @@ namespace ET
             {
                 //Log.Info($"敌人死亡");
                 self.dead = true;
-                Game.EventSystem.Publish(new CleanMaxMoveDistance() { unit = self.GetParent<Unit>() });
+                //Game.EventSystem.Publish(new CleanMaxMoveDistance() { unit = self.GetParent<Unit>() });
                 Game.EventSystem.Publish(new AfterEnemyDead() { unit = self.GetParent<Unit>() });
                 if (self.Parent.GetComponent<ReverseSpwanComponent>() != null)
                 {
@@ -48,19 +48,20 @@ namespace ET
             return false;
         }
 
-        // public static void PreAttacked(this LifeComponent self, int Damage)
-        // {
-        //     // NumericalComponent numericalComponent = self.Parent.GetComponent<NumericalComponent>();
-        //     // var hp = numericalComponent.GetAsInt(NumericalType.PreHpBase);
-        //     // hp -= Damage;
-        //     // self.Parent.GetComponent<NumericalComponent>().Set(NumericalType.PreHpBase, hp);
-        //     // //Log.Info($"敌人受到预伤害{Damage},剩余HP为{self.Parent.GetComponent<NumericalComponent>().GetAsInt(NumericalType.PreHp)}");
-        //     // if (hp <= 0)
-        //     // {
-        //     //     //Log.Info($"敌人预死亡");
-        //     //     self.preDead = true;
-        //     //     Game.EventSystem.Publish(new CleanMaxMoveDistance(){unit = self.GetParent<Unit>()});
-        //     // }
-        // }
+        public static void PreAttacked(this LifeComponent self, int Damage)
+        {
+            if(self.IsDisposed || self.Parent.IsDisposed)return;
+            NumericalComponent numericalComponent = self.Parent.GetComponent<NumericalComponent>();
+            var hp = numericalComponent.GetAsInt(NumericalType.PreHpBase);
+            hp -= Damage;
+            self.Parent.GetComponent<NumericalComponent>().Set(NumericalType.PreHpBase, hp);
+            //Log.Info($"敌人受到预伤害{Damage},剩余HP为{self.Parent.GetComponent<NumericalComponent>().GetAsInt(NumericalType.PreHp)}");
+            if (hp <= 0)
+            {
+                //Log.Info($"敌人预死亡");
+                self.preDead = true;
+                Game.EventSystem.Publish(new CleanMaxMoveDistance(){unit = self.GetParent<Unit>()});
+            }
+        }
     }
 }

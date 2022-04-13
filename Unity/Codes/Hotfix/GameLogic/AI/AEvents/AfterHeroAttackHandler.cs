@@ -11,13 +11,12 @@ namespace ET.AEvents
             {
                 return;
             }
-
             attackCountAIComponent.attackCount += 1;
             if (args.unit.GetComponent<NumericalComponent>().GetAsInt(NumericalType.AttackToSkillCount) <= attackCountAIComponent.attackCount)
             {
                 if (args.unit.GetComponent<AttackComponent>().EnterSkillReady())
                 {
-                    args.unit.GetComponent<UnitStateComponent>().unitState = UnitState.Skill;
+                    args.unit.GetComponent<UnitStateComponent>().unitState = UnitState.ReadySkill;
                 }
                 attackCountAIComponent.attackCount = 0;
             }

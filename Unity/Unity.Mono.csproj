@@ -401,7 +401,6 @@
      <Compile Include="Assets\Mono\ILRuntime\Generate\System_Collections_Generic_Dictionary_2_Int32_Int32_Binding.cs" />
      <Compile Include="Assets\Mono\ILRuntime\Generate\System_Byte_Binding.cs" />
      <Compile Include="Assets\Mono\Core\Helper\StringHelper.cs" />
-     <Compile Include="Assets\Mono\ILRuntime\Generate\ET_Decoder_Binding.cs" />
      <Compile Include="Assets\Mono\ILRuntime\Generate\ProtoBuf_Serializer_Binding.cs" />
      <Compile Include="Assets\Mono\Module\Mongo\BsonIgnoreIfNullAttribute.cs" />
      <Compile Include="Assets\Mono\Module\Network\ErrorCore.cs" />
@@ -412,6 +411,7 @@
      <Compile Include="Assets\Mono\ILRuntime\Generate\System_ValueTuple_2_Int64_MemoryStream_Binding.cs" />
      <Compile Include="Assets\Mono\ILRuntime\Generate\System_Collections_Generic_HashSet_1_AService_Binding_Enumerator_Bind.cs" />
      <Compile Include="Assets\Mono\Define.cs" />
+     <Compile Include="Assets\Mono\ILRuntime\Generate\System_Nullable_1_Int64_Binding.cs" />
      <None Include="Assets\Mono\Unity.Mono.asmdef" />
      <Reference Include="UnityEngine">
      <HintPath>D:/Unity/2020.3.22f1c1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>

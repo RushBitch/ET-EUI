@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace ET
 {
-    public class HeroExecuteSkillHandler:AEvent<HeroExecuteSkill>
+    public class HeroExecuteSkillHandler: AEvent<HeroExecuteSkill>
     {
         protected async override ETTask Run(HeroExecuteSkill args)
         {
@@ -27,7 +27,11 @@ namespace ET
                 case UnitType.Buffalo:
                     this.BuffaloExetuceSkill(args.unit);
                     break;
+                case UnitType.Rebbit:
+                    this.RebbitExetuceSkill(args.unit);
+                    break;
             }
+
             await ETTask.CompletedTask;
         }
 
@@ -44,10 +48,12 @@ namespace ET
             weapon.GetComponent<WeaponComponent>().SetPosition(unit.Position + new Vector3(0, 0.5f, 0));
             weapon.GetComponent<WeaponComponent>().StartAttack();
         }
+
         private void AcrobatExetuceSkill(Unit unit)
         {
             unit.GetComponent<AddAttackSpeedSkillComponent>().Add();
         }
+
         private void PeotExetuceSkill(Unit unit)
         {
             unit.GetComponent<AddAttackDamageSkillComponent>().Add();
@@ -61,6 +67,11 @@ namespace ET
         private void BuffaloExetuceSkill(Unit unit)
         {
             unit.GetComponent<AddAttackSpeedSkillComponent>().Add();
+        }
+
+        private void RebbitExetuceSkill(Unit unit)
+        {
+            SkillFactory.Create(unit);
         }
     }
 }

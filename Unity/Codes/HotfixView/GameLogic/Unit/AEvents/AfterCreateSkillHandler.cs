@@ -22,6 +22,9 @@ namespace ET
                 case UnitType.MasterSkill:
                     ConfigMasterSkill(gameObject, args.unit);
                     break;
+                case UnitType.RebbitSkill:
+                    ConfigRebbitSkill(gameObject, args.unit);
+                    break;
             }
 
             await ETTask.CompletedTask;
@@ -65,6 +68,41 @@ namespace ET
             Vector3 pos;
             pos = TransformConvert.ConvertPositon(unit, unit.Position);
             gameObject.transform.position = pos + new Vector3(0, 4, 0);
+        }
+
+        private void ConfigRebbitSkill(GameObject gameObject, Unit unit)
+        {
+            PositionUpdateComponent positionUpdateComponent = unit.AddComponent<PositionUpdateComponent>();
+            Scene zoneScene = unit.DomainScene();
+            long playerId = zoneScene.GetComponent<PlayerComponent>().MyId;
+            TowerDefenceCompoment towerDefenceCompoment = zoneScene.GetComponent<TowerDefenceCompoment>();
+            if (towerDefenceCompoment.towerDefenceMode == TowerDefenceMode.Pvp)
+            {
+                long id = unit.GetComponent<RebbitSkillComponent>().towerDefenceId;
+                TowerDefence towerDefence = towerDefenceCompoment.GetChild<TowerDefence>(id);
+                if (towerDefence.playerIds.Contains(playerId))
+                {
+                    positionUpdateComponent.offset = new Vector3(0, 0, -4.25f);
+                    positionUpdateComponent.scale = new Vector3(1, 1, 1);
+                }
+                else
+                {
+                    positionUpdateComponent.offset = new Vector3(0, 0, 4.25f);
+                    positionUpdateComponent.scale = new Vector3(1, 1, -1);
+                }
+            }
+
+            ResourcesComponent.Instance.LoadBundle("Effect.unity3d");
+            TrailEffectCompont trailEffectCompont;
+            GameObject effect;
+            GameObject gameObjecteffect;
+
+            trailEffectCompont = unit.AddComponent<TrailEffectCompont>();
+            trailEffectCompont.followGameObject = gameObject;
+            effect = (GameObject) ResourcesComponent.Instance.GetAsset("Effect.unity3d", "RebbitTrailEffect");
+            gameObjecteffect = UnityEngine.Object.Instantiate(effect, GlobalComponent.Instance.Unit);
+            trailEffectCompont.gameObject = gameObjecteffect;
+            unit.AddComponent<AfterDestroyRebbiteSkillComponent>();
         }
     }
 }

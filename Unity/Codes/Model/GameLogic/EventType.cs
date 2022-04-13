@@ -121,7 +121,7 @@ namespace ET
 
         public struct EnemyKilledByHero
         {
-            public Unit unit;
+            public long id;
         }
 
         public struct AfterCreateSkill

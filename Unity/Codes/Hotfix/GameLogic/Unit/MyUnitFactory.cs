@@ -32,12 +32,18 @@ namespace ET
                     return ConfigPeot(unit);
                 case UnitType.Buffalo:
                     return ConfigBuffalo(unit);
+                case UnitType.Fox:
+                    return ConfigFox(unit);
+                case UnitType.Rebbit:
+                    return ConfigRebbit(unit);
                 case UnitType.DrunkardSkill:
                     return ConfigDrunkardSkill(unit);
                 case UnitType.StoneBoySkill:
                     return ConfigStoneBoySkill(unit);
                 case UnitType.MasterSkill:
                     return ConfigMasterSkill(unit);
+                case UnitType.RebbitSkill:
+                    return ConfigRebbitSkill(unit);
             }
 
             return unit;
@@ -134,7 +140,26 @@ namespace ET
             unit.AddComponent<AddAttackSpeedSkillComponent>();
             return unit;
         }
-
+        private static Unit ConfigFox(Unit unit)
+        {
+            UnitStateComponent unitStateComponent = unit.AddComponent<UnitStateComponent>();
+            unitStateComponent.unitState = UnitState.Attack;
+            return unit;
+        }
+        
+        private static Unit ConfigRebbit(Unit unit)
+        {
+            UnitStateComponent unitStateComponent = unit.AddComponent<UnitStateComponent>();
+            unitStateComponent.unitState = UnitState.Attack;
+            unit.AddComponent<AttackCountAIComponent>();
+            return unit;
+        }
+        
+        private static Unit ConfigRebbitSkill(Unit unit)
+        {
+            unit.AddComponent<RebbitSkillComponent>();
+            return unit;
+        }
         private static Unit ConfigNull(Unit unit)
         {
             return unit;

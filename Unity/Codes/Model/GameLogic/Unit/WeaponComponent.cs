@@ -9,6 +9,8 @@ namespace ET
         public Unit enemy;
         public Unit hero;
         public bool startAttack = false;
+        
+        public long towerDefenceId;
 
         //public ChangeWeaponPosition changeWeaponPosition;
     }

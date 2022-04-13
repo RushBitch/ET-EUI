@@ -42,7 +42,7 @@ namespace ET
         {
             UnitComponent unitComponent = self.DomainScene().GetComponent<UnitComponent>();
             Unit hero = unitComponent.Get(self.heroId);
-            if (hero.IsDisposed) return;
+            if (hero ==null || hero.IsDisposed) return;
             Vector3 pos;
             if (hero.GetComponent<AttackComponent>().attackEnemy != null && !hero.GetComponent<AttackComponent>().attackEnemy.IsDisposed)
             {
@@ -61,6 +61,7 @@ namespace ET
                 {
                     continue;
                 }
+
                 var unit = (Unit) entity;
                 if (unit.GetComponent<MoveWithListComponent>() != null)
                 {
@@ -76,10 +77,16 @@ namespace ET
 
             for (int i = 0; i < units.Count; i++)
             {
+                if (units[i].GetComponent<LifeComponent>().preDead)
+                {
+                    continue;
+                }
+
+                units[i].GetComponent<LifeComponent>().PreAttacked(self.damage);
                 bool isDead = units[i].GetComponent<LifeComponent>().Attacked(self.damage);
                 if (isDead)
                 {
-                    Game.EventSystem.Publish(new EnemyKilledByHero() { unit = hero });
+                    Game.EventSystem.Publish(new EnemyKilledByHero() { id = self.towerDefenceID });
                 }
             }
         }

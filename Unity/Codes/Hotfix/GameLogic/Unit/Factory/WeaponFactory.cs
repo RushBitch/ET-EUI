@@ -13,6 +13,7 @@ namespace ET
             weaponComponent.hero = hero;
             weaponComponent.damage = damage;
             weaponComponent.speed = weapon.Config.Speed;
+            weaponComponent.towerDefenceId = hero.GetComponent<TowerDefenceIdComponent>().ID;
             Game.EventSystem.Publish(new AfterCreateWeapon() { unit = weapon });
             return weapon;
         }

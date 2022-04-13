@@ -40,7 +40,7 @@ namespace ET
                     bool waitResult = await TimerComponent.Instance.WaitAsync(100, cancellationToken);
                     if (!waitResult)
                     {
-                        return;
+                        break;
                     }
 
                     continue;
@@ -56,11 +56,17 @@ namespace ET
                 ret = await TimerComponent.Instance.WaitAsync((int) Math.Floor(speed), cancellationToken);
                 if (!ret)
                 {
-                    return;
+                    break;
                 }
 
                 //攻击
                 attackComponent.EnterAttack();
+
+                if (unit.GetComponent<PreAttackComponent>() != null)
+                {
+                    unit.GetComponent<PreAttackComponent>().Dispose();
+                }
+
                 //攻击后摇
                 speed = unit.GetComponent<NumericalComponent>().GetAsInt(NumericalType.HeroSpeed) / 20f;
                 speed = heroConfig.AttackAfter / speed + 1;
@@ -68,7 +74,7 @@ namespace ET
                 ret = await TimerComponent.Instance.WaitAsync((int) Math.Floor(speed), cancellationToken);
                 if (!ret)
                 {
-                    return;
+                    break;
                 }
 
                 //播放Idle动作
@@ -83,8 +89,21 @@ namespace ET
                 ret = await TimerComponent.Instance.WaitAsync((int) Math.Floor(speed), cancellationToken);
                 if (!ret)
                 {
-                    return;
+                    break;
                 }
+
+                UnitStateComponent unitStateComponent = aiComponent.Parent.GetComponent<UnitStateComponent>();
+                if (unitStateComponent != null && unitStateComponent.unitState == UnitState.ReadySkill)
+                {
+                    unitStateComponent.unitState = UnitState.Skill;
+                    break;
+                }
+            }
+
+            if (unit.GetComponent<PreAttackComponent>() != null)
+            {
+                unit.GetComponent<PreAttackComponent>().EnablePreAttack();
+                unit.GetComponent<PreAttackComponent>().Dispose();
             }
         }
     }

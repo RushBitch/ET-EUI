@@ -16,7 +16,7 @@ namespace ET
                 effectTime = skillShowTime
             });
             await TimerComponent.Instance.WaitAsync(skillShowTime);
-            if (self.Parent.IsDisposed)
+            if (self.Parent == null || self.Parent.IsDisposed)
             {
                 return;
             }

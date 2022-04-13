@@ -27,9 +27,9 @@ namespace ET
             args.towerDefenceCompoment.DomainScene().GetComponent<UIComponent>().ShowWindow(WindowID.WindowID_StartAnimUI);
             args.towerDefenceCompoment.AddComponent<TowerDefenceCameraComponent, GameObject>(GlobalComponent.Instance.Global.Find("MainCamera")
                     .gameObject);
-            BgmComponent.Instance.Play(Music.BGM,0.5f);
-            GameObject.Find("cj_2/shuijingtai").transform.localScale = new Vector3(1,0.2f,1);
-            GameObject.Find("cj_2/shuijingtai (1)").transform.localScale = new Vector3(1,0.2f,1);
+            BgmComponent.Instance.Play(Music.BGM, 0.5f);
+            GameObject.Find("cj_2/shuijingtai").transform.localScale = new Vector3(1, 0.2f, 1);
+            GameObject.Find("cj_2/shuijingtai (1)").transform.localScale = new Vector3(1, 0.2f, 1);
             await ETTask.CompletedTask;
         }
 
@@ -64,12 +64,21 @@ namespace ET
             gameObject = (GameObject) UnityEngine.Object.Instantiate(bundle, GlobalComponent.Instance.Global);
             //UnityEngine.Object.Destroy(gameObject);
             list.Add(gameObject);
-            
+
             bundle = ResourcesComponent.Instance.GetAsset("Hero.unity3d", UnitType.Buffalo.ToString());
             gameObject = (GameObject) UnityEngine.Object.Instantiate(bundle, GlobalComponent.Instance.Global);
             //UnityEngine.Object.Destroy(gameObject);
             list.Add(gameObject);
-            
+
+            bundle = ResourcesComponent.Instance.GetAsset("Hero.unity3d", UnitType.Fox.ToString());
+            gameObject = (GameObject) UnityEngine.Object.Instantiate(bundle, GlobalComponent.Instance.Global);
+            //UnityEngine.Object.Destroy(gameObject);
+            list.Add(gameObject);
+            bundle = ResourcesComponent.Instance.GetAsset("Hero.unity3d", UnitType.Rebbit.ToString());
+            gameObject = (GameObject) UnityEngine.Object.Instantiate(bundle, GlobalComponent.Instance.Global);
+            //UnityEngine.Object.Destroy(gameObject);
+            list.Add(gameObject);
+
             bundle = ResourcesComponent.Instance.GetAsset("Weapon.unity3d", UnitType.DrunkardWeapon.ToString());
             gameObject = (GameObject) UnityEngine.Object.Instantiate(bundle, GlobalComponent.Instance.Global);
             //UnityEngine.Object.Destroy(gameObject);
@@ -94,7 +103,15 @@ namespace ET
             gameObject = (GameObject) UnityEngine.Object.Instantiate(bundle, GlobalComponent.Instance.Global);
             //UnityEngine.Object.Destroy(gameObject);
             list.Add(gameObject);
-            
+            bundle = ResourcesComponent.Instance.GetAsset("Weapon.unity3d", UnitType.FoxWeapon.ToString());
+            gameObject = (GameObject) UnityEngine.Object.Instantiate(bundle, GlobalComponent.Instance.Global);
+            //UnityEngine.Object.Destroy(gameObject);
+            list.Add(gameObject);
+            bundle = ResourcesComponent.Instance.GetAsset("Weapon.unity3d", UnitType.RebbitWeapon.ToString());
+            gameObject = (GameObject) UnityEngine.Object.Instantiate(bundle, GlobalComponent.Instance.Global);
+            //UnityEngine.Object.Destroy(gameObject);
+            list.Add(gameObject);
+
             bundle = ResourcesComponent.Instance.GetAsset("Effect.unity3d", "DrunkardSkillEffect");
             gameObject = (GameObject) UnityEngine.Object.Instantiate(bundle, GlobalComponent.Instance.Global);
             //UnityEngine.Object.Destroy(gameObject);
@@ -108,6 +125,14 @@ namespace ET
             //UnityEngine.Object.Destroy(gameObject);
             list.Add(gameObject);
             bundle = ResourcesComponent.Instance.GetAsset("Effect.unity3d", "BuffaloTrailEffect");
+            gameObject = (GameObject) UnityEngine.Object.Instantiate(bundle, GlobalComponent.Instance.Global);
+            //UnityEngine.Object.Destroy(gameObject);
+            list.Add(gameObject);
+            bundle = ResourcesComponent.Instance.GetAsset("Effect.unity3d", "FoxTrailEffect");
+            gameObject = (GameObject) UnityEngine.Object.Instantiate(bundle, GlobalComponent.Instance.Global);
+            //UnityEngine.Object.Destroy(gameObject);
+            list.Add(gameObject);
+            bundle = ResourcesComponent.Instance.GetAsset("Effect.unity3d", "RebbitTrailEffect");
             gameObject = (GameObject) UnityEngine.Object.Instantiate(bundle, GlobalComponent.Instance.Global);
             //UnityEngine.Object.Destroy(gameObject);
             list.Add(gameObject);
@@ -127,6 +152,14 @@ namespace ET
             gameObject = (GameObject) UnityEngine.Object.Instantiate(bundle, GlobalComponent.Instance.Global);
             //UnityEngine.Object.Destroy(gameObject);
             list.Add(gameObject);
+            bundle = ResourcesComponent.Instance.GetAsset("Effect.unity3d", UnitType.RebbitSkillEffect.ToString());
+            gameObject = (GameObject) UnityEngine.Object.Instantiate(bundle, GlobalComponent.Instance.Global);
+            //UnityEngine.Object.Destroy(gameObject);
+            list.Add(gameObject);
+            bundle = ResourcesComponent.Instance.GetAsset("Effect.unity3d", "RebbitSkillWeapon");
+            gameObject = (GameObject) UnityEngine.Object.Instantiate(bundle, GlobalComponent.Instance.Global);
+            //UnityEngine.Object.Destroy(gameObject);
+            list.Add(gameObject);
             bundle = ResourcesComponent.Instance.GetAsset("Effect.unity3d", "MasterSkillEffect");
             gameObject = (GameObject) UnityEngine.Object.Instantiate(bundle, GlobalComponent.Instance.Global);
             //UnityEngine.Object.Destroy(gameObject);
@@ -135,7 +168,6 @@ namespace ET
             gameObject = (GameObject) UnityEngine.Object.Instantiate(bundle, GlobalComponent.Instance.Global);
             //UnityEngine.Object.Destroy(gameObject);
             list.Add(gameObject);
-
 
             foreach (var VARIABLE in list)
             {

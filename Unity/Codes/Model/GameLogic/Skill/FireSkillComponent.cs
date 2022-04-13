@@ -8,5 +8,6 @@
         public int deltaTime;
         public int attackTime;
         public long skillTimer;
+        public long towerDefenceID;
     }
 }

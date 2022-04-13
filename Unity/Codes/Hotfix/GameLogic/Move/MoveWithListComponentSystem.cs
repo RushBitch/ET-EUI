@@ -12,6 +12,7 @@ namespace ET
             public Unit unit;
         }
     }
+
     public class MoveWithListComponentAwakeSystem: AwakeSystem<MoveWithListComponent>
     {
         public override void Awake(MoveWithListComponent self)
@@ -38,9 +39,13 @@ namespace ET
             {
                 Unit unit = self.GetParent<Unit>();
                 Vector3 forWard = (self.targetPoint - unit.Position).normalized;
-                Vector3 moveInterval = forWard * deltaTime * unit.GetComponent<NumericalComponent>().GetAsInt(NumericalType.Speed)/20f;
+                Vector3 moveInterval = forWard * deltaTime * unit.GetComponent<NumericalComponent>().GetAsInt(NumericalType.Speed) / 20f;
                 self.moveDistance += moveInterval.magnitude;
-                self.recordMaxMoveDistanceComponent.Record(self.GetParent<Unit>(), self.moveDistance);
+                if (!unit.GetComponent<LifeComponent>().preDead)
+                {
+                    self.recordMaxMoveDistanceComponent.Record(self.GetParent<Unit>(), self.moveDistance);
+                }
+
                 unit.Position = unit.Position + moveInterval;
                 unit.Forward = Vector3.Lerp(unit.Forward, forWard, 0.2f);
                 if ((unit.Position - self.targetPoint).magnitude < 0.05)

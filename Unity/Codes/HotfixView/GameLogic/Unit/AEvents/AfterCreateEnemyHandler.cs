@@ -14,6 +14,8 @@ namespace ET
             GameObject gameObject = (GameObject) UnityEngine.Object.Instantiate(bundle, GlobalComponent.Instance.Unit);
             GameObjectComponent gameObjectComponent = args.unit.AddComponent<GameObjectComponent>();
             gameObjectComponent.GameObject = gameObject;
+            gameObject.name = args.unit.Id.ToString();
+
             TransformUpdateComponent transformUpdateComponent = args.unit.AddComponent<TransformUpdateComponent>();
             Scene zoneScene = args.unit.DomainScene();
             long playerId = zoneScene.GetComponent<PlayerComponent>().MyId;

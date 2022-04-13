@@ -75,6 +75,20 @@ namespace ET
                     gameObjecteffect = UnityEngine.Object.Instantiate(effect, GlobalComponent.Instance.Unit);
                     trailEffectCompont.gameObject = gameObjecteffect;
                     break;
+                case UnitType.FoxWeapon:
+                    trailEffectCompont = args.unit.AddComponent<TrailEffectCompont>();
+                    trailEffectCompont.followGameObject = gameObject;
+                    effect = (GameObject) ResourcesComponent.Instance.GetAsset("Effect.unity3d", "FoxTrailEffect");
+                    gameObjecteffect = UnityEngine.Object.Instantiate(effect, GlobalComponent.Instance.Unit);
+                    trailEffectCompont.gameObject = gameObjecteffect;
+                    break;
+                case UnitType.RebbitWeapon:
+                    trailEffectCompont = args.unit.AddComponent<TrailEffectCompont>();
+                    trailEffectCompont.followGameObject = gameObject;
+                    effect = (GameObject) ResourcesComponent.Instance.GetAsset("Effect.unity3d", "RebbitTrailEffect");
+                    gameObjecteffect = UnityEngine.Object.Instantiate(effect, GlobalComponent.Instance.Unit);
+                    trailEffectCompont.gameObject = gameObjecteffect;
+                    break;
             }
 
             await ETTask.CompletedTask;

@@ -28,6 +28,8 @@ namespace ET
                 case UnitType.AcrobatWeapon:
                 case UnitType.MasterWeapon:
                 case UnitType.BuffaloWeapon:
+                case UnitType.FoxWeapon:
+                case UnitType.RebbitWeapon:
                     configId = 1303;
                     effectTime = 300;
                     break;

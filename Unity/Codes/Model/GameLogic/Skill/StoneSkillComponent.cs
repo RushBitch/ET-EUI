@@ -7,5 +7,6 @@
         public int damage;
         public int attackTime;
         public long skillTimer;
+        public long towerDefenceID;
     }
 }

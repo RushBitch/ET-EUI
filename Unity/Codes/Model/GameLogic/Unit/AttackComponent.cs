@@ -2,7 +2,7 @@
 
 namespace ET
 {
-    public class AttackComponent: Entity, IAwake
+    public class AttackComponent: Entity, IAwake, IDestroy
     {
         public bool stop;
         public Unit attackEnemy;
