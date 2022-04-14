@@ -27,9 +27,14 @@ namespace ET
             args.towerDefenceCompoment.DomainScene().GetComponent<UIComponent>().ShowWindow(WindowID.WindowID_StartAnimUI);
             args.towerDefenceCompoment.AddComponent<TowerDefenceCameraComponent, GameObject>(GlobalComponent.Instance.Global.Find("MainCamera")
                     .gameObject);
-            BgmComponent.Instance.Play(Music.BGM, 0.5f);
+            
             GameObject.Find("cj_2/shuijingtai").transform.localScale = new Vector3(1, 0.2f, 1);
+            GameObject.Find("cj_2/shuijingtai").transform.GetChild(0).GetChild(0).localScale = Vector3.one;
             GameObject.Find("cj_2/shuijingtai (1)").transform.localScale = new Vector3(1, 0.2f, 1);
+            GameObject.Find("cj_2/shuijingtai (1)").transform.GetChild(0).GetChild(0).localScale = Vector3.one;
+            MainCameraComponent.Instance.MenuHeroCamera.GetComponent<Camera>().enabled = false;
+            MainCameraComponent.Instance.cameraGameObject.GetComponent<Camera>().enabled = true;
+            GlobalComponent.Instance.OtherRoot.Find("Bg").gameObject.SetActive(false);
             await ETTask.CompletedTask;
         }
 

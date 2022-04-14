@@ -20,7 +20,7 @@ namespace ET
             TowerDefence towerDefence = self.DomainScene().GetComponent<TowerDefenceCompoment>().GetChild<TowerDefence>(id);
 
             Unit enemy = towerDefence.GetComponent<RecordMaxMoveDistanceComponent>().unit;
-            if (enemy != null)
+            if (enemy != null && !enemy.IsDisposed)
             {
                 //Log.Info($"有可以预攻击的对象：{enemy.Id}");
                 self.attackEnemy = enemy;

@@ -8,7 +8,7 @@ namespace ET
         public override void Awake(TowerDefenceCameraComponent self, GameObject gameObject)
         {
             self.gameObject = gameObject;
-            self.farPos = new Vector3(0, 11.57f, -11.58f);
+            self.farPos = new Vector3(0, 9.95f, -10.18f);
             self.farQuaternion = Quaternion.Euler(new Vector3(130.878f, -180f, -180f));
             self.nearPos = new Vector3(0, 17.89f, -1.69f);
             self.nearQuaternion = Quaternion.Euler(new Vector3(90f, -180, -180f));
@@ -29,9 +29,12 @@ namespace ET
             self.gameObject.transform.DORotateQuaternion(self.nearQuaternion, 0.5f);
         }
 
-        public static void Shake(this TowerDefenceCameraComponent self,int time,float strength)
+        public static void Shake(this TowerDefenceCameraComponent self, int time, float strength)
         {
-            self.gameObject.transform.DOShakePosition(time,strength);
+            Vector3 pos = self.farPos;
+            Sequence sequence = DOTween.Sequence();
+            sequence.Append(self.gameObject.transform.DOShakePosition(time, strength));
+            sequence.Append(self.gameObject.transform.DOMove(pos,0.2f));
         }
     }
 }

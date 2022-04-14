@@ -14,8 +14,8 @@ namespace ET
             if (countDownComponent == null) return null;
             //Log.Info(countDownComponent.additionCount / 3 * 10);
             numericalComponent.Set(NumericalType.HpBase,
-                unit.Config.HPBase + countDownComponent.additionCount / 3 * 10);
-            numericalComponent.Set(NumericalType.PreHpBase, unit.Config.HPBase + countDownComponent.additionCount / 3 * 10);
+                unit.Config.HPBase + CountDownComponent.additionCount / 3 * 10);
+            numericalComponent.Set(NumericalType.PreHpBase, unit.Config.HPBase + CountDownComponent.additionCount / 3 * 10);
             unit.AddComponent<LifeComponent>();
             MoveWithListComponent moveWithListComponent = unit.GetComponent<MoveWithListComponent>();
             if (moveWithListComponent != null)

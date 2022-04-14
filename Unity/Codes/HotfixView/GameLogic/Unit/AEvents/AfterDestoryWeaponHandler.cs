@@ -42,6 +42,12 @@ namespace ET
                     effectTime = 1100;
                     pos.y = 0;
                     break;
+                case UnitType.CheetahWeapon:
+                    configId = 1314;
+                    effectTime = 1100;
+                    pos = args.unit.GetComponent<LightningComponent>().endPoint;
+                    pos.y = 0.3f;
+                    break;
             }
 
             Game.EventSystem.Publish(new PlayerEffect() { effectId = configId, effectTime = effectTime, pos = pos });

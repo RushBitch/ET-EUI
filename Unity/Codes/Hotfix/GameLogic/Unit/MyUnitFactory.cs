@@ -36,6 +36,8 @@ namespace ET
                     return ConfigFox(unit);
                 case UnitType.Rebbit:
                     return ConfigRebbit(unit);
+                case UnitType.Cheetah:
+                    return ConfigConfigCheetah(unit);
                 case UnitType.DrunkardSkill:
                     return ConfigDrunkardSkill(unit);
                 case UnitType.StoneBoySkill:
@@ -146,7 +148,12 @@ namespace ET
             unitStateComponent.unitState = UnitState.Attack;
             return unit;
         }
-        
+        private static Unit ConfigConfigCheetah(Unit unit)
+        {
+            UnitStateComponent unitStateComponent = unit.AddComponent<UnitStateComponent>();
+            unitStateComponent.unitState = UnitState.Attack;
+            return unit;
+        }
         private static Unit ConfigRebbit(Unit unit)
         {
             UnitStateComponent unitStateComponent = unit.AddComponent<UnitStateComponent>();

@@ -42,6 +42,7 @@
   </PropertyGroup>
   <ItemGroup>
      <None Include="Assets\Res\towerdefense-res\gcwj\Assets\PWL\Shader\shuimian.shader" />
+     <None Include="Assets\Resources\Shader\LightningShader.shader" />
      <None Include="Assets\Resources\Shader\fll-Billboard.shader" />
      <None Include="Assets\Res\towerdefense-res\gcwj\Assets\PWL\Shader\Ice.shader" />
      <None Include="Assets\Res\towerdefense-res\gcwj\Assets\PWL\Shader\cj_qz.shader" />

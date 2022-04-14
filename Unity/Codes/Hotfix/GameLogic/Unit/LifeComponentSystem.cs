@@ -35,7 +35,7 @@ namespace ET
 
                 if (self.GetParent<Unit>().Config.Type == (int) UnitType.Boss)
                 {
-                    TimerComponent.Instance.NewOnceTimer(TimeHelper.ServerNow() + 5000, TimerType.EnemyDeadTimer, self);
+                    TimerComponent.Instance.NewOnceTimer(TimeHelper.ServerNow() + 1500, TimerType.EnemyDeadTimer, self);
                 }
                 else
                 {
@@ -50,7 +50,7 @@ namespace ET
 
         public static void PreAttacked(this LifeComponent self, int Damage)
         {
-            if(self.IsDisposed || self.Parent.IsDisposed)return;
+            if (self.IsDisposed || self.Parent.IsDisposed) return;
             NumericalComponent numericalComponent = self.Parent.GetComponent<NumericalComponent>();
             var hp = numericalComponent.GetAsInt(NumericalType.PreHpBase);
             hp -= Damage;
@@ -60,7 +60,7 @@ namespace ET
             {
                 //Log.Info($"敌人预死亡");
                 self.preDead = true;
-                Game.EventSystem.Publish(new CleanMaxMoveDistance(){unit = self.GetParent<Unit>()});
+                Game.EventSystem.Publish(new CleanMaxMoveDistance() { unit = self.GetParent<Unit>() });
             }
         }
     }

@@ -15,7 +15,14 @@ namespace ET
 
         public static void ShowWindow(this DlgStartAnimUI self, Entity contextData = null)
         {
+            self.PlaySound().Coroutine();
             self.StartShowAnim();
+        }
+
+        public static async ETTask PlaySound(this DlgStartAnimUI self)
+        {
+            await TimerComponent.Instance.WaitAsync(500);
+            SoundComponent.Instance.Play(Sound.VS碰撞音效);
         }
 
         private static void StartShowAnim(this DlgStartAnimUI self)
@@ -24,7 +31,7 @@ namespace ET
             sequenceTop.Append(self.View.EG_TopBarRectTransform.DOLocalMoveX(-350, 0.8f).SetEase(Ease.OutCirc));
             sequenceTop.Append(self.View.EG_TopBarRectTransform.DOLocalMoveX(-185, 0.8f).SetEase(Ease.OutCirc));
             sequenceTop.Append(self.View.EG_TopBarRectTransform.DOLocalMoveX(-185, 0.5f).SetEase(Ease.OutCirc));
-            sequenceTop.Append(self.View.EG_TopBarRectTransform.DOLocalMoveX(-1000, 0.6f));
+            //sequenceTop.Append(self.View.EG_TopBarRectTransform.DOLocalMoveX(-1000, 0.6f));
             sequenceTop.AppendCallback(() =>
             {
                 self.DomainScene().GetComponent<UIComponent>().HideWindow(WindowID.WindowID_StartAnimUI);
@@ -35,7 +42,7 @@ namespace ET
             sequenceButtom.Append(self.View.EG_ButtonBarRectTransform.DOLocalMoveX(185, 0.8f).SetEase(Ease.OutCirc));
             sequenceButtom.Append(self.View.EG_ButtonBarRectTransform.DOLocalMoveX(185, 0.5f).SetEase(Ease.OutCirc));
 
-            sequenceButtom.Append(self.View.EG_ButtonBarRectTransform.DOLocalMoveX(1000, 0.6f));
+            //sequenceButtom.Append(self.View.EG_ButtonBarRectTransform.DOLocalMoveX(1000, 0.6f));
 
             Sequence sequenceTopText = DOTween.Sequence();
             sequenceTopText.Append(self.View.E_VTextImage.rectTransform.DOLocalMoveX(-100, 0.8f).SetEase(Ease.OutCirc));
@@ -44,8 +51,8 @@ namespace ET
             sequenceTopText.Insert(1f, self.View.E_VTextImage.rectTransform.DOScaleY(1.3f, 0.2f));
             sequenceTopText.Insert(1.2f, self.View.E_VTextImage.rectTransform.DOScaleX(1f, 0.2f));
             sequenceTopText.Insert(1.2f, self.View.E_VTextImage.rectTransform.DOScaleY(1f, 0.2f));
-            sequenceTopText.Append(self.View.E_VTextImage.rectTransform.DOLocalMoveX(150, 0.5f).SetEase(Ease.OutCirc));
-            sequenceTopText.Append(self.View.E_VTextImage.rectTransform.DOLocalMoveX(0, 0.6f));
+            // sequenceTopText.Append(self.View.E_VTextImage.rectTransform.DOLocalMoveX(150, 0.5f).SetEase(Ease.OutCirc));
+            // sequenceTopText.Append(self.View.E_VTextImage.rectTransform.DOLocalMoveX(0, 0.6f));
 
             Sequence sequenceButtomText = DOTween.Sequence();
             sequenceButtomText.Append(self.View.E_STextImage.rectTransform.DOLocalMoveX(100, 0.8f).SetEase(Ease.OutCirc));
@@ -54,8 +61,8 @@ namespace ET
             sequenceButtomText.Insert(1f, self.View.E_STextImage.rectTransform.DOScaleY(1.3f, 0.2f));
             sequenceButtomText.Insert(1.2f, self.View.E_STextImage.rectTransform.DOScaleX(1f, 0.2f));
             sequenceButtomText.Insert(1.2f, self.View.E_STextImage.rectTransform.DOScaleY(1f, 0.2f));
-            sequenceButtomText.Append(self.View.E_STextImage.rectTransform.DOLocalMoveX(-150, 0.5f).SetEase(Ease.OutCirc));
-            sequenceButtomText.Append(self.View.E_STextImage.rectTransform.DOLocalMoveX(0, 0.6f));
+            // sequenceButtomText.Append(self.View.E_STextImage.rectTransform.DOLocalMoveX(-150, 0.5f).SetEase(Ease.OutCirc));
+            // sequenceButtomText.Append(self.View.E_STextImage.rectTransform.DOLocalMoveX(0, 0.6f));
         }
     }
 }

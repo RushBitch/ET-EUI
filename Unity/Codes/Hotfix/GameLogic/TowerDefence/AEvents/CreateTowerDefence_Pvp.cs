@@ -6,7 +6,7 @@ namespace ET
     {
         protected override async ETTask Run(CreateTowerDefencePvp args)
         {
-            
+            CountDownComponent.additionCount = 0;
             TowerDefenceCompoment towerDefenceCompoment = args.zoneScene.AddComponent<TowerDefenceCompoment>();
             towerDefenceCompoment.Start(TowerDefenceMode.Pvp);
 

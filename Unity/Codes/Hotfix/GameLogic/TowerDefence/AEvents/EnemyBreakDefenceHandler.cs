@@ -22,7 +22,6 @@ namespace ET
                     }
                 }
             }
-
             await ETTask.CompletedTask;
         }
     }

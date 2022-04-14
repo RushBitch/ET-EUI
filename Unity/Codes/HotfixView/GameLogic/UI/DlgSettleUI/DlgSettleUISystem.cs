@@ -20,6 +20,7 @@ namespace ET
 
         public static void ShowWin(this DlgSettleUI self, Entity contextData = null)
         {
+            SoundComponent.Instance.Play(Sound.胜利页面音效);
             self.View.EG_VicyoryRectTransform.gameObject.SetActive(false);
             self.View.EG_LoseRectTransform.gameObject.SetActive(false);
             self.View.EG_CoinRectTransform.gameObject.SetActive(false);
@@ -37,6 +38,7 @@ namespace ET
         }
         public static void ShowLose(this DlgSettleUI self, Entity contextData = null)
         {
+            SoundComponent.Instance.Play(Sound.失败页面音效);
             self.View.EG_VicyoryRectTransform.gameObject.SetActive(false);
             self.View.EG_LoseRectTransform.gameObject.SetActive(false);
             self.View.EG_CoinRectTransform.gameObject.SetActive(false);

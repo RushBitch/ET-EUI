@@ -3,7 +3,7 @@
     public class CountDownComponent:Entity,IAwake, IDestroy
     {
         public int count;
-        public int additionCount;
+        public static int additionCount;
         public long countDownTimer;
     }
 }

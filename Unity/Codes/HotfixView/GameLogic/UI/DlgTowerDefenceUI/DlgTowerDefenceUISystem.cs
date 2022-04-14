@@ -21,6 +21,7 @@ namespace ET
 
         public static void ShowWindow(this DlgTowerDefenceUI self, Entity contextData = null)
         {
+            BgmComponent.Instance.Play(Music.BGM_Battle,1);
             HeroCompoundComponent heroCompoundComponent =
                     self.DomainScene().GetComponent<TowerDefenceCompoment>().GetComponent<HeroCompoundComponent>();
             TouchEventComponent eventComponent = self.View.EGSprite_HeroComboundRectTransform.gameObject.GetComponent<TouchEventComponent>();
@@ -130,6 +131,7 @@ namespace ET
             if (energy < cost)
             {
                 Log.Info("能量不够");
+                SoundComponent.Instance.Play(Sound.点击购买失败音效);
                 self.ShowEnergyTip();
                 return;
             }

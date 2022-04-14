@@ -18,7 +18,11 @@ namespace ET
 
         public static void ShowWindow(this DlgMenuUI self, Entity contextData = null)
         {
+            MainCameraComponent.Instance.MenuHeroCamera.GetComponent<Camera>().enabled = true;
+            MainCameraComponent.Instance.cameraGameObject.GetComponent<Camera>().enabled = false;
+            GlobalComponent.Instance.OtherRoot.Find("Bg").gameObject.SetActive(true);
             self.View.EButton_Pvp.gameObject.SetActive(true);
+            BgmComponent.Instance.Play(Music.首页BGM,1);
         }
 
         public static void OnSoloButton(this DlgMenuUI self)
@@ -35,6 +39,8 @@ namespace ET
             PlayerFactory.Create(self.DomainScene(), opponentId);
             Game.EventSystem.Publish(new CreateTowerDefencePvp() { myId = id, zoneScene = self.DomainScene(), opponentId = opponentId });
             self.View.EButton_Pvp.gameObject.SetActive(false);
+            BgmComponent.Instance.Stop();
+            SoundComponent.Instance.Play(Sound.匹配界面鼓声);
         }
 
         public static void OnTeamButton(this DlgMenuUI self)

@@ -4,7 +4,8 @@ namespace ET
 {
     public enum Music
     {
-        BGM = 1
+        BGM_Battle = 1,
+        首页BGM,
     }
 
     public class BgmComponent: Entity, IAwake

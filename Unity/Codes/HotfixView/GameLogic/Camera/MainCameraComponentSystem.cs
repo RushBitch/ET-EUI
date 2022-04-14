@@ -6,6 +6,7 @@ namespace ET
     {
         public override void Awake(MainCameraComponent self)
         {
+            MainCameraComponent.Instance = self;
             self.Awake();
         }
     }
@@ -16,9 +17,9 @@ namespace ET
         {
             self.cameraGameObject = GameObject.Find("Global/MainCamera");
             self.uiCameraGameObject = GameObject.Find("Global/UICamera");
+            self.MenuHeroCamera = GameObject.Find("Global/MenuHeroCamera");
             self.camera = self.cameraGameObject.GetComponent<Camera>();
             self.uiCamera = self.uiCameraGameObject.GetComponent<Camera>();
         }
-        
     }
 }

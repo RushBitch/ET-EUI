@@ -229,6 +229,7 @@
      <Compile Include="Assets\Mono\ILRuntime\Generate\UnityEngine_Quaternion_Binding.cs" />
      <Compile Include="Assets\Mono\ILRuntime\Generate\System_Char_Binding.cs" />
      <Compile Include="Assets\Mono\ILRuntime\Generate\UnityEngine_AssetBundle_Binding.cs" />
+     <Compile Include="Assets\Mono\ILRuntime\Generate\System_Nullable_1_Int64_Binding.cs" />
      <Compile Include="Assets\Mono\ILRuntime\Generate\UnityEngine_EventSystems_PointerEventData_Binding.cs" />
      <Compile Include="Assets\Mono\ILRuntime\Generate\UnityEngine_Events_UnityEvent_Binding.cs" />
      <Compile Include="Assets\Mono\Module\Mongo\BsonDictionaryOptionsAttribute.cs" />
@@ -411,7 +412,6 @@
      <Compile Include="Assets\Mono\ILRuntime\Generate\System_ValueTuple_2_Int64_MemoryStream_Binding.cs" />
      <Compile Include="Assets\Mono\ILRuntime\Generate\System_Collections_Generic_HashSet_1_AService_Binding_Enumerator_Bind.cs" />
      <Compile Include="Assets\Mono\Define.cs" />
-     <Compile Include="Assets\Mono\ILRuntime\Generate\System_Nullable_1_Int64_Binding.cs" />
      <None Include="Assets\Mono\Unity.Mono.asmdef" />
      <Reference Include="UnityEngine">
      <HintPath>D:/Unity/2020.3.22f1c1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>

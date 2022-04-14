@@ -20,7 +20,8 @@ namespace ET
                 {
                     transform = window.GetComponent<DlgTowerDefenceUIViewComponent>().ES_ButtomInfo.EG_MyHpRectTransform;
                     window.GetComponent<DlgTowerDefenceUI>().ShakeMyHp();
-                    scene.GetComponent<TowerDefenceCompoment>().GetComponent<TowerDefenceCameraComponent>()?.Shake(1,0.5f);
+                    scene.GetComponent<TowerDefenceCompoment>().GetComponent<TowerDefenceCameraComponent>()?.Shake(1,0.25f);
+                    SoundComponent.Instance.Play(Sound.撞击水晶掉血音效);
                 }
                 else
                 {

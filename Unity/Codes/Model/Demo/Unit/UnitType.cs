@@ -40,5 +40,7 @@
         RebbitWeapon = 35,
         RebbitSkill = 36,
         RebbitSkillEffect = 37,
+        CheetahWeapon = 38,
+        CheetahWeaponEffect = 39,
     }
 }
