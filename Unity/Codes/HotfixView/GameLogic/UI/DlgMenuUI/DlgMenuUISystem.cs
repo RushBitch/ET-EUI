@@ -22,6 +22,12 @@ namespace ET
             MainCameraComponent.Instance.cameraGameObject.GetComponent<Camera>().enabled = false;
             GlobalComponent.Instance.OtherRoot.Find("Bg").gameObject.SetActive(true);
             self.View.EButton_Pvp.gameObject.SetActive(true);
+            self.PlayMusice().Coroutine();
+        }
+
+        public static async ETTask PlayMusice(this DlgMenuUI self)
+        {
+            await TimerComponent.Instance.WaitAsync(1000);
             BgmComponent.Instance.Play(Music.首页BGM,1);
         }
 
@@ -40,7 +46,6 @@ namespace ET
             Game.EventSystem.Publish(new CreateTowerDefencePvp() { myId = id, zoneScene = self.DomainScene(), opponentId = opponentId });
             self.View.EButton_Pvp.gameObject.SetActive(false);
             BgmComponent.Instance.Stop();
-            SoundComponent.Instance.Play(Sound.匹配界面鼓声);
         }
 
         public static void OnTeamButton(this DlgMenuUI self)

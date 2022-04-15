@@ -9,6 +9,7 @@ namespace ET
         public void Run(long id, long value)
         {
             if (value < 0) return;
+            if (value == 3) return;
             Scene scene = ZoneSceneManagerComponent.Instance.Get(1);
             scene.GetComponent<UIComponent>().VisibleWindowsDic.TryGetValue((int) WindowID.WindowID_TowerDefenceUI, out UIBaseWindow window);
             long myId = scene.GetComponent<PlayerComponent>().MyId;
@@ -22,11 +23,13 @@ namespace ET
                     window.GetComponent<DlgTowerDefenceUI>().ShakeMyHp();
                     scene.GetComponent<TowerDefenceCompoment>().GetComponent<TowerDefenceCameraComponent>()?.Shake(1,0.25f);
                     SoundComponent.Instance.Play(Sound.撞击水晶掉血音效);
+                    Handheld.Vibrate();
                 }
                 else
                 {
                     transform = window.GetComponent<DlgTowerDefenceUIViewComponent>().ES_TopInfo.EG_EnemyMyHpRectTransform;
                     window.GetComponent<DlgTowerDefenceUI>().ShakeEmenyHp();
+                    scene.GetComponent<TowerDefenceCompoment>().GetComponent<TowerDefenceCameraComponent>()?.Shake(1,0.15f);
                 }
 
                 for (int i = 0; i < transform.childCount; i++)

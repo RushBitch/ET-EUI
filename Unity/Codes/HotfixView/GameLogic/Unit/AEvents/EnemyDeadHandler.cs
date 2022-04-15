@@ -10,6 +10,13 @@ namespace ET
             args.unit.GetComponent<TransformUpdateComponent>().Dispose();
             if (args.unit.Config.Type == (int) UnitType.Boss)
             {
+                args.unit.ZoneScene().GetComponent<TowerDefenceCompoment>().bossDeadCount += 1;
+                if (args.unit.ZoneScene().GetComponent<TowerDefenceCompoment>().bossDeadCount >= 2)
+                {
+                    //开始下一回合
+                    Game.EventSystem.Publish(new StartNextRound() { scene = args.unit.ZoneScene() });
+                }
+
                 AnimationComponent animationComponent = args.unit.GetComponent<AnimationComponent>();
                 animationComponent.SetSpeed(0.25f);
                 animationComponent.Play(AnimType.死亡);

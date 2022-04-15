@@ -30,6 +30,7 @@ namespace ET
             BgmComponent.Instance.Stop();
             await TimerComponent.Instance.WaitAsync(1000);
             SoundComponent.Instance.Play(Sound.水晶爆炸完整);
+            Handheld.Vibrate();
             await TimerComponent.Instance.WaitAsync(2000);
             if (towerdefenceID == myId)
             {

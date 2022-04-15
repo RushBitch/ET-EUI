@@ -12,6 +12,7 @@ namespace ET
             foreach (var towerDefence in towerDefenceCompoment.playerIdTowerDefences.Values)
             {
                 towerDefence.GetComponent<EnemySpawnComponent>().StopSpawnEnemy();
+                towerDefence.GetComponent<AutoSpawnHeroComponent>()?.Dispose();
             }
 
             //让其他怪物不走动

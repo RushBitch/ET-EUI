@@ -21,7 +21,78 @@ namespace ET
 
         public static void ShowWindow(this DlgTowerDefenceUI self, Entity contextData = null)
         {
-            BgmComponent.Instance.Play(Music.BGM_Battle,1);
+            self.ZoneScene().GetComponent<TowerDefenceCompoment>().round = 0;
+            self.StartAsync().Coroutine();
+        }
+
+        public static async ETTask StartAsync(this DlgTowerDefenceUI self)
+        {
+            await self.ShowStartAnim();
+            self.StartGame();
+        }
+
+        public static async ETTask ShowStartAnim(this DlgTowerDefenceUI self)
+        {
+            List<GameObject> gameObjects = new List<GameObject>();
+            for (int i = 0; i < self.View.ES_BattleInfo.EG_MyEnemyCountRectTransform.childCount; i++)
+            {
+                gameObjects.Add(self.View.ES_BattleInfo.EG_MyEnemyCountRectTransform.GetChild(i).gameObject);
+            }
+
+            for (int i = 0; i < self.View.ES_BattleInfo.EG_EnemyEnemyCountRectTransform.childCount; i++)
+            {
+                gameObjects.Add(self.View.ES_BattleInfo.EG_EnemyEnemyCountRectTransform.GetChild(i).gameObject);
+            }
+
+            foreach (var gameObject in gameObjects)
+            {
+                UnityEngine.Object.Destroy(gameObject);
+            }
+            self.ZoneScene().GetComponent<TowerDefenceCompoment>().round += 1;
+            self.View.ES_BattltStart.ELabel_TextText.text = $"Round {self.ZoneScene().GetComponent<TowerDefenceCompoment>().round}";
+            self.ZoneScene().GetComponent<TowerDefenceCompoment>().bossDeadCount = 0;
+            self.View.ES_BattltStart.uiTransform.gameObject.SetActive(true);
+
+            self.View.ES_BattltStart.uiTransform.gameObject.GetComponent<CanvasGroup>().alpha = 0;
+            self.View.ES_BattltStart.EG_CommingRectTransform.localScale = Vector3.zero;
+            self.View.ES_BattltStart.EG_MonsterMonsterRectTransform.localScale = Vector3.zero;
+
+            self.View.ES_BattltStart.uiTransform.gameObject.GetComponent<CanvasGroup>().DOFade(1, 0.6f);
+            await TimerComponent.Instance.WaitAsync(150);
+            self.View.ES_BattltStart.EG_CommingRectTransform.DOScale(1.2f, 0.4f).SetEase(Ease.OutCirc);
+            await TimerComponent.Instance.WaitAsync(200);
+            self.View.ES_BattltStart.EG_MonsterMonsterRectTransform.DOScale(1.2f, 0.4f).SetEase(Ease.OutCirc);
+            await TimerComponent.Instance.WaitAsync(200);
+            self.View.ES_BattltStart.EG_CommingRectTransform.DOScale(1f, 0.1f).SetEase(Ease.OutCirc);
+            await TimerComponent.Instance.WaitAsync(200);
+            self.View.ES_BattltStart.EG_MonsterMonsterRectTransform.DOScale(1f, 0.1f).SetEase(Ease.OutCirc);
+            await TimerComponent.Instance.WaitAsync(1000);
+            self.View.ES_BattltStart.EG_CommingRectTransform.DOScale(1.2f, 0.1f).SetEase(Ease.OutCirc);
+            await TimerComponent.Instance.WaitAsync(50);
+            self.View.ES_BattltStart.EG_MonsterMonsterRectTransform.DOScale(1.2f, 0.1f).SetEase(Ease.OutCirc);
+            await TimerComponent.Instance.WaitAsync(50);
+            self.View.ES_BattltStart.EG_CommingRectTransform.DOScale(0, 0.4f).SetEase(Ease.OutCirc);
+            await TimerComponent.Instance.WaitAsync(50);
+            self.View.ES_BattltStart.EG_MonsterMonsterRectTransform.DOScale(0, 0.4f).SetEase(Ease.OutCirc);
+            //await TimerComponent.Instance.WaitAsync(400);
+            self.View.ES_BattltStart.uiTransform.gameObject.GetComponent<CanvasGroup>().DOFade(0, 0.2f);
+            await TimerComponent.Instance.WaitAsync(600);
+            self.View.ES_BattltStart.uiTransform.gameObject.SetActive(false);
+
+            //int round = self.ZoneScene().GetComponent<TowerDefenceCompoment>().round;
+            TowerDefenceCompoment towerDefenceCompoment = self.ZoneScene().GetComponent<TowerDefenceCompoment>();
+            self.ZoneScene().GetComponent<TowerDefenceCompoment>().GetComponent<CountDownComponent>().StartCountDown(120);
+            foreach (var towerDefence in towerDefenceCompoment.playerIdTowerDefences.Values)
+            {
+                towerDefence.GetComponent<RecordMaxMoveDistanceComponent>().unit = null;
+                towerDefence.GetComponent<RecordMaxMoveDistanceComponent>().maxDistance = 0;
+                towerDefence.GetComponent<EnemySpawnComponent>()?.StartSpawnEnemy();
+            }
+        }
+
+        public static void StartGame(this DlgTowerDefenceUI self)
+        {
+            BgmComponent.Instance.Play(Music.BGM_Battle, 1);
             HeroCompoundComponent heroCompoundComponent =
                     self.DomainScene().GetComponent<TowerDefenceCompoment>().GetComponent<HeroCompoundComponent>();
             TouchEventComponent eventComponent = self.View.EGSprite_HeroComboundRectTransform.gameObject.GetComponent<TouchEventComponent>();
@@ -49,7 +120,7 @@ namespace ET
             {
                 self.View.ES_TopInfo.EG_EnemyMyHpRectTransform.GetChild(i).gameObject.SetActive(true);
             }
-            
+
             List<GameObject> gameObjects = new List<GameObject>();
             for (int i = 0; i < self.View.ES_BattleInfo.EG_MyEnemyCountRectTransform.childCount; i++)
             {
@@ -138,9 +209,12 @@ namespace ET
 
             TowerDefence towerDefence;
             self.DomainScene().GetComponent<TowerDefenceCompoment>().playerIdTowerDefences.TryGetValue(Id, out towerDefence);
-            towerDefence.GetComponent<HeroSpawnComponent>().SpawnRandomHero(Id);
-            numericalComponent.Set(NumericalType.PlayerEnergyBase, energy - cost);
-            numericalComponent.Set(NumericalType.PlayerBuyCountBase, (cost / 10) + 1);
+            bool result = towerDefence.GetComponent<HeroSpawnComponent>().SpawnRandomHero(Id);
+            if (result)
+            {
+                numericalComponent.Set(NumericalType.PlayerEnergyBase, energy - cost);
+                numericalComponent.Set(NumericalType.PlayerBuyCountBase, (cost / 10) + 1);
+            }
         }
 
         private static void OnCreateHeroPvp(this DlgTowerDefenceUI self)
@@ -287,7 +361,6 @@ namespace ET
                 if (VARIABLE.GetComponent<EnemySpawnComponent>() != null)
                 {
                     VARIABLE.GetComponent<EnemySpawnComponent>().SpawnBoss();
-                    //VARIABLE.GetComponent<EnemySpawnComponent>().StopSpawnEnemy();
                 }
             }
 

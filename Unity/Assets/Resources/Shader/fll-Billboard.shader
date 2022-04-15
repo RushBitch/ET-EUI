@@ -56,7 +56,7 @@ Shader "Unlit/fll-Billboard" {
          {
 			fixed4 c=tex2D(_MainTex, float2(input.tex.xy));
             //return tex2D();   
-			c.rgb*=_Color.rgb;
+			//c.rgb*=_Color.rgb;
 			return c;
          }
          ENDCG

@@ -13,15 +13,25 @@ namespace ET
             numericalComponent.Set(NumericalType.TowerDefenceHpBase, numericalComponent.GetAsInt(NumericalType.TowerDefenceHp) - 1);
             if ((UnitType) args.unit.Config.Type == UnitType.Boss)
             {
-                if (scene.GetComponent<TowerDefenceCompoment>().GetComponent<CountDownComponent>().count <= 0)
+                // if (scene.GetComponent<TowerDefenceCompoment>().GetComponent<CountDownComponent>().count <= 0)
+                // {
+                // scene.GetComponent<TowerDefenceCompoment>().GetComponent<CountDownComponent>().StartCountDown(120);
+                // foreach (var VARIABLE in scene.GetComponent<TowerDefenceCompoment>().playerIdTowerDefences.Values)
+                // {
+                //     VARIABLE.GetComponent<EnemySpawnComponent>().StartSpawnEnemy();
+                // }
+                //}
+                if (numericalComponent.GetAsInt(NumericalType.TowerDefenceHp) > 0)
                 {
-                    scene.GetComponent<TowerDefenceCompoment>().GetComponent<CountDownComponent>().StartCountDown(120);
-                    foreach (var VARIABLE in scene.GetComponent<TowerDefenceCompoment>().playerIdTowerDefences.Values)
+                    scene.GetComponent<TowerDefenceCompoment>().bossDeadCount += 1;
+                    if (scene.GetComponent<TowerDefenceCompoment>().bossDeadCount >= 2)
                     {
-                        VARIABLE.GetComponent<EnemySpawnComponent>().StartSpawnEnemy();
+                        //开始下一回合
+                        Game.EventSystem.Publish(new StartNextRound() { scene = scene });
                     }
                 }
             }
+
             await ETTask.CompletedTask;
         }
     }

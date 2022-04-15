@@ -24,11 +24,13 @@ namespace ET
                     {
                         if (VARIABLE.GetComponent<EnemySpawnComponent>() != null)
                         {
-                            //VARIABLE.GetComponent<EnemySpawnComponent>().SpawnBoss();
                             VARIABLE.GetComponent<EnemySpawnComponent>().StopSpawnEnemy();
                         }
                     }
+                }
 
+                if (args.count == 5)
+                {
                     dlgTowerDefenceUI.GetComponent<DlgTowerDefenceUI>().PlayBossCommingAnim().Coroutine();
                 }
 

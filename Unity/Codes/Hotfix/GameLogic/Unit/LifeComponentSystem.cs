@@ -55,9 +55,17 @@ namespace ET
             var hp = numericalComponent.GetAsInt(NumericalType.PreHpBase);
             hp -= Damage;
             self.Parent.GetComponent<NumericalComponent>().Set(NumericalType.PreHpBase, hp);
-            //Log.Info($"敌人受到预伤害{Damage},剩余HP为{self.Parent.GetComponent<NumericalComponent>().GetAsInt(NumericalType.PreHp)}");
+            // if ((UnitType)self.GetParent<Unit>().Config.Type == UnitType.Boss)
+            // {
+            //     Log.Info($"预攻击Boss,:{self.Id}");
+            //     Log.Info($"敌人受到预伤害{Damage},剩余HP为{self.Parent.GetComponent<NumericalComponent>().GetAsInt(NumericalType.PreHp)}");
+            // }
             if (hp <= 0)
             {
+                // if ((UnitType)self.GetParent<Unit>().Config.Type == UnitType.Boss)
+                // {
+                //     Log.Info("Boss预死亡");
+                // }
                 //Log.Info($"敌人预死亡");
                 self.preDead = true;
                 Game.EventSystem.Publish(new CleanMaxMoveDistance() { unit = self.GetParent<Unit>() });

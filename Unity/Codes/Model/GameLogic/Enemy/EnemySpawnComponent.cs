@@ -7,5 +7,6 @@ namespace ET
         public List<BattlefieldEnemyPathConfig> pathConfigs;
         public long spwanTimer;
         public int spawnCount;
+        public bool stopSpwan;
     }
 }

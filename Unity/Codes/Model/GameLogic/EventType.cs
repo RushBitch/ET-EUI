@@ -47,6 +47,11 @@ namespace ET
         {
             public TowerDefenceCompoment towerDefenceCompoment;
         }
+        
+        public struct StartNextRound
+        {
+            public Scene scene;
+        }
 
         public struct FinishCreateTowerDefence
         {

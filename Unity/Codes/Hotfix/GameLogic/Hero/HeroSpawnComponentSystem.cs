@@ -112,7 +112,7 @@ namespace ET
             }
         }
 
-        public static void SpawnRandomHero(this HeroSpawnComponent self, long id)
+        public static bool SpawnRandomHero(this HeroSpawnComponent self, long id)
         {
             Dictionary<int, Unit> indexHeros;
             self.idIndexHero.TryGetValue(id, out indexHeros);
@@ -131,10 +131,12 @@ namespace ET
                 int configId = 1100 + RandomHelper.RandomNumber(2, 7);
                 Unit hero = HeroFactory.Create(self.DomainScene(), configId, self.Id, indexs[random], 1);
                 self.Add(id, hero, indexs[random]);
+                return true;
             }
             else
             {
                 Log.Info("英雄已满");
+                return false;
             }
         }
 

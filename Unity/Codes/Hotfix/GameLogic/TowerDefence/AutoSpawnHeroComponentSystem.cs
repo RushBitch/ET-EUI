@@ -30,7 +30,7 @@
         public static void Spawn(this AutoSpawnHeroComponent self)
         {
             //Log.Info("随机生成英雄");
-            
+
             TowerDefence towerDefence = self.GetParent<TowerDefence>();
 
             long Id = towerDefence.playerIds[0];
@@ -43,11 +43,16 @@
                 //Log.Info("能量不够");
                 return;
             }
+
             self.DomainScene().GetComponent<TowerDefenceCompoment>().playerIdTowerDefences.TryGetValue(Id, out towerDefence);
             towerDefence.GetComponent<HeroSpawnComponent>().SpawnRandomHero(Id);
-            numericalComponent.Set(NumericalType.PlayerEnergyBase, energy - cost);
-            numericalComponent.Set(NumericalType.PlayerBuyCountBase, (cost / 10)+1);
-            towerDefence.GetComponent<HeroSpawnComponent>()?.SpawnRandomHero(towerDefence.playerIds[0]);
+            bool result = towerDefence.GetComponent<HeroSpawnComponent>().SpawnRandomHero(Id);
+            if (result)
+            {
+                numericalComponent.Set(NumericalType.PlayerEnergyBase, energy - cost);
+                numericalComponent.Set(NumericalType.PlayerBuyCountBase, (cost / 10) + 1);
+            }
+            //towerDefence.GetComponent<HeroSpawnComponent>()?.SpawnRandomHero(towerDefence.playerIds[0]);
         }
     }
 }

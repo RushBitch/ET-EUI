@@ -46,16 +46,19 @@ namespace ET
         public static void StartSpawnEnemy(this EnemySpawnComponent self)
         {
             self.spwanTimer = TimerComponent.Instance.NewRepeatedTimer(1000, TimerType.EnemySpawnTimer, self);
+            self.stopSpwan = false;
             //self.SpawnEnemy();
         }
 
         public static void StopSpawnEnemy(this EnemySpawnComponent self)
         {
             TimerComponent.Instance.Remove(ref self.spwanTimer);
+            self.stopSpwan = true;
         }
 
         public static void SpawnEnemy(this EnemySpawnComponent self)
         {
+            if (self.stopSpwan) return;
             foreach (var config in self.pathConfigs)
             {
                 //int configId = 1000 + RandomHelper.RandomNumber(1, 3);
@@ -86,6 +89,7 @@ namespace ET
 
         public static void SpawnEnemy(this EnemySpawnComponent self, int configId)
         {
+            if (self.stopSpwan) return;
             foreach (var config in self.pathConfigs)
             {
                 Unit unit = EnemyFactory.Create(self.DomainScene(), configId, self.Id);

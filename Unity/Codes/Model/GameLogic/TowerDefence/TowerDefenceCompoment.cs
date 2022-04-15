@@ -15,5 +15,7 @@ namespace ET
     {
         public Dictionary<long, TowerDefence> playerIdTowerDefences;
         public TowerDefenceMode towerDefenceMode;
+        public int bossDeadCount;
+        public int round;
     }
 }

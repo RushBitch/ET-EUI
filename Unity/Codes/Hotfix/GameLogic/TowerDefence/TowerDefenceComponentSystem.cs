@@ -8,7 +8,8 @@ namespace ET
         {
             self.playerIdTowerDefences = new Dictionary<long, TowerDefence>();
             CountDownComponent countDownComponent = self.AddComponent<CountDownComponent>();
-            countDownComponent.StartCountDown(120);
+            self.bossDeadCount = 0;
+            self.round = 0;
         }
     }
 

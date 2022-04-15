@@ -8,7 +8,7 @@ namespace ET
         public override void Awake(TowerDefenceCameraComponent self, GameObject gameObject)
         {
             self.gameObject = gameObject;
-            self.farPos = new Vector3(0, 9.95f, -10.18f);
+            self.farPos = self.gameObject.transform.position;
             self.farQuaternion = Quaternion.Euler(new Vector3(130.878f, -180f, -180f));
             self.nearPos = new Vector3(0, 17.89f, -1.69f);
             self.nearQuaternion = Quaternion.Euler(new Vector3(90f, -180, -180f));

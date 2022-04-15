@@ -29,11 +29,11 @@ namespace ET
             {
                 if (scene.GetComponent<TowerDefenceCompoment>().GetComponent<CountDownComponent>().count <= 0)
                 {
-                    scene.GetComponent<TowerDefenceCompoment>().GetComponent<CountDownComponent>().StartCountDown(120);
-                    foreach (var VARIABLE in scene.GetComponent<TowerDefenceCompoment>().playerIdTowerDefences.Values)
-                    {
-                        VARIABLE.GetComponent<EnemySpawnComponent>().StartSpawnEnemy();
-                    }
+                    //scene.GetComponent<TowerDefenceCompoment>().GetComponent<CountDownComponent>().StartCountDown(120);
+                    // foreach (var VARIABLE in scene.GetComponent<TowerDefenceCompoment>().playerIdTowerDefences.Values)
+                    // {
+                    //     VARIABLE.GetComponent<EnemySpawnComponent>().StartSpawnEnemy();
+                    // }
                 }
             }
 

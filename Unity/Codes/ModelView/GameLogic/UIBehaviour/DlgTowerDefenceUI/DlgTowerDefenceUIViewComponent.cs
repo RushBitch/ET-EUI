@@ -264,6 +264,24 @@ namespace ET
      		}
      	}
 
+		public ES_BattltStart ES_BattltStart
+     	{
+     		get
+     		{
+     			if (this.uiTransform == null)
+     			{
+     				Log.Error("uiTransform is null.");
+     				return null;
+     			}
+     			if( this.m_es_battltstart == null )
+     			{
+		    	   Transform subTrans = UIFindHelper.FindDeepChild<Transform>(this.uiTransform.gameObject,"ES_BattltStart");
+		    	   this.m_es_battltstart = this.AddChild<ES_BattltStart,Transform>(subTrans);
+     			}
+     			return this.m_es_battltstart;
+     		}
+     	}
+
 		public void DestroyWidget()
 		{
 			this.m_E_MyHpShakeImage = null;
@@ -285,6 +303,8 @@ namespace ET
 			this.m_ELabel_BackToMainText = null;
 			this.m_es_bosscomming?.Dispose();
 			this.m_es_bosscomming = null;
+			this.m_es_battltstart?.Dispose();
+			this.m_es_battltstart = null;
 			this.uiTransform = null;
 		}
 
@@ -303,6 +323,7 @@ namespace ET
 		private UnityEngine.UI.Image m_EButton_BackToMainImage = null;
 		private UnityEngine.UI.Text m_ELabel_BackToMainText = null;
 		private ES_BossComming m_es_bosscomming = null;
+		private ES_BattltStart m_es_battltstart = null;
 		public Transform uiTransform = null;
 	}
 }
