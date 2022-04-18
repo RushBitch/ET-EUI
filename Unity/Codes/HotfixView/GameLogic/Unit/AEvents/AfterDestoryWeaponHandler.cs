@@ -30,6 +30,7 @@ namespace ET
                 case UnitType.BuffaloWeapon:
                 case UnitType.FoxWeapon:
                 case UnitType.RebbitWeapon:
+                case UnitType.BlackCatWeapon:
                     configId = 1303;
                     effectTime = 300;
                     break;
@@ -44,12 +45,16 @@ namespace ET
                     break;
                 case UnitType.CheetahWeapon:
                     configId = 1314;
-                    effectTime = 1100;
+                    effectTime = 500;
                     pos = args.unit.GetComponent<LightningComponent>().endPoint;
                     pos.y = 0.3f;
                     break;
             }
 
+            if (configId == 0)
+            {
+                return;
+            }
             Game.EventSystem.Publish(new PlayerEffect() { effectId = configId, effectTime = effectTime, pos = pos });
             await ETTask.CompletedTask;
         }

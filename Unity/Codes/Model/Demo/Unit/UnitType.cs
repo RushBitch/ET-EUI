@@ -34,7 +34,7 @@
         Fox = 29,
         Rebbit = 30,
         Cheetah = 31,
-        Octopus = 32,
+        BlackCat = 32,
         BuffaloWeapon = 33,
         FoxWeapon = 34,
         RebbitWeapon = 35,
@@ -42,5 +42,7 @@
         RebbitSkillEffect = 37,
         CheetahWeapon = 38,
         CheetahWeaponEffect = 39,
+        BlackCatWeapon = 41,
+        BlackCatWeaponEffect = 42,
     }
 }

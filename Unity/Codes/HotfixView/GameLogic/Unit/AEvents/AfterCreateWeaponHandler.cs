@@ -7,6 +7,8 @@ namespace ET
     {
         protected override async ETTask Run(AfterCreateWeapon args)
         {
+            //Log.Info(args.unit.Config.Type.ToString());
+
             if ((UnitType) args.unit.Config.Type == UnitType.CheetahWeapon)
             {
                 ResourcesComponent.Instance.LoadBundle("Weapon.unity3d");

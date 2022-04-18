@@ -6,14 +6,18 @@ namespace ET
     {
         public static void EnablePreAttack(this PreAttackComponent self)
         {
-            if (self.enemy != null && !self.enemy.IsDisposed)
+            foreach (var enemy in self.enemys)
             {
-                bool isDead = self.enemy.GetComponent<LifeComponent>().Attacked(self.damage);
-                if (isDead)
+                if (enemy != null && !enemy.IsDisposed)
                 {
-                    Game.EventSystem.Publish(new EnemyKilledByHero() { id = self.Parent.GetComponent<TowerDefenceIdComponent>().ID });
+                    bool isDead = enemy.GetComponent<LifeComponent>().Attacked(self.damage);
+                    if (isDead)
+                    {
+                        Game.EventSystem.Publish(new EnemyKilledByHero() { id = self.Parent.GetComponent<TowerDefenceIdComponent>().ID });
+                    }
                 }
             }
+            self.enemys.Clear();
         }
     }
 }

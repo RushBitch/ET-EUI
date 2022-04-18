@@ -16,6 +16,14 @@ namespace ET
             numericalComponent.Set(NumericalType.HpBase,
                 unit.Config.HPBase + CountDownComponent.additionCount / 3 * 10);
             numericalComponent.Set(NumericalType.PreHpBase, unit.Config.HPBase + CountDownComponent.additionCount / 3 * 10);
+
+            if ((UnitType) unit.Config.Type == UnitType.Monster)
+            {
+                numericalComponent.Set(NumericalType.HpBase,
+                    unit.Config.HPBase + CountDownComponent.additionCount / 3 * 10 * 3);
+                numericalComponent.Set(NumericalType.PreHpBase, unit.Config.HPBase + CountDownComponent.additionCount / 3 * 10 * 3);
+            }
+
             unit.AddComponent<LifeComponent>();
             MoveWithListComponent moveWithListComponent = unit.GetComponent<MoveWithListComponent>();
             if (moveWithListComponent != null)

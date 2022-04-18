@@ -1,8 +1,10 @@
-﻿namespace ET
+﻿using System.Collections.Generic;
+
+namespace ET
 {
     public class PreAttackComponent:Entity,IAwake, IDestroy
     {
-        public Unit enemy;
+        public List<Unit> enemys = new List<Unit>();
         public int damage;
     }
 }

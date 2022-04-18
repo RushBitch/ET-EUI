@@ -33,8 +33,18 @@ namespace ET
                 int damage = self.Parent.GetComponent<NumericalComponent>().GetAsInt(NumericalType.HeroDamage);
                 enemy.GetComponent<LifeComponent>().PreAttacked(damage);
                 PreAttackComponent preAttackComponent = self.Parent.AddComponent<PreAttackComponent>();
-                preAttackComponent.enemy = enemy;
+                preAttackComponent.enemys.Add(enemy);
                 preAttackComponent.damage = damage;
+                if (unit.Config.Type == (int) UnitType.Cheetah)
+                {
+                    CheetahExtraAttackComponent cheetahExtraAttackComponent = self.Parent.GetComponent<CheetahExtraAttackComponent>();
+                    cheetahExtraAttackComponent.PreAttack(enemy, damage);
+                    foreach (var theEmeny in cheetahExtraAttackComponent.enemys)
+                    {
+                        preAttackComponent.enemys.Add(theEmeny);
+                    }
+                }
+
                 return true;
             }
             else

@@ -11,7 +11,7 @@ namespace ET
             Unit unit = unitComponent.AddChild<Unit, int>(configId);
             unitComponent.Add(unit);
             unit.AddComponent<NumericalComponent>();
-            UnitType unitType = (UnitType)unit.Config.Type;
+            UnitType unitType = (UnitType) unit.Config.Type;
             switch (unitType)
             {
                 case UnitType.Boss:
@@ -38,6 +38,8 @@ namespace ET
                     return ConfigRebbit(unit);
                 case UnitType.Cheetah:
                     return ConfigConfigCheetah(unit);
+                case UnitType.BlackCat:
+                    return ConfigConfigBlackCat(unit);
                 case UnitType.DrunkardSkill:
                     return ConfigDrunkardSkill(unit);
                 case UnitType.StoneBoySkill:
@@ -125,7 +127,7 @@ namespace ET
             unit.AddComponent<StoneSkillComponent>();
             return unit;
         }
-        
+
         private static Unit ConfigMasterSkill(Unit unit)
         {
             unit.AddComponent<SnowStormSkillComponent>();
@@ -142,18 +144,22 @@ namespace ET
             unit.AddComponent<AddAttackSpeedSkillComponent>();
             return unit;
         }
+
         private static Unit ConfigFox(Unit unit)
         {
             UnitStateComponent unitStateComponent = unit.AddComponent<UnitStateComponent>();
             unitStateComponent.unitState = UnitState.Attack;
             return unit;
         }
+
         private static Unit ConfigConfigCheetah(Unit unit)
         {
             UnitStateComponent unitStateComponent = unit.AddComponent<UnitStateComponent>();
             unitStateComponent.unitState = UnitState.Attack;
+            unit.AddComponent<CheetahExtraAttackComponent>();
             return unit;
         }
+
         private static Unit ConfigRebbit(Unit unit)
         {
             UnitStateComponent unitStateComponent = unit.AddComponent<UnitStateComponent>();
@@ -161,12 +167,20 @@ namespace ET
             unit.AddComponent<AttackCountAIComponent>();
             return unit;
         }
-        
+
         private static Unit ConfigRebbitSkill(Unit unit)
         {
             unit.AddComponent<RebbitSkillComponent>();
             return unit;
         }
+
+        private static Unit ConfigConfigBlackCat(Unit unit)
+        {
+            UnitStateComponent unitStateComponent = unit.AddComponent<UnitStateComponent>();
+            unitStateComponent.unitState = UnitState.Attack;
+            return unit;
+        }
+
         private static Unit ConfigNull(Unit unit)
         {
             return unit;

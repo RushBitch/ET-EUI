@@ -128,7 +128,8 @@ namespace ET
             if (indexs.Count > 0)
             {
                 int random = RandomHelper.RandomNumber(0, indexs.Count);
-                int configId = 1100 + RandomHelper.RandomNumber(2, 7);
+                //int configId = 1100 + RandomHelper.RandomNumber(2, 7);
+                int configId = 1100 + RandomHelper.RandomNumber(7, 12);
                 Unit hero = HeroFactory.Create(self.DomainScene(), configId, self.Id, indexs[random], 1);
                 self.Add(id, hero, indexs[random]);
                 return true;
@@ -142,7 +143,8 @@ namespace ET
 
         public static void SpawnRandomHeroWithIndex(this HeroSpawnComponent self, long id, int index, int level)
         {
-            int configId = 1100 + RandomHelper.RandomNumber(2, 7);
+            //int configId = 1100 + RandomHelper.RandomNumber(2, 7);
+            int configId = 1100 + RandomHelper.RandomNumber(7, 12);
             Unit hero = HeroFactory.Create(self.DomainScene(), configId, self.Id, index, level + 1);
             self.Add(id, hero, index);
         }

@@ -52,17 +52,24 @@ PeotEffect
 �"兔子*Rebbit8H#P�
 
 �"猎豹*Cheetah8H#
-� "章鱼*Octopus8H#
-$�	!"水牛武器*BuffaloWeapon8
- �	""狐狸武器*	FoxWeapon8
-#�	#"兔子武器*RebbitWeapon8
+� "黑猫*BlackCat8H#
+$�	!"水牛武器*BuffaloWeapon8
+
+ �	""狐狸武器*	FoxWeapon8
+
+#�	#"兔子武器*RebbitWeapon8
+
 .�
 $"兔子技能武器*RebbitSkillWeapon8
 
 ,�
 %"兔子技能特效*RebbitSkillEffect
-$�	&"豹子武器*CheetahWeapon8
+$�	&"豹子武器*CheetahWeapon8
 .�
 '"豹子武器特效*CheetahWeaponEffect
 '�
 ("Boss死亡特效*BossDeadEffect
+%�	)"黑猫武器*BlackCatWeapon8
+
+/�
+*"黑猫武器特效*BlackCatWeaponEffect

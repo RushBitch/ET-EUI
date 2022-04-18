@@ -180,5 +180,11 @@ namespace ET
         {
             public long TowerDecenceId;
         }
+
+        public struct AfterCompoundHero
+        {
+            public long towerDefenceId;
+            public long heroType;
+        }
     }
 }

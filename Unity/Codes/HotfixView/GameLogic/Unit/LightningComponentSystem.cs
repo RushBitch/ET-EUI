@@ -19,7 +19,7 @@ namespace ET
     {
         public override void Destroy(LightningComponent self)
         {
-            UnityEngine.Object.Destroy(self.gameObject);
+            self.DelayDestroy().Coroutine();
         }
     }
 
@@ -39,6 +39,12 @@ namespace ET
         public static void UpdateStartPos(this LightningComponent self)
         {
             self.gameObject.transform.position = self.startPoint;
+        }
+
+        public static async ETTask DelayDestroy(this LightningComponent self)
+        {
+            await TimerComponent.Instance.WaitAsync(300);
+            UnityEngine.Object.Destroy(self.gameObject);
         }
     }
 }

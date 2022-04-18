@@ -10,7 +10,7 @@ PrefabInstance:
     - target: {fileID: 8408468566996038848, guid: 931705c4a20d4374681384e7ccbbe2b1,
         type: 3}
       propertyPath: m_Name
-      value: sjbz
+      value: Boom
       objectReference: {fileID: 0}
     - target: {fileID: 8408468566996038849, guid: 931705c4a20d4374681384e7ccbbe2b1,
         type: 3}

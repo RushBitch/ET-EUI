@@ -16,6 +16,7 @@ namespace ET
                 case UnitType.Buffalo:
                 case UnitType.Fox:
                 case UnitType.Rebbit:
+                case UnitType.BlackCat:
                     ExectueNormalAttack(args.unit);
                     break;
                 case UnitType.Cheetah:
@@ -44,6 +45,16 @@ namespace ET
                 unit.GetComponent<AttackComponent>().attackEnemy, unit);
             weapon.GetComponent<WeaponComponent>().SetPosition(unit.Position + new Vector3(0, 0.5f, 0));
             weapon.GetComponent<WeaponComponent>().StartAttack();
+
+            CheetahExtraAttackComponent extraAttackComponent = unit.GetComponent<CheetahExtraAttackComponent>();
+            //Log.Info(extraAttackComponent.enemys.Count.ToString());
+            foreach (var enemy in extraAttackComponent.enemys)
+            {
+                Unit extraWeapon = WeaponFactory.Create(unit.DomainScene(), heroConfig.WeaponId, unit.GetComponent<TowerDefenceIdComponent>().ID,
+                    unit.GetComponent<NumericalComponent>().GetAsInt(NumericalType.HeroDamage), enemy, unit);
+                extraWeapon.GetComponent<WeaponComponent>().SetPosition(unit.Position + new Vector3(0, 0.5f, 0));
+                extraWeapon.GetComponent<WeaponComponent>().StartAttack();
+            }
         }
     }
 }

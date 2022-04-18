@@ -1,4 +1,5 @@
 ﻿using System;
+using ET.EventType;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -139,6 +140,7 @@ namespace ET
             self.ZoneScene().GetComponent<TowerDefenceCompoment>().playerIdTowerDefences.TryGetValue(myId, out TowerDefence towerDefence);
             int index = unit2.GetComponent<NumericalComponent>().GetAsInt(NumericalType.HeroIndex);
             int level = unit2.GetComponent<NumericalComponent>().GetAsInt(NumericalType.Level);
+            Game.EventSystem.Publish(new AfterCompoundHero() { heroType = unit1.Config.Type,towerDefenceId = unit1.GetComponent<TowerDefenceIdComponent>().ID});
             towerDefence.GetComponent<HeroSpawnComponent>().Remove(myId, unit1);
             towerDefence.GetComponent<HeroSpawnComponent>().Remove(myId, unit2);
             self.ZoneScene().GetComponent<UnitComponent>().Remove(unit1.Id);
@@ -173,6 +175,7 @@ namespace ET
                     unit.GetComponent<HeroComboundPlaneCompoment>()?.Show();
                     continue;
                 }
+
                 unit.GetComponent<LevelFlagComponent>()?.Hide();
                 unit.GetComponent<HeroGreyComponent>().BecomeGrey();
             }
