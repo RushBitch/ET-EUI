@@ -43,7 +43,7 @@ namespace ET
 
         public static async ETTask DelayDestroy(this LightningComponent self)
         {
-            await TimerComponent.Instance.WaitAsync(300);
+            await TimerComponent.Instance.WaitAsync(200);
             UnityEngine.Object.Destroy(self.gameObject);
         }
     }

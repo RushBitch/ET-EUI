@@ -28,10 +28,12 @@ namespace ET
             args.towerDefenceCompoment.AddComponent<TowerDefenceCameraComponent, GameObject>(GlobalComponent.Instance.Global.Find("MainCamera")
                     .gameObject);
 
-            GameObject.Find("cj_2/shuijingtai").transform.localScale = new Vector3(1, 0.2f, 1);
-            GameObject.Find("cj_2/shuijingtai").transform.GetChild(0).GetChild(0).localScale = Vector3.one;
-            GameObject.Find("cj_2/shuijingtai (1)").transform.localScale = new Vector3(1, 0.2f, 1);
-            GameObject.Find("cj_2/shuijingtai (1)").transform.GetChild(0).GetChild(0).localScale = Vector3.one;
+            // GameObject.Find("cj_2/shuijingtai").transform.localScale = new Vector3(1, 0.2f, 1);
+            // GameObject.Find("cj_2/shuijingtai").transform.GetChild(0).GetChild(0).localScale = Vector3.one;
+            // GameObject.Find("cj_2/shuijingtai (1)").transform.localScale = new Vector3(1, 0.2f, 1);
+            // GameObject.Find("cj_2/shuijingtai (1)").transform.GetChild(0).GetChild(0).localScale = Vector3.one;
+            GameObject.Find("Global/ZhangYu").GetComponent<Animation>().Play("id");
+            GameObject.Find("Global/ZhangYu1").GetComponent<Animation>().Play("id");
             MainCameraComponent.Instance.MenuHeroCamera.GetComponent<Camera>().enabled = false;
             MainCameraComponent.Instance.cameraGameObject.GetComponent<Camera>().enabled = true;
             GlobalComponent.Instance.OtherRoot.Find("Bg").gameObject.SetActive(false);
@@ -87,6 +89,10 @@ namespace ET
             gameObject = (GameObject) UnityEngine.Object.Instantiate(bundle, GlobalComponent.Instance.Global);
             //UnityEngine.Object.Destroy(gameObject);
             list.Add(gameObject);
+            bundle = ResourcesComponent.Instance.GetAsset("Hero.unity3d", UnitType.BlackCat.ToString());
+            gameObject = (GameObject) UnityEngine.Object.Instantiate(bundle, GlobalComponent.Instance.Global);
+            //UnityEngine.Object.Destroy(gameObject);
+            list.Add(gameObject);
 
             bundle = ResourcesComponent.Instance.GetAsset("Weapon.unity3d", UnitType.DrunkardWeapon.ToString());
             gameObject = (GameObject) UnityEngine.Object.Instantiate(bundle, GlobalComponent.Instance.Global);
@@ -121,6 +127,10 @@ namespace ET
             //UnityEngine.Object.Destroy(gameObject);
             list.Add(gameObject);
             bundle = ResourcesComponent.Instance.GetAsset("Weapon.unity3d", UnitType.CheetahWeapon.ToString());
+            gameObject = (GameObject) UnityEngine.Object.Instantiate(bundle, GlobalComponent.Instance.Global);
+            //UnityEngine.Object.Destroy(gameObject);
+            list.Add(gameObject);
+            bundle = ResourcesComponent.Instance.GetAsset("Weapon.unity3d", UnitType.BlackCatWeapon.ToString());
             gameObject = (GameObject) UnityEngine.Object.Instantiate(bundle, GlobalComponent.Instance.Global);
             //UnityEngine.Object.Destroy(gameObject);
             list.Add(gameObject);

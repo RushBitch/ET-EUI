@@ -13,7 +13,8 @@ namespace ET
         水晶爆炸完整,
         胜利页面音效,
         失败页面音效,
-        首页BGM
+        首页BGM,
+        英雄倒地
     }
     public class SoundComponent:Entity,IAwake<GameObject>
     {

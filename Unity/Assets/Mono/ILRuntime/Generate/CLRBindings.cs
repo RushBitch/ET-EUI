@@ -129,6 +129,7 @@ namespace ILRuntime.Runtime.Generated
             DG_Tweening_TweenSettingsExtensions_Binding.Register(app);
             UnityEngine_AudioSource_Binding.Register(app);
             UnityEngine_Time_Binding.Register(app);
+            UnityEngine_Animation_Binding.Register(app);
             UnityEngine_Handheld_Binding.Register(app);
             UnityEngine_Behaviour_Binding.Register(app);
             System_Collections_Generic_List_1_GameObject_Binding.Register(app);
@@ -142,7 +143,6 @@ namespace ILRuntime.Runtime.Generated
             DG_Tweening_DOTweenModuleUI_Binding.Register(app);
             UnityEngine_CanvasGroup_Binding.Register(app);
             System_Int64_Binding.Register(app);
-            UnityEngine_Animation_Binding.Register(app);
             UnityEngine_AnimationState_Binding.Register(app);
             UnityEngine_RectTransformUtility_Binding.Register(app);
             UnityEngine_Renderer_Binding.Register(app);

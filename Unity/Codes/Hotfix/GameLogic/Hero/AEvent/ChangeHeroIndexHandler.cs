@@ -18,11 +18,11 @@ namespace ET
                 TowerDefence towerDefence = towerDefenceCompoment.GetChild<TowerDefence>(Id);
                 if (!towerDefence.playerIds.Contains(playerId))
                 {
-                    offset = -0.2f;
+                    offset = -0.4f;
                 }
                 else
                 {
-                    offset = 0.2f;
+                    offset = 0f;
                 }
             }
 
