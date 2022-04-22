@@ -21,6 +21,7 @@ namespace ET
 		{
 			try
 			{
+				if(Game.Scene.IsDisposed) return;
 				await Run(a);
 			}
 			catch (Exception e)

@@ -43,8 +43,12 @@ namespace ET
 
         public static async ETTask DelayDestroy(this LightningComponent self)
         {
+            if (Game.Scene.IsDisposed) return;
             await TimerComponent.Instance.WaitAsync(200);
-            UnityEngine.Object.Destroy(self.gameObject);
+            if (self.gameObject != null)
+            {
+                UnityEngine.Object.Destroy(self.gameObject);
+            }
         }
     }
 }

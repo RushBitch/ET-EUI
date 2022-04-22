@@ -15,7 +15,7 @@ namespace ET
     {
         public static bool Attacked(this LifeComponent self, int Damage)
         {
-            if (self.dead) return false;
+            if (self.dead || self.IsDisposed || self.Parent.IsDisposed || Game.Scene.IsDisposed) return false;
             NumericalComponent numericalComponent = self.Parent.GetComponent<NumericalComponent>();
             //Log.Info($"敌人{self.Parent.Id}受到伤害{Damage},剩余HP为{numericalComponent.GetAsInt(NumericalType.Hp) - Damage}");
             var hp = numericalComponent.GetAsInt(NumericalType.HpBase);

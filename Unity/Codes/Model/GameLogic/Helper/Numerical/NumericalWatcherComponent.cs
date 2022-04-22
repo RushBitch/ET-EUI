@@ -60,6 +60,7 @@ namespace ET
 
 		public void Run(NumericalType numericalType, long id, long value)
 		{
+			if (Game.Scene.IsDisposed) return;
 			List<INumericalWatcher> list;
 			if (!this.allWatchers.TryGetValue(numericalType, out list))
 			{

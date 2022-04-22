@@ -12,8 +12,12 @@
     {
         public override async void Destroy(TrailEffectCompont self)
         {
+            if (Game.Scene.IsDisposed) return;
             await TimerComponent.Instance.WaitAsync(300);
-            UnityEngine.Object.Destroy(self.gameObject);
+            if (self.gameObject != null)
+            {
+                UnityEngine.Object.Destroy(self.gameObject);
+            }
         }
     }
 
