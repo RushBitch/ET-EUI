@@ -13,7 +13,7 @@
     {
         public override void Awake(AutoSpawnHeroComponent self)
         {
-            self.time = TimerComponent.Instance.NewRepeatedTimer(3000, TimerType.AutoSpawnHeroTimer, self);
+            
         }
     }
 
@@ -27,6 +27,12 @@
 
     public static class AutoSpawnHeroComponentSystem
     {
+        public static void StartSpawn(this AutoSpawnHeroComponent self)
+        {
+            TimerComponent.Instance?.Remove(ref self.time);
+            self.time = TimerComponent.Instance.NewRepeatedTimer(3000, TimerType.AutoSpawnHeroTimer, self);
+        }
+        
         public static void Spawn(this AutoSpawnHeroComponent self)
         {
             //Log.Info("随机生成英雄");

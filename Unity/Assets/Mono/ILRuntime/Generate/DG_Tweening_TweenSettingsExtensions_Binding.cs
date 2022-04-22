@@ -42,6 +42,20 @@ namespace ILRuntime.Runtime.Generated
                     lst.Add(m);
                 }
             }
+            args = new Type[]{typeof(DG.Tweening.Sequence)};
+            if (genericMethods.TryGetValue("SetLoops", out lst))
+            {
+                foreach(var m in lst)
+                {
+                    if(m.MatchGenericParameters(args, typeof(DG.Tweening.Sequence), typeof(DG.Tweening.Sequence), typeof(System.Int32)))
+                    {
+                        method = m.MakeGenericMethod(args);
+                        app.RegisterCLRMethodRedirection(method, SetLoops_2);
+
+                        break;
+                    }
+                }
+            }
             args = new Type[]{typeof(DG.Tweening.Core.TweenerCore<UnityEngine.Vector3, UnityEngine.Vector3, DG.Tweening.Plugins.Options.VectorOptions>)};
             if (genericMethods.TryGetValue("SetEase", out lst))
             {
@@ -50,7 +64,7 @@ namespace ILRuntime.Runtime.Generated
                     if(m.MatchGenericParameters(args, typeof(DG.Tweening.Core.TweenerCore<UnityEngine.Vector3, UnityEngine.Vector3, DG.Tweening.Plugins.Options.VectorOptions>), typeof(DG.Tweening.Core.TweenerCore<UnityEngine.Vector3, UnityEngine.Vector3, DG.Tweening.Plugins.Options.VectorOptions>), typeof(DG.Tweening.Ease)))
                     {
                         method = m.MakeGenericMethod(args);
-                        app.RegisterCLRMethodRedirection(method, SetEase_2);
+                        app.RegisterCLRMethodRedirection(method, SetEase_3);
 
                         break;
                     }
@@ -58,7 +72,7 @@ namespace ILRuntime.Runtime.Generated
             }
             args = new Type[]{typeof(DG.Tweening.Sequence), typeof(System.Single), typeof(DG.Tweening.Tween)};
             method = type.GetMethod("Insert", flag, null, args, null);
-            app.RegisterCLRMethodRedirection(method, Insert_3);
+            app.RegisterCLRMethodRedirection(method, Insert_4);
 
 
         }
@@ -104,7 +118,26 @@ namespace ILRuntime.Runtime.Generated
             return ILIntepreter.PushObject(__ret, __mStack, result_of_this_method);
         }
 
-        static StackObject* SetEase_2(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
+        static StackObject* SetLoops_2(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
+        {
+            ILRuntime.Runtime.Enviorment.AppDomain __domain = __intp.AppDomain;
+            StackObject* ptr_of_this_method;
+            StackObject* __ret = ILIntepreter.Minus(__esp, 2);
+
+            ptr_of_this_method = ILIntepreter.Minus(__esp, 1);
+            System.Int32 @loops = ptr_of_this_method->Value;
+
+            ptr_of_this_method = ILIntepreter.Minus(__esp, 2);
+            DG.Tweening.Sequence @t = (DG.Tweening.Sequence)typeof(DG.Tweening.Sequence).CheckCLRTypes(StackObject.ToObject(ptr_of_this_method, __domain, __mStack), (CLR.Utils.Extensions.TypeFlags)0);
+            __intp.Free(ptr_of_this_method);
+
+
+            var result_of_this_method = DG.Tweening.TweenSettingsExtensions.SetLoops<DG.Tweening.Sequence>(@t, @loops);
+
+            return ILIntepreter.PushObject(__ret, __mStack, result_of_this_method);
+        }
+
+        static StackObject* SetEase_3(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
         {
             ILRuntime.Runtime.Enviorment.AppDomain __domain = __intp.AppDomain;
             StackObject* ptr_of_this_method;
@@ -124,7 +157,7 @@ namespace ILRuntime.Runtime.Generated
             return ILIntepreter.PushObject(__ret, __mStack, result_of_this_method);
         }
 
-        static StackObject* Insert_3(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
+        static StackObject* Insert_4(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
         {
             ILRuntime.Runtime.Enviorment.AppDomain __domain = __intp.AppDomain;
             StackObject* ptr_of_this_method;

@@ -11,6 +11,7 @@
         WindowID_TowerDefenceUI,
         WindowID_MenuUI,
         WindowID_StartAnimUI,
-        WindowID_SettleUI
+        WindowID_SettleUI,
+        WindowID_GuideUI
     }
 }

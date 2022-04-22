@@ -146,6 +146,8 @@ namespace ET
             self.ZoneScene().GetComponent<UnitComponent>().Remove(unit1.Id);
             self.ZoneScene().GetComponent<UnitComponent>().Remove(unit2.Id);
             towerDefence.GetComponent<HeroSpawnComponent>().SpawnRandomHeroWithIndex(myId, index, level);
+            self.compoundCallback?.Invoke();
+            self.compoundCallback = null;
         }
 
         private static void StartCompoundUnit(Unit sellectUnit)

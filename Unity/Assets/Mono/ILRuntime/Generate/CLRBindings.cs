@@ -60,6 +60,7 @@ namespace ILRuntime.Runtime.Generated
             System_Collections_Generic_Dictionary_2_Int64_ILTypeInstance_Binding.Register(app);
             System_Collections_Generic_Dictionary_2_Int64_ILTypeInstance_Binding_ValueCollection_Binding.Register(app);
             System_Collections_Generic_Dictionary_2_Int64_ILTypeInstance_Binding_ValueCollection_Binding_Enumerator_Binding.Register(app);
+            ET_GameConfig_Binding.Register(app);
             System_Collections_Generic_Dictionary_2_Int64_Dictionary_2_Int32_ILTypeInstance_Binding.Register(app);
             System_Collections_Generic_Dictionary_2_Int32_ILTypeInstance_Binding_Enumerator_Binding.Register(app);
             System_Collections_Generic_KeyValuePair_2_Int32_ILTypeInstance_Binding.Register(app);
@@ -136,15 +137,19 @@ namespace ILRuntime.Runtime.Generated
             System_Collections_Generic_List_1_GameObject_Binding_Enumerator_Binding.Register(app);
             UnityEngine_EventSystems_PointerEventData_Binding.Register(app);
             UnityEngine_Vector2_Binding.Register(app);
+            UnityEngine_UI_Button_Binding.Register(app);
+            UnityEngine_Events_UnityEventBase_Binding.Register(app);
+            UnityEngine_RectTransformUtility_Binding.Register(app);
+            DG_Tweening_TweenExtensions_Binding.Register(app);
+            UnityEngine_Color_Binding.Register(app);
             UnityEngine_UI_Graphic_Binding.Register(app);
+            UnityEngine_PlayerPrefs_Binding.Register(app);
             UnityEngine_RectTransform_Binding.Register(app);
             TouchEventComponent_Binding.Register(app);
-            UnityEngine_Color_Binding.Register(app);
             DG_Tweening_DOTweenModuleUI_Binding.Register(app);
             UnityEngine_CanvasGroup_Binding.Register(app);
             System_Int64_Binding.Register(app);
             UnityEngine_AnimationState_Binding.Register(app);
-            UnityEngine_RectTransformUtility_Binding.Register(app);
             UnityEngine_Renderer_Binding.Register(app);
             System_Collections_Generic_Dictionary_2_Renderer_Material_Binding.Register(app);
             UnityEngine_UI_LoopScrollRectBase_Binding.Register(app);
@@ -152,8 +157,6 @@ namespace ILRuntime.Runtime.Generated
             UnityEngine_UI_Toggle_Binding.Register(app);
             System_ValueTuple_2_Int32_Toggle_Binding.Register(app);
             UnityEngine_Events_UnityEvent_1_Boolean_Binding.Register(app);
-            UnityEngine_Events_UnityEventBase_Binding.Register(app);
-            UnityEngine_UI_Button_Binding.Register(app);
             UnityEngine_Events_UnityEvent_Binding.Register(app);
             System_Action_1_Int32_Binding.Register(app);
             System_Action_1_Int64_Binding.Register(app);
@@ -266,7 +269,6 @@ namespace ILRuntime.Runtime.Generated
             ET_AcceptAllCertificate_Binding.Register(app);
             System_Collections_Generic_List_1_UnityWebRequest_Binding.Register(app);
             System_Collections_Generic_List_1_UnityWebRequest_Binding_Enumerator_Binding.Register(app);
-            UnityEngine_PlayerPrefs_Binding.Register(app);
             UnityEngine_Networking_DownloadHandler_Binding.Register(app);
             System_IO_FileStream_Binding.Register(app);
             UnityEngine_AssetBundle_Binding.Register(app);

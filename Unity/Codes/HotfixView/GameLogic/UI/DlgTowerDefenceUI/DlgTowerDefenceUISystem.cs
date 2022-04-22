@@ -53,7 +53,25 @@ namespace ET
             }
 
             self.ZoneScene().GetComponent<TowerDefenceCompoment>().round = 0;
-            self.StartAsync().Coroutine();
+            foreach (var VARIABLE in self.DomainScene().GetComponent<PlayerComponent>().Children.Values)
+            {
+                VARIABLE.GetComponent<NumericalComponent>().Set(NumericalType.PlayerEnergyBase, 100);
+                VARIABLE.GetComponent<NumericalComponent>().Set(NumericalType.PlayerBuyCountBase, 1);
+            }
+            TouchEventComponent eventComponent = self.View.EGSprite_HeroComboundRectTransform.gameObject.GetComponent<TouchEventComponent>();
+            HeroCompoundComponent heroCompoundComponent =
+                    self.DomainScene().GetComponent<TowerDefenceCompoment>().GetComponent<HeroCompoundComponent>();
+            eventComponent.BeginDragHandler = data => heroCompoundComponent.onTouchStart(data);
+            eventComponent.DragHandler = data => heroCompoundComponent.onTouchMove(data);
+            eventComponent.EndDragHandler = data => heroCompoundComponent.onTouchEnd(data);
+            if (PlayerPrefs.GetInt("Guided") == 4)
+            {
+                self.StartAsync().Coroutine();
+            }
+            else
+            {
+                self.ZoneScene().GetComponent<UIComponent>().ShowWindow(WindowID.WindowID_GuideUI);
+            }
         }
 
         public static async ETTask StartAsync(this DlgTowerDefenceUI self)
@@ -119,24 +137,13 @@ namespace ET
                 towerDefence.GetComponent<RecordMaxMoveDistanceComponent>().unit = null;
                 towerDefence.GetComponent<RecordMaxMoveDistanceComponent>().maxDistance = 0;
                 towerDefence.GetComponent<EnemySpawnComponent>()?.StartSpawnEnemy();
+                towerDefence.GetComponent<AutoSpawnHeroComponent>()?.StartSpawn();
             }
         }
 
         public static void StartGame(this DlgTowerDefenceUI self)
         {
             BgmComponent.Instance.Play(Music.BGM_Battle, 1);
-            HeroCompoundComponent heroCompoundComponent =
-                    self.DomainScene().GetComponent<TowerDefenceCompoment>().GetComponent<HeroCompoundComponent>();
-            TouchEventComponent eventComponent = self.View.EGSprite_HeroComboundRectTransform.gameObject.GetComponent<TouchEventComponent>();
-            eventComponent.BeginDragHandler = data => heroCompoundComponent.onTouchStart(data);
-            eventComponent.DragHandler = data => heroCompoundComponent.onTouchMove(data);
-            eventComponent.EndDragHandler = data => heroCompoundComponent.onTouchEnd(data);
-            foreach (var VARIABLE in self.DomainScene().GetComponent<PlayerComponent>().Children.Values)
-            {
-                VARIABLE.GetComponent<NumericalComponent>().Set(NumericalType.PlayerEnergyBase, 100);
-                VARIABLE.GetComponent<NumericalComponent>().Set(NumericalType.PlayerBuyCountBase, 1);
-            }
-
             foreach (var VARIABLE in self.DomainScene().GetComponent<TowerDefenceCompoment>().Children.Values)
             {
                 NumericalComponent numericalComponent = VARIABLE.AddComponent<NumericalComponent>();
@@ -224,7 +231,7 @@ namespace ET
             BgmComponent.Instance.Stop();
         }
 
-        private static void OnCreateHero(this DlgTowerDefenceUI self)
+        public static void OnCreateHero(this DlgTowerDefenceUI self)
         {
             if (!self.canCreateHero) return;
             self.canCreateHero = false;
@@ -247,6 +254,53 @@ namespace ET
             TowerDefence towerDefence;
             self.DomainScene().GetComponent<TowerDefenceCompoment>().playerIdTowerDefences.TryGetValue(Id, out towerDefence);
             bool result = towerDefence.GetComponent<HeroSpawnComponent>().SpawnRandomHero(Id);
+            if (result)
+            {
+                numericalComponent.Set(NumericalType.PlayerEnergyBase, energy - cost);
+                numericalComponent.Set(NumericalType.PlayerBuyCountBase, (cost / 10) + 1);
+            }
+        }
+
+        public static void OnCreateHero(this DlgTowerDefenceUI self, bool guide = false)
+        {
+            if (!self.canCreateHero) return;
+            self.canCreateHero = false;
+            self.RefreshButton().Coroutine();
+            self.View.EButton_CreateHeroButton.transform.DOPunchScale(new Vector3(0.2f, 0.2f, 0), 0.2f, 1);
+
+            long Id = self.DomainScene().GetComponent<PlayerComponent>().MyId;
+            Player player = self.DomainScene().GetComponent<PlayerComponent>().Get(Id);
+            NumericalComponent numericalComponent = player.GetComponent<NumericalComponent>();
+            int energy = numericalComponent.GetAsInt(NumericalType.PlayerEnergy);
+            Log.Info(energy.ToString());
+            int cost = numericalComponent.GetAsInt(NumericalType.PlayerBuyCount) * 10;
+            if (energy < cost)
+            {
+                Log.Info("能量不够");
+                SoundComponent.Instance.Play(Sound.点击购买失败音效);
+                self.ShowEnergyTip();
+                return;
+            }
+
+            TowerDefence towerDefence;
+            self.DomainScene().GetComponent<TowerDefenceCompoment>().playerIdTowerDefences.TryGetValue(Id, out towerDefence);
+            bool result = false;
+            if (guide)
+            {
+                if (GameConfig.GameMode == GameMode.Animals)
+                {
+                    result = towerDefence.GetComponent<HeroSpawnComponent>().SpawnRandomHero(Id, 1108);
+                }
+                else
+                {
+                    result = towerDefence.GetComponent<HeroSpawnComponent>().SpawnRandomHero(Id, 1102);
+                }
+            }
+            else
+            {
+                result = towerDefence.GetComponent<HeroSpawnComponent>().SpawnRandomHero(Id);
+            }
+
             if (result)
             {
                 numericalComponent.Set(NumericalType.PlayerEnergyBase, energy - cost);

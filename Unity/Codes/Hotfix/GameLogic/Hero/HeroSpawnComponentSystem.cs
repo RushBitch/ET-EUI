@@ -112,7 +112,7 @@ namespace ET
             }
         }
 
-        public static bool SpawnRandomHero(this HeroSpawnComponent self, long id)
+        public static bool SpawnRandomHero(this HeroSpawnComponent self, long id,int heroConfigID = 0)
         {
             Dictionary<int, Unit> indexHeros;
             self.idIndexHero.TryGetValue(id, out indexHeros);
@@ -127,6 +127,7 @@ namespace ET
 
             if (indexs.Count > 0)
             {
+                
                 int random = RandomHelper.RandomNumber(0, indexs.Count);
                 int configId = 0;
                 if (GameConfig.GameMode == GameMode.Animals)
@@ -137,7 +138,10 @@ namespace ET
                 {
                     configId = 1100 + RandomHelper.RandomNumber(2, 7);
                 }
-
+                if (heroConfigID != 0)
+                {
+                    configId = heroConfigID;
+                }
                 Unit hero = HeroFactory.Create(self.DomainScene(), configId, self.Id, indexs[random], 1);
                 self.Add(id, hero, indexs[random]);
                 return true;

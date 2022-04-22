@@ -417,6 +417,8 @@
      <Compile Include="Assets\Mono\ILRuntime\Generate\System_Collections_Generic_HashSet_1_AService_Binding_Enumerator_Bind.cs" />
      <Compile Include="Assets\Mono\Define.cs" />
      <Compile Include="Assets\Mono\GameLogic\GameConfig.cs" />
+     <Compile Include="Assets\Mono\ILRuntime\Generate\ET_GameConfig_Binding.cs" />
+     <Compile Include="Assets\Mono\ILRuntime\Generate\DG_Tweening_TweenExtensions_Binding.cs" />
      <None Include="Assets\Mono\Unity.Mono.asmdef" />
      <Reference Include="UnityEngine">
      <HintPath>D:/Unity/2020.3.22f1c1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>

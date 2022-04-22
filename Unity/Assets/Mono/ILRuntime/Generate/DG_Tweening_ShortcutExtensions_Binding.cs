@@ -31,27 +31,33 @@ namespace ILRuntime.Runtime.Generated
             args = new Type[]{typeof(UnityEngine.Transform), typeof(System.Single), typeof(System.Single), typeof(System.Int32), typeof(System.Single), typeof(System.Boolean), typeof(System.Boolean)};
             method = type.GetMethod("DOShakePosition", flag, null, args, null);
             app.RegisterCLRMethodRedirection(method, DOShakePosition_2);
+            args = new Type[]{typeof(UnityEngine.Transform), typeof(UnityEngine.Vector3), typeof(System.Single), typeof(System.Boolean)};
+            method = type.GetMethod("DOLocalMove", flag, null, args, null);
+            app.RegisterCLRMethodRedirection(method, DOLocalMove_3);
             args = new Type[]{typeof(UnityEngine.Transform), typeof(System.Single), typeof(System.Single), typeof(System.Int32), typeof(System.Single), typeof(System.Boolean)};
             method = type.GetMethod("DOShakeScale", flag, null, args, null);
-            app.RegisterCLRMethodRedirection(method, DOShakeScale_3);
+            app.RegisterCLRMethodRedirection(method, DOShakeScale_4);
             args = new Type[]{typeof(UnityEngine.Transform), typeof(System.Single), typeof(System.Single), typeof(System.Boolean)};
             method = type.GetMethod("DOLocalMoveX", flag, null, args, null);
-            app.RegisterCLRMethodRedirection(method, DOLocalMoveX_4);
+            app.RegisterCLRMethodRedirection(method, DOLocalMoveX_5);
             args = new Type[]{typeof(UnityEngine.Transform), typeof(System.Single), typeof(System.Single)};
             method = type.GetMethod("DOScaleX", flag, null, args, null);
-            app.RegisterCLRMethodRedirection(method, DOScaleX_5);
+            app.RegisterCLRMethodRedirection(method, DOScaleX_6);
             args = new Type[]{typeof(UnityEngine.Transform), typeof(System.Single), typeof(System.Single)};
             method = type.GetMethod("DOScaleY", flag, null, args, null);
-            app.RegisterCLRMethodRedirection(method, DOScaleY_6);
+            app.RegisterCLRMethodRedirection(method, DOScaleY_7);
+            args = new Type[]{typeof(UnityEngine.Transform), typeof(UnityEngine.Vector3), typeof(System.Single), typeof(System.Int32), typeof(System.Single)};
+            method = type.GetMethod("DOPunchScale", flag, null, args, null);
+            app.RegisterCLRMethodRedirection(method, DOPunchScale_8);
             args = new Type[]{typeof(UnityEngine.Transform), typeof(System.Single), typeof(System.Single), typeof(System.Boolean)};
             method = type.GetMethod("DOLocalMoveY", flag, null, args, null);
-            app.RegisterCLRMethodRedirection(method, DOLocalMoveY_7);
+            app.RegisterCLRMethodRedirection(method, DOLocalMoveY_9);
             args = new Type[]{typeof(UnityEngine.Transform), typeof(System.Single), typeof(System.Single)};
             method = type.GetMethod("DOScale", flag, null, args, null);
-            app.RegisterCLRMethodRedirection(method, DOScale_8);
+            app.RegisterCLRMethodRedirection(method, DOScale_10);
             args = new Type[]{typeof(UnityEngine.Transform), typeof(UnityEngine.Vector3), typeof(System.Single)};
             method = type.GetMethod("DOScale", flag, null, args, null);
-            app.RegisterCLRMethodRedirection(method, DOScale_9);
+            app.RegisterCLRMethodRedirection(method, DOScale_11);
 
 
         }
@@ -140,7 +146,33 @@ namespace ILRuntime.Runtime.Generated
             return ILIntepreter.PushObject(__ret, __mStack, result_of_this_method);
         }
 
-        static StackObject* DOShakeScale_3(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
+        static StackObject* DOLocalMove_3(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
+        {
+            ILRuntime.Runtime.Enviorment.AppDomain __domain = __intp.AppDomain;
+            StackObject* ptr_of_this_method;
+            StackObject* __ret = ILIntepreter.Minus(__esp, 4);
+
+            ptr_of_this_method = ILIntepreter.Minus(__esp, 1);
+            System.Boolean @snapping = ptr_of_this_method->Value == 1;
+
+            ptr_of_this_method = ILIntepreter.Minus(__esp, 2);
+            System.Single @duration = *(float*)&ptr_of_this_method->Value;
+
+            ptr_of_this_method = ILIntepreter.Minus(__esp, 3);
+            UnityEngine.Vector3 @endValue = (UnityEngine.Vector3)typeof(UnityEngine.Vector3).CheckCLRTypes(StackObject.ToObject(ptr_of_this_method, __domain, __mStack), (CLR.Utils.Extensions.TypeFlags)16);
+            __intp.Free(ptr_of_this_method);
+
+            ptr_of_this_method = ILIntepreter.Minus(__esp, 4);
+            UnityEngine.Transform @target = (UnityEngine.Transform)typeof(UnityEngine.Transform).CheckCLRTypes(StackObject.ToObject(ptr_of_this_method, __domain, __mStack), (CLR.Utils.Extensions.TypeFlags)0);
+            __intp.Free(ptr_of_this_method);
+
+
+            var result_of_this_method = DG.Tweening.ShortcutExtensions.DOLocalMove(@target, @endValue, @duration, @snapping);
+
+            return ILIntepreter.PushObject(__ret, __mStack, result_of_this_method);
+        }
+
+        static StackObject* DOShakeScale_4(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
         {
             ILRuntime.Runtime.Enviorment.AppDomain __domain = __intp.AppDomain;
             StackObject* ptr_of_this_method;
@@ -171,7 +203,7 @@ namespace ILRuntime.Runtime.Generated
             return ILIntepreter.PushObject(__ret, __mStack, result_of_this_method);
         }
 
-        static StackObject* DOLocalMoveX_4(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
+        static StackObject* DOLocalMoveX_5(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
         {
             ILRuntime.Runtime.Enviorment.AppDomain __domain = __intp.AppDomain;
             StackObject* ptr_of_this_method;
@@ -196,7 +228,7 @@ namespace ILRuntime.Runtime.Generated
             return ILIntepreter.PushObject(__ret, __mStack, result_of_this_method);
         }
 
-        static StackObject* DOScaleX_5(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
+        static StackObject* DOScaleX_6(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
         {
             ILRuntime.Runtime.Enviorment.AppDomain __domain = __intp.AppDomain;
             StackObject* ptr_of_this_method;
@@ -218,7 +250,7 @@ namespace ILRuntime.Runtime.Generated
             return ILIntepreter.PushObject(__ret, __mStack, result_of_this_method);
         }
 
-        static StackObject* DOScaleY_6(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
+        static StackObject* DOScaleY_7(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
         {
             ILRuntime.Runtime.Enviorment.AppDomain __domain = __intp.AppDomain;
             StackObject* ptr_of_this_method;
@@ -240,7 +272,36 @@ namespace ILRuntime.Runtime.Generated
             return ILIntepreter.PushObject(__ret, __mStack, result_of_this_method);
         }
 
-        static StackObject* DOLocalMoveY_7(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
+        static StackObject* DOPunchScale_8(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
+        {
+            ILRuntime.Runtime.Enviorment.AppDomain __domain = __intp.AppDomain;
+            StackObject* ptr_of_this_method;
+            StackObject* __ret = ILIntepreter.Minus(__esp, 5);
+
+            ptr_of_this_method = ILIntepreter.Minus(__esp, 1);
+            System.Single @elasticity = *(float*)&ptr_of_this_method->Value;
+
+            ptr_of_this_method = ILIntepreter.Minus(__esp, 2);
+            System.Int32 @vibrato = ptr_of_this_method->Value;
+
+            ptr_of_this_method = ILIntepreter.Minus(__esp, 3);
+            System.Single @duration = *(float*)&ptr_of_this_method->Value;
+
+            ptr_of_this_method = ILIntepreter.Minus(__esp, 4);
+            UnityEngine.Vector3 @punch = (UnityEngine.Vector3)typeof(UnityEngine.Vector3).CheckCLRTypes(StackObject.ToObject(ptr_of_this_method, __domain, __mStack), (CLR.Utils.Extensions.TypeFlags)16);
+            __intp.Free(ptr_of_this_method);
+
+            ptr_of_this_method = ILIntepreter.Minus(__esp, 5);
+            UnityEngine.Transform @target = (UnityEngine.Transform)typeof(UnityEngine.Transform).CheckCLRTypes(StackObject.ToObject(ptr_of_this_method, __domain, __mStack), (CLR.Utils.Extensions.TypeFlags)0);
+            __intp.Free(ptr_of_this_method);
+
+
+            var result_of_this_method = DG.Tweening.ShortcutExtensions.DOPunchScale(@target, @punch, @duration, @vibrato, @elasticity);
+
+            return ILIntepreter.PushObject(__ret, __mStack, result_of_this_method);
+        }
+
+        static StackObject* DOLocalMoveY_9(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
         {
             ILRuntime.Runtime.Enviorment.AppDomain __domain = __intp.AppDomain;
             StackObject* ptr_of_this_method;
@@ -265,7 +326,7 @@ namespace ILRuntime.Runtime.Generated
             return ILIntepreter.PushObject(__ret, __mStack, result_of_this_method);
         }
 
-        static StackObject* DOScale_8(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
+        static StackObject* DOScale_10(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
         {
             ILRuntime.Runtime.Enviorment.AppDomain __domain = __intp.AppDomain;
             StackObject* ptr_of_this_method;
@@ -287,7 +348,7 @@ namespace ILRuntime.Runtime.Generated
             return ILIntepreter.PushObject(__ret, __mStack, result_of_this_method);
         }
 
-        static StackObject* DOScale_9(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
+        static StackObject* DOScale_11(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
         {
             ILRuntime.Runtime.Enviorment.AppDomain __domain = __intp.AppDomain;
             StackObject* ptr_of_this_method;
