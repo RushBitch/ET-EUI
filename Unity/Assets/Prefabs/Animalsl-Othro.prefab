@@ -813,6 +813,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CodeMode: 1
+  GameMode: 1
+  GameView: 1
 --- !u!82 &3991571477350661561
 AudioSource:
   m_ObjectHideFlags: 0
@@ -3438,7 +3440,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &7154133053675104657
 RectTransform:
   m_ObjectHideFlags: 0

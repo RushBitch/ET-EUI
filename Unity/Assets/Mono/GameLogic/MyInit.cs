@@ -7,7 +7,8 @@ namespace ET
     public class MyInit: MonoBehaviour
     {
         public CodeMode CodeMode = CodeMode.Mono;
-
+        public GameMode GameMode = GameMode.Animals;
+        public GameView GameView = GameView.Perspective;
         private void Awake()
         {
 #if ENABLE_IL2CPP
@@ -27,6 +28,8 @@ namespace ET
             Options.Instance = new Options();
 
             MyCodeLoader.Instance.CodeMode = this.CodeMode;
+            GameConfig.GameMode = this.GameMode;
+            GameConfig.GameView = this.GameView;
         }
 
         private async ETTask StartAsync()
@@ -35,7 +38,7 @@ namespace ET
             // {
             //     await this.CheckAndLoadBundle();
             // }
-
+            
             MyCodeLoader.Instance.Start();
         }
 

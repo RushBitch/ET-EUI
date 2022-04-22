@@ -8,5 +8,6 @@ namespace ET
 		public DlgTowerDefenceUIViewComponent View { get => this.Parent.GetComponent<DlgTowerDefenceUIViewComponent>();}
 		public bool switchState = true;
 		public Sequence Sequence = null;
+		public bool canCreateHero = true;
 	}
 }

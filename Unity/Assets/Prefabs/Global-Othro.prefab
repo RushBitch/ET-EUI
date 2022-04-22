@@ -1250,6 +1250,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CodeMode: 1
+  GameMode: 0
+  GameView: 1
 --- !u!82 &234478342
 AudioSource:
   m_ObjectHideFlags: 0

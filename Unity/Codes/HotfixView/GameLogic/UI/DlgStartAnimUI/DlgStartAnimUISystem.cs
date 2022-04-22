@@ -15,6 +15,21 @@ namespace ET
 
         public static void ShowWindow(this DlgStartAnimUI self, Entity contextData = null)
         {
+            self.View.EG_AnimalsTopIconRectTransform.gameObject.SetActive(false);
+            self.View.EG_AnimalsButtomIconRectTransform.gameObject.SetActive(false);
+            self.View.EG_ClashminiTopIconRectTransform.gameObject.SetActive(false);
+            self.View.EG_ClashminiButtomIconRectTransform.gameObject.SetActive(false);
+            if (GameConfig.GameMode == GameMode.Animals)
+            {
+                self.View.EG_AnimalsTopIconRectTransform.gameObject.SetActive(true);
+                self.View.EG_AnimalsButtomIconRectTransform.gameObject.SetActive(true);
+            }
+            else
+            {
+                self.View.EG_ClashminiTopIconRectTransform.gameObject.SetActive(true);
+                self.View.EG_ClashminiButtomIconRectTransform.gameObject.SetActive(true);
+            }
+
             self.PlaySound().Coroutine();
             self.StartShowAnim();
         }

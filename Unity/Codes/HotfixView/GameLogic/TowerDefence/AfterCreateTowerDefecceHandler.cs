@@ -27,13 +27,19 @@ namespace ET
             args.towerDefenceCompoment.DomainScene().GetComponent<UIComponent>().ShowWindow(WindowID.WindowID_StartAnimUI);
             args.towerDefenceCompoment.AddComponent<TowerDefenceCameraComponent, GameObject>(GlobalComponent.Instance.Global.Find("MainCamera")
                     .gameObject);
+            if (GameConfig.GameMode == GameMode.Animals)
+            {
+                GameObject.Find("Global/ZhangYu").GetComponent<Animation>().Play("id");
+                GameObject.Find("Global/ZhangYu1").GetComponent<Animation>().Play("id");
+            }
+            else
+            {
+                GameObject.Find("cj_2/shuijingtai").transform.localScale = new Vector3(1, 0.2f, 1);
+                GameObject.Find("cj_2/shuijingtai").transform.GetChild(0).GetChild(0).localScale = Vector3.one;
+                GameObject.Find("cj_2/shuijingtai (1)").transform.localScale = new Vector3(1, 0.2f, 1);
+                GameObject.Find("cj_2/shuijingtai (1)").transform.GetChild(0).GetChild(0).localScale = Vector3.one;
+            }
 
-            // GameObject.Find("cj_2/shuijingtai").transform.localScale = new Vector3(1, 0.2f, 1);
-            // GameObject.Find("cj_2/shuijingtai").transform.GetChild(0).GetChild(0).localScale = Vector3.one;
-            // GameObject.Find("cj_2/shuijingtai (1)").transform.localScale = new Vector3(1, 0.2f, 1);
-            // GameObject.Find("cj_2/shuijingtai (1)").transform.GetChild(0).GetChild(0).localScale = Vector3.one;
-            GameObject.Find("Global/ZhangYu").GetComponent<Animation>().Play("id");
-            GameObject.Find("Global/ZhangYu1").GetComponent<Animation>().Play("id");
             MainCameraComponent.Instance.MenuHeroCamera.GetComponent<Camera>().enabled = false;
             MainCameraComponent.Instance.cameraGameObject.GetComponent<Camera>().enabled = true;
             GlobalComponent.Instance.OtherRoot.Find("Bg").gameObject.SetActive(false);

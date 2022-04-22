@@ -24,10 +24,10 @@ EditorBuildSettings:
     path: 
     guid: 00000000000000000000000000000000
   - enabled: 0
-    path: Assets/Scenes/cj_2 1.unity
+    path: Assets/Scenes/Clashmini-Othro.unity
     guid: b21c17ecc3f56234795eceaae9f9b215
   - enabled: 0
-    path: Assets/Scenes/cj_2 2.unity
+    path: Assets/Scenes/Clashmini-Per.unity
     guid: c3cd1d69b0f20e54a83e7c7a454fa4d4
   - enabled: 0
     path: 

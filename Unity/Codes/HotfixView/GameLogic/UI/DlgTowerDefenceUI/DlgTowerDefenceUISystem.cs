@@ -21,6 +21,37 @@ namespace ET
 
         public static void ShowWindow(this DlgTowerDefenceUI self, Entity contextData = null)
         {
+            self.View.ES_TopInfo.EG_AnimalsInfoRectTransform.gameObject.SetActive(false);
+            self.View.ES_TopInfo.EG_ClashminiInfoRectTransform.gameObject.SetActive(false);
+            self.View.ES_ButtomInfo.EG_AnimalsInfoRectTransform.gameObject.SetActive(false);
+            self.View.ES_ButtomInfo.EG_ClashminiInfoRectTransform.gameObject.SetActive(false);
+            if (GameConfig.GameMode == GameMode.Animals)
+            {
+                self.View.ES_TopInfo.EG_AnimalsInfoRectTransform.gameObject.SetActive(true);
+                self.View.ES_ButtomInfo.EG_AnimalsInfoRectTransform.gameObject.SetActive(true);
+                if (GameConfig.GameView == GameView.Perspective)
+                {
+                    self.View.ES_BattleInfo.uiTransform.gameObject.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, 222f);
+                }
+                else
+                {
+                    self.View.ES_BattleInfo.uiTransform.gameObject.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, 51f);
+                }
+            }
+            else
+            {
+                self.View.ES_TopInfo.EG_ClashminiInfoRectTransform.gameObject.SetActive(true);
+                self.View.ES_ButtomInfo.EG_ClashminiInfoRectTransform.gameObject.SetActive(true);
+                if (GameConfig.GameView == GameView.Perspective)
+                {
+                    self.View.ES_BattleInfo.uiTransform.gameObject.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, 136f);
+                }
+                else
+                {
+                    self.View.ES_BattleInfo.uiTransform.gameObject.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, 57f);
+                }
+            }
+
             self.ZoneScene().GetComponent<TowerDefenceCompoment>().round = 0;
             self.StartAsync().Coroutine();
         }
@@ -48,6 +79,7 @@ namespace ET
             {
                 UnityEngine.Object.Destroy(gameObject);
             }
+
             self.ZoneScene().GetComponent<TowerDefenceCompoment>().round += 1;
             self.View.ES_BattltStart.ELabel_TextText.text = $"Round {self.ZoneScene().GetComponent<TowerDefenceCompoment>().round}";
             self.ZoneScene().GetComponent<TowerDefenceCompoment>().bossDeadCount = 0;
@@ -194,6 +226,11 @@ namespace ET
 
         private static void OnCreateHero(this DlgTowerDefenceUI self)
         {
+            if (!self.canCreateHero) return;
+            self.canCreateHero = false;
+            self.RefreshButton().Coroutine();
+            self.View.EButton_CreateHeroButton.transform.DOPunchScale(new Vector3(0.2f, 0.2f, 0), 0.2f, 1);
+
             long Id = self.DomainScene().GetComponent<PlayerComponent>().MyId;
             Player player = self.DomainScene().GetComponent<PlayerComponent>().Get(Id);
             NumericalComponent numericalComponent = player.GetComponent<NumericalComponent>();
@@ -215,6 +252,13 @@ namespace ET
                 numericalComponent.Set(NumericalType.PlayerEnergyBase, energy - cost);
                 numericalComponent.Set(NumericalType.PlayerBuyCountBase, (cost / 10) + 1);
             }
+        }
+
+        private static async ETTask RefreshButton(this DlgTowerDefenceUI self)
+        {
+            await TimerComponent.Instance.WaitAsync(200);
+            self.canCreateHero = true;
+            await ETTask.CompletedTask;
         }
 
         private static void OnCreateHeroPvp(this DlgTowerDefenceUI self)

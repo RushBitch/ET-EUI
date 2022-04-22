@@ -5,6 +5,40 @@ namespace ET
 {
 	public  class ES_TopInfo : Entity,ET.IAwake<UnityEngine.Transform>,IDestroy 
 	{
+		public UnityEngine.RectTransform EG_AnimalsInfoRectTransform
+     	{
+     		get
+     		{
+     			if (this.uiTransform == null)
+     			{
+     				Log.Error("uiTransform is null.");
+     				return null;
+     			}
+     			if( this.m_EG_AnimalsInfoRectTransform == null )
+     			{
+		    		this.m_EG_AnimalsInfoRectTransform = UIFindHelper.FindDeepChild<UnityEngine.RectTransform>(this.uiTransform.gameObject,"EG_AnimalsInfo");
+     			}
+     			return this.m_EG_AnimalsInfoRectTransform;
+     		}
+     	}
+
+		public UnityEngine.RectTransform EG_ClashminiInfoRectTransform
+     	{
+     		get
+     		{
+     			if (this.uiTransform == null)
+     			{
+     				Log.Error("uiTransform is null.");
+     				return null;
+     			}
+     			if( this.m_EG_ClashminiInfoRectTransform == null )
+     			{
+		    		this.m_EG_ClashminiInfoRectTransform = UIFindHelper.FindDeepChild<UnityEngine.RectTransform>(this.uiTransform.gameObject,"EG_ClashminiInfo");
+     			}
+     			return this.m_EG_ClashminiInfoRectTransform;
+     		}
+     	}
+
 		public UnityEngine.UI.Button EButton_InfoSwitchButton
      	{
      		get
@@ -58,12 +92,16 @@ namespace ET
 
 		public void DestroyWidget()
 		{
+			this.m_EG_AnimalsInfoRectTransform = null;
+			this.m_EG_ClashminiInfoRectTransform = null;
 			this.m_EButton_InfoSwitchButton = null;
 			this.m_EButton_InfoSwitchImage = null;
 			this.m_EG_EnemyMyHpRectTransform = null;
 			this.uiTransform = null;
 		}
 
+		private UnityEngine.RectTransform m_EG_AnimalsInfoRectTransform = null;
+		private UnityEngine.RectTransform m_EG_ClashminiInfoRectTransform = null;
 		private UnityEngine.UI.Button m_EButton_InfoSwitchButton = null;
 		private UnityEngine.UI.Image m_EButton_InfoSwitchImage = null;
 		private UnityEngine.RectTransform m_EG_EnemyMyHpRectTransform = null;
