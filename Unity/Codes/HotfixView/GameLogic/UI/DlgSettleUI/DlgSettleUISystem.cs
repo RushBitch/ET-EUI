@@ -20,6 +20,8 @@ namespace ET
 
         public static void ShowWin(this DlgSettleUI self, Entity contextData = null)
         {
+            NativeHelper.Instance.SdkDataAnalysisCustomEvents(AnalysisCustomEvents.游戏胜利);
+
             SoundComponent.Instance.Play(Sound.胜利页面音效);
             self.View.EG_VicyoryRectTransform.gameObject.SetActive(false);
             self.View.EG_LoseRectTransform.gameObject.SetActive(false);
@@ -38,6 +40,7 @@ namespace ET
         }
         public static void ShowLose(this DlgSettleUI self, Entity contextData = null)
         {
+            NativeHelper.Instance.SdkDataAnalysisCustomEvents(AnalysisCustomEvents.游戏失败);
             SoundComponent.Instance.Play(Sound.失败页面音效);
             self.View.EG_VicyoryRectTransform.gameObject.SetActive(false);
             self.View.EG_LoseRectTransform.gameObject.SetActive(false);
@@ -56,6 +59,7 @@ namespace ET
         }
         public static void OnBackToMainButton(this DlgSettleUI self)
         {
+            NativeHelper.Instance.SdkDataAnalysisCustomEvents(AnalysisCustomEvents.返回首页按钮);
             self.DomainScene().GetComponent<UIComponent>().HideWindow(WindowID.WindowID_SettleUI);
             self.DomainScene().GetComponent<UIComponent>().ShowWindow(WindowID.WindowID_MenuUI);
 

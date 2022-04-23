@@ -128,6 +128,10 @@ namespace ILRuntime.Runtime.Generated
             DG_Tweening_ShortcutExtensions_Binding.Register(app);
             DG_Tweening_DOTween_Binding.Register(app);
             DG_Tweening_TweenSettingsExtensions_Binding.Register(app);
+            System_Array_Binding.Register(app);
+            UnityEngine_AndroidJavaObject_Binding.Register(app);
+            UnityEngine_Debug_Binding.Register(app);
+            UnityEngine_AndroidJavaClass_Binding.Register(app);
             UnityEngine_AudioSource_Binding.Register(app);
             UnityEngine_Time_Binding.Register(app);
             UnityEngine_Animation_Binding.Register(app);
@@ -175,11 +179,9 @@ namespace ILRuntime.Runtime.Generated
             ET_GameObjectPoolHelper_Binding.Register(app);
             System_Collections_Generic_Stack_1_Int32_Binding.Register(app);
             ET_ETAsyncTaskMethodBuilder_1_ILTypeInstance_Binding.Register(app);
-            UnityEngine_Debug_Binding.Register(app);
             System_Collections_Generic_HashSet_1_Int32_Binding.Register(app);
             System_Collections_Generic_Dictionary_2_Int32_String_Binding.Register(app);
             System_Enum_Binding.Register(app);
-            System_Array_Binding.Register(app);
             System_Char_Binding.Register(app);
             ReferenceCollector_Binding.Register(app);
             ET_Options_Binding.Register(app);

@@ -160,6 +160,7 @@
      <Compile Include="Assets\Mono\GameLogic\NetworkPomelo\MsgEncoder.cs" />
      <Compile Include="Assets\Mono\ILRuntime\Generate\System_Int32_Binding.cs" />
      <Compile Include="Assets\Mono\GameLogic\BundleDownloader\LoadingUI.cs" />
+     <Compile Include="Assets\Mono\ILRuntime\Generate\DG_Tweening_TweenExtensions_Binding.cs" />
      <Compile Include="Assets\Mono\ILRuntime\Generate\System_Action_Binding.cs" />
      <Compile Include="Assets\Mono\ILRuntime\Generate\System_Collections_Generic_KeyValuePair_2_Int32_ILTypeInstance_Bindin.cs" />
      <Compile Include="Assets\Mono\ILRuntime\Generate\ET_PathHelper_Binding.cs" />
@@ -228,6 +229,7 @@
      <Compile Include="Assets\Mono\ILRuntime\Generate\System_Collections_Generic_List_1_Int64_Binding_Enumerator_Binding.cs" />
      <Compile Include="Assets\Mono\ILRuntime\Generate\ET_ListComponent_1_ILTypeInstance_Binding.cs" />
      <Compile Include="Assets\Mono\ILRuntime\Generate\ET_ETTask_Binding.cs" />
+     <Compile Include="Assets\Mono\ILRuntime\Generate\ET_GameConfig_Binding.cs" />
      <Compile Include="Assets\Mono\ILRuntime\Generate\UnityEngine_Quaternion_Binding.cs" />
      <Compile Include="Assets\Mono\ILRuntime\Generate\System_Char_Binding.cs" />
      <Compile Include="Assets\Mono\ILRuntime\Generate\UnityEngine_AssetBundle_Binding.cs" />
@@ -341,6 +343,7 @@
      <Compile Include="Assets\Mono\ILRuntime\Generate\System_Collections_Generic_Dictionary_2_String_ListComponent_1_String.cs" />
      <Compile Include="Assets\Mono\ILRuntime\Generate\System_Collections_Generic_List_1_String_Binding.cs" />
      <Compile Include="Assets\Mono\ILRuntime\Generate\ET_AcceptAllCertificate_Binding.cs" />
+     <Compile Include="Assets\Mono\GameLogic\GameConfig.cs" />
      <Compile Include="Assets\Mono\Module\Mongo\BsonIgnoreIfDefaultAttribute.cs" />
      <Compile Include="Assets\Mono\ILRuntime\Generate\System_Collections_Generic_Dictionary_2_Int64_ILTypeInstance_Binding.cs" />
      <Compile Include="Assets\Mono\ILRuntime\Generate\System_Collections_Generic_Dictionary_2_Type_Int32_Binding.cs" />
@@ -416,9 +419,9 @@
      <Compile Include="Assets\Mono\ILRuntime\Generate\System_ValueTuple_2_Int64_MemoryStream_Binding.cs" />
      <Compile Include="Assets\Mono\ILRuntime\Generate\System_Collections_Generic_HashSet_1_AService_Binding_Enumerator_Bind.cs" />
      <Compile Include="Assets\Mono\Define.cs" />
-     <Compile Include="Assets\Mono\GameLogic\GameConfig.cs" />
-     <Compile Include="Assets\Mono\ILRuntime\Generate\ET_GameConfig_Binding.cs" />
-     <Compile Include="Assets\Mono\ILRuntime\Generate\DG_Tweening_TweenExtensions_Binding.cs" />
+     <Compile Include="Assets\Mono\ILRuntime\Generate\UnityEngine_AndroidJavaClass_Binding.cs" />
+     <Compile Include="Assets\Mono\ILRuntime\Generate\UnityEngine_AndroidJavaObject_Binding.cs" />
+     <Compile Include="Assets\Mono\GameLogic\Helper\ListenJavaCall.cs" />
      <None Include="Assets\Mono\Unity.Mono.asmdef" />
      <Reference Include="UnityEngine">
      <HintPath>D:/Unity/2020.3.22f1c1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
@@ -1005,11 +1008,11 @@
      <Reference Include="System.Xml.XPath.XDocument">
      <HintPath>D:/Unity/2020.3.22f1c1/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/Facades/System.Xml.XPath.XDocument.dll</HintPath>
      </Reference>
-     <Reference Include="UnityEditor.UI">
-     <HintPath>E:/Unity/ET-EUI/Unity/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
-     </Reference>
      <Reference Include="UnityEngine.UI">
      <HintPath>E:/Unity/ET-EUI/Unity/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
+     </Reference>
+     <Reference Include="UnityEditor.UI">
+     <HintPath>E:/Unity/ET-EUI/Unity/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
      </Reference>
   </ItemGroup>
   <ItemGroup>

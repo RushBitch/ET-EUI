@@ -186,5 +186,15 @@ namespace ET
             public long towerDefenceId;
             public long heroType;
         }
+
+        public struct MyLoginFinished
+        {
+            
+        }
+        
+        public struct MyLoginFail
+        {
+            
+        }
     }
 }

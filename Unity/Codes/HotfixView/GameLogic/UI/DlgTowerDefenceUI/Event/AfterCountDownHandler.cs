@@ -37,6 +37,31 @@ namespace ET
                 dlgTowerDefenceUI.GetComponent<DlgTowerDefenceUIViewComponent>().ES_BattleInfo.ELabel_CountDownText.text = valueStr;
             }
 
+            if (CountDownComponent.additionCount == 60)
+            {
+                NativeHelper.Instance.SdkDataAnalysisCustomEvents(AnalysisCustomEvents.开始游戏1分钟);
+            }
+
+            if (CountDownComponent.additionCount == 120)
+            {
+                NativeHelper.Instance.SdkDataAnalysisCustomEvents(AnalysisCustomEvents.开始游戏2分钟);
+            }
+
+            if (CountDownComponent.additionCount == 180)
+            {
+                NativeHelper.Instance.SdkDataAnalysisCustomEvents(AnalysisCustomEvents.开始游戏3分钟);
+            }
+
+            if (CountDownComponent.additionCount == 300)
+            {
+                NativeHelper.Instance.SdkDataAnalysisCustomEvents(AnalysisCustomEvents.开始游戏5分钟);
+            }
+
+            if (CountDownComponent.additionCount == 600)
+            {
+                NativeHelper.Instance.SdkDataAnalysisCustomEvents(AnalysisCustomEvents.开始游戏10分钟);
+            }
+
             await ETTask.CompletedTask;
         }
     }

@@ -17,7 +17,7 @@ namespace ET
 
 		private Assembly assembly;
 
-		private ILRuntime.Runtime.Enviorment.AppDomain appDomain;
+		public ILRuntime.Runtime.Enviorment.AppDomain appDomain;
 		
 		private Type[] allTypes;
 		

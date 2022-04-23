@@ -22,6 +22,11 @@ namespace ET
             zoneScene.GetComponent<PlayerComponent>().MyId = id;
             ResourcesComponent.Instance.LoadBundle("config.unity3d");
             DOTween.SetTweensCapacity(3000, 200);
+            
+            NativeHelper.Instance.SDKCall("IntoTheLoginService");
+            
+            NativeHelper.Instance.SdkDataAnalysisCustomEvents(AnalysisCustomEvents.进入游戏主界面);
+            
             await ETTask.CompletedTask;
         }
     }
